@@ -5,6 +5,7 @@ const nextConfig = {
     loader: "default",
     domains: ["res.cloudinary.com", "avatars.githubusercontent.com"],
   },
+  distDir: "build",
 };
 
 export default nextConfig;
