@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Helper telegram bot",
+    "image": "./1_YVTFl1UEkt3_rkez-DIU9w.png",
+    "description": "A bot that can tag active users with different words, can give information about group, can type with you, can delete bad messages.",
+    "tags": ["Python", "Telegram"],
+    "source_code": "https://github.com/Elnur21/telegram-bots/blob/main/helper-bot.py"
+  },
+  {
+    "id": 2,
+    "name": "Message sender telegram bot",
+    "image": "./1_YVTFl1UEkt3_rkez-DIU9w.png",
+    "description": "A bot that can get user messages and sends to channel.",
+    "tags": ["Python", "Telegram"],
+    "source_code": "https://github.com/Elnur21/telegram-bots/blob/main/message-sender-bot.py"
+  }
+]

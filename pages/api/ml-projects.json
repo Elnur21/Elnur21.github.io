@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Custom Disjoint-CNN",
+    "image": "./DisJoint-CNN.png",
+    "description": "Apply Deptswise and Separable Convolutional layers instead of 2 D Convolutional layers",
+    "tags": ["Tensorflow", "CNN", "Pandas"],
+    "source_code": "https://github.com/Elnur21/Custom-Disjoint-CNN"
+  },
+  {
+    "id": 2,
+    "name": "World Statistics Analyze",
+    "image": "./barplot.png",
+    "description": "Create statistics of energy, temperature, gas etc. according to different years for the countries.",
+    "tags": ["Linux", "Gnuplot"],
+    "source_code": "https://github.com/Elnur21/World_Statistics_Analyze"
+  },
+  {
+    "id": 3,
+    "name": "Filter Analyze for DL TSC models",
+    "image": "./ArrowHead_filters.png",
+    "description": "Plot filters of FCN, ResNet, Inception, ROCKET and LITE models.",
+    "tags": ["Tensorflow", "Pandas", "Numpy", "CNN", "Matplotlib"],
+    "source_code": "https://github.com/Elnur21/Kernels_visualization"
+  },
+  {
+    "id": 4,
+    "name": "Fill missing values in chemical dataset",
+    "image": "./1_-MKLEtyrPeyqH4gESl1ueA.png",
+    "description": "Plot filters of FCN, ResNet, Inception, ROCKET and LITE models.",
+    "tags": ["Pandas", "Numpy", "Sklearn", "Matplotlib"],
+    "source_code": "https://github.com/Elnur21/Data_mining_on_chemical_data"
+  }
+]
