@@ -4,10 +4,8 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
     "dev": "next dev",
-    "build": "next build && mv .next build",
-    "deploy": "gh-pages -b gh-pages -d build",
+    "build": "next build",
     "start": "next start"
   },
   "dependencies": {
