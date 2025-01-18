@@ -1,7 +1,7 @@
-import ProjectCard from "../components/ProjectCard";
 import { getMLProjects } from "./api/ml-projects";
 import { getBotsProjects } from "./api/bots-projects";
-import styles from "../styles/ProjectsPage.module.css";
+import styles from "@/styles/ProjectsPage.module.css";
+import ProjectCard from "@/components/ProjectCard";
 
 const ProjectsPage = ({ ml_projects, bots_projects }) => {
   return (

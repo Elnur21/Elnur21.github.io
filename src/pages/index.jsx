@@ -1,7 +1,6 @@
 import Link from "next/link";
-// import Illustration from '../components/Illustration';
 import Image from "next/image";
-import styles from "../styles/HomePage.module.css";
+import styles from "@/styles/HomePage.module.css";
 
 export default function HomePage() {
   return (
@@ -59,14 +58,10 @@ export default function HomePage() {
             <Link href="/resume">
               <button className={styles.button}>Resume</button>
             </Link>
-            {/* <Link href="/projects">
-              <button className={styles.button}>View Projects</button>
-            </Link> */}
             <Link href="/contact">
               <button className={styles.outlined}>Contact</button>
             </Link>
           </div>
-          {/* <Illustration className={styles.illustration} /> */}
           <div className={styles.right}>
             <div className={styles.picture_boader}>
               <Image

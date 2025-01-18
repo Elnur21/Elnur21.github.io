@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import Layout from "../components/Layout";
-import Head from "../components/Head";
-import "../styles/globals.css";
-import "../styles/themes.css";
+import "@/styles/globals.css";
+import "@/styles/themes.css";
 import { Analytics } from "@vercel/analytics/react";
+import CustomHead from "@/components/Head";
+import Layout from "@/components/Layout";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Layout>
-      <Head title={`Elnur Maharramov | ${pageProps.title}`} />
+      <CustomHead title={`Elnur Maharramov | ${pageProps.title}`} />
       <Component {...pageProps} />
       <Analytics />
     </Layout>

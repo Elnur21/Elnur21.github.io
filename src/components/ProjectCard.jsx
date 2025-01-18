@@ -7,13 +7,12 @@ const ProjectCard = ({ project }) => {
     <div className={styles.card}>
       <Image
         src={project.image}
-        objectFit={"contain"}
         height={300}
         width={600}
-        sizes="(max-width: 600px) 100vw, 600px"
         placeholder="blur"
         blurDataURL={lowResImageUrl}
         alt={project.name}
+        style={{ width: "100%", objectFit: "contain" }}
       />
       <div className={styles.content}>
         <h3>{project.name}</h3>

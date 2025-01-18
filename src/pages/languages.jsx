@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../styles/LanguagesPage.module.css";
+import styles from "@/styles/LanguagesPage.module.css";
 
 const LanguagesPage = ({ repos }) => {
   const [openLanguage, setOpenLanguage] = useState(null);
