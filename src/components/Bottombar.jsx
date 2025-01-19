@@ -28,7 +28,7 @@ const Bottombar = () => {
       </div>
       <div className={styles.container}>
         <a
-          href="https://www.linkedin.com/in/gkos/"
+          href="https://www.linkedin.com/in/elnur-meherremov/"
           target="_blank"
           rel="noopener"
         >
