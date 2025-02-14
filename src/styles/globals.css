@@ -55,38 +55,6 @@ body::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.25);
 }
 
-.Semantic-Segmentation {
-  border: 0.1rem solid rgb(234, 69, 184);
-}
-
-.Semantic-Segmentation:hover {
-  background: rgba(234, 69, 184, 0.25);
-}
-
-.Minecraft {
-  border: 0.1rem solid rgb(243, 164, 7);
-}
-
-.Minecraft:hover {
-  background: rgba(243, 164, 7, 0.25);
-}
-
-.Reinforcement-Learning {
-  border: 0.1rem solid rgb(124, 182, 237);
-}
-
-.Reinforcement-Learning:hover {
-  background: rgba(124, 182, 237, 0.25);
-}
-
-.Medical-Imaging {
-  border: 0.1rem solid rgb(72, 86, 197);
-}
-
-.Medical-Imaging:hover {
-  background: rgba(72, 86, 197 0.25);
-}
-
 .SpaCy {
   border: 0.1rem solid rgb(0, 0, 0);
 }
@@ -143,76 +111,12 @@ body::-webkit-scrollbar-track {
   background: rgba(5, 194, 247, 0.25);
 }
 
-.Bayesian-Optimization {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.Bayesian-Optimization:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.XGBoost {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.XGBoost:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.Logistic-Regression {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.Logistic-Regression:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.Neural-Network {
-  border: 0.1rem solid rgb(170, 170, 248);
-}
-
-.Neural-Network:hover {
-  background: rgba(170, 170, 248, 0.25);
-}
-
-.K-Means {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.K-Means:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
 .Apache-Spark {
   border: 0.1rem solid rgb(170, 170, 248);
 }
 
 .Apache-Spark:hover {
   background: rgba(170, 170, 248, 0.25);
-}
-
-.Social-Networks {
-  border: 0.1rem solid rgb(8, 0, 255);
-}
-
-.Social-Networks:hover {
-  background: rgba(8, 0, 255, 0.25);
-}
-
-.Community-Detection {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.Community-Detection:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.GraphFrames {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.GraphFrames:hover {
-  background: rgba(0, 0, 0, 0.25);
 }
 
 .MySQL {
@@ -229,46 +133,6 @@ body::-webkit-scrollbar-track {
 
 .Tensorflow:hover {
   background: rgba(239, 113, 113, 0.25);
-}
-
-.LSTMs {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.LSTMs:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.Multivariate-Time-Series {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.Multivariate-Time-Series:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.Instagram {
-  border: 0.1rem solid rgb(255, 45, 7);
-}
-
-.Instagram:hover {
-  background: rgba(255, 45, 7, 0.25);
-}
-
-.Data-Pipelines {
-  border: 0.1rem solid rgb(255, 45, 7);
-}
-
-.Data-Pipelines:hover {
-  background: rgba(255, 45, 7, 0.25);
-}
-
-.Scraper {
-  border: 0.1rem solid rgb(0, 0, 0);
-}
-
-.Scraper:hover {
-  background: rgba(0, 0, 0, 0.25);
 }
 
 .CNN {
@@ -703,4 +567,9 @@ a {
 a:visited {
   color: var(--text-color);
   text-decoration: none;
+}
+
+/* customs */
+.rounded {
+  border-radius: 10px;
 }

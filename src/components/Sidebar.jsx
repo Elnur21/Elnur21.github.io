@@ -8,6 +8,7 @@ import MailIcon from "./icons/MailIcon";
 import AccountIcon from "./icons/AccountIcon";
 import SettingsIcon from "./icons/SettingsIcon";
 import styles from "../styles/Sidebar.module.css";
+import ComputerIcon from "./icons/ComputerIcon";
 
 const sidebarTopItems = [
   {
@@ -20,7 +21,11 @@ const sidebarTopItems = [
   },
   {
     Icon: CodeIcon,
-    path: "/projects",
+    path: "/projects-py",
+  },
+  {
+    Icon: ComputerIcon,
+    path: "/projects-js",
   },
   {
     Icon: PencilIcon,

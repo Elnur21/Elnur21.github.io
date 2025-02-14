@@ -21,8 +21,13 @@ const explorerItems = [
     icon: "yml_icon.svg",
   },
   {
+    name: "projects.js",
+    path: "/projects-js",
+    icon: "js_icon.svg",
+  },
+  {
     name: "projects.py",
-    path: "/projects",
+    path: "/projects-py",
     icon: "py_icon.svg",
   },
   {

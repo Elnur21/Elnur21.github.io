@@ -6,7 +6,7 @@ import ProjectCard from "@/components/ProjectCard";
 const ProjectsPage = ({ ml_projects, bots_projects }) => {
   return (
     <>
-      <h3>Open Source Projects</h3>
+      <h3>Python Projects</h3>
       <br />
       <center>
         <h4>Machine Learning</h4>

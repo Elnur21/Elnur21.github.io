@@ -10,7 +10,6 @@ const ContactPage = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    console.log(process.env.NEXT_PUBLIC_API_URL);
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
       method: "POST",
       body: JSON.stringify({ name, email, subject, message }),
@@ -39,6 +38,7 @@ const ContactPage = () => {
             <div style={{ width: "100%" }}>
               <label htmlFor="name">Name</label>
               <input
+                className="rounded"
                 type="text"
                 name="name"
                 id="name"
@@ -50,6 +50,7 @@ const ContactPage = () => {
             <div style={{ width: "100%" }}>
               <label htmlFor="email">Email</label>
               <input
+                className="rounded"
                 type="email"
                 name="email"
                 id="email"
@@ -62,6 +63,7 @@ const ContactPage = () => {
           <div>
             <label htmlFor="name">Subject</label>
             <input
+              className="rounded"
               type="text"
               name="subject"
               id="subject"
@@ -73,6 +75,7 @@ const ContactPage = () => {
           <div>
             <label htmlFor="message">Message</label>
             <textarea
+              className="rounded"
               name="message"
               id="message"
               rows="5"
@@ -81,7 +84,7 @@ const ContactPage = () => {
               required
             ></textarea>
           </div>
-          <button style={{ width: "100%" }} type="submit">
+          <button className="rounded" style={{ width: "100%" }} type="submit">
             Submit
           </button>
         </form>

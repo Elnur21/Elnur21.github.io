@@ -42,7 +42,7 @@ export default function HomePage() {
                     <span key="SQL" className="SQL">
                       SQL - PostgreSQL/MySQL/MSSQL
                     </span>
-                    <span key="MLOps" className="MLOps">
+                    <span key="MySQL" className="MySQL">
                       REST/GRAPHQL/SOCKET
                     </span>
                     <span key="Software-Design" className="Software-Design">
