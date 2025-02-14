@@ -9,7 +9,7 @@ export default async (req, res) => {
     const { name, email, subject, message } = JSON.parse(req.body);
     const transporter = nodemailer.createTransport(emailConfiguration);
     let mailOptions = {
-      from: process.env.NEXT_PUBLIC_SENDER_MAIL,
+      from: process.env.SENDER_MAIL,
       to: "elnur2370@gmail.com",
       subject: "New contact received from protfolio",
       html: `
