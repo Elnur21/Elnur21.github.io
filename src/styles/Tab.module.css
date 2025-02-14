@@ -5,24 +5,42 @@
   display: flex;
   align-items: center;
   border: 1px solid var(--tab-border);
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 0.9rem;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab span {
+  opacity: 0;
+  display: inline-block;
+  padding: 0px 6px;
+  transition: 0.3s;
+  transform: translateX(5px);
+  color: rgba(255, 255, 255, 0.67);
+}
+
+.tab:hover span {
+  opacity: 100;
+}
+.tab span:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .tab p {
   margin-left: 5px;
 }
 
-.active {
+.active,
+.tab:hover {
   border-top: 1px solid var(--accent-color);
   background: var(--tab-active-bg);
   border-bottom: none;
 }
 
-@media screen and (max-width: 900px) {  
+@media screen and (max-width: 900px) {
   .tab {
-    font-size: 1.0rem;
+    font-size: 1rem;
   }
 }
 

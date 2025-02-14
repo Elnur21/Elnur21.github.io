@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useState } from "react";
 import ChevronRight from "../components/icons/ChevronRight";
 import styles from "../styles/Explorer.module.css";
+import { useAppStore } from "@/libs/store";
+import { useRouter } from "next/router";
 
 const explorerItems = [
   {
@@ -44,6 +46,8 @@ const explorerItems = [
 
 const Explorer = () => {
   const [portfolioOpen, setPortfolioOpen] = useState(true);
+  const router = useRouter();
+  const addTab = useAppStore((state) => state.addTab);
 
   return (
     <div className={styles.explorer}>
@@ -68,8 +72,22 @@ const Explorer = () => {
           style={portfolioOpen ? { display: "block" } : { display: "none" }}
         >
           {explorerItems.map((item) => (
-            <Link href={item.path} key={item.name}>
-              <div className={styles.file}>
+            <Link
+              onClick={() =>
+                addTab({
+                  fileName: item.name,
+                  icon: `/${item?.icon}`,
+                  path: item.path,
+                })
+              }
+              href={item.path}
+              key={item.name}
+            >
+              <div
+                className={`${styles.file}  ${
+                  router.pathname === item.path && styles.active
+                }`}
+              >
                 <Image
                   src={`/${item.icon}`}
                   alt={item.name}

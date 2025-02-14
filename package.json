@@ -1,6 +1,6 @@
 {
   "name": "my-portfolio",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -16,7 +16,8 @@
     "pdfjs-dist": "^3.11.174",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-github-calendar": "^4.5.4"
+    "react-github-calendar": "^4.5.4",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "postcss": "^8",

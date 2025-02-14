@@ -9,31 +9,46 @@ import AccountIcon from "./icons/AccountIcon";
 import SettingsIcon from "./icons/SettingsIcon";
 import styles from "../styles/Sidebar.module.css";
 import ComputerIcon from "./icons/ComputerIcon";
+import HtmlIcon from "../../public/HTML5_logo_and_wordmark.svg.png";
+import { useAppStore } from "@/libs/store";
+import Image from "next/image";
 
 const sidebarTopItems = [
   {
     Icon: FilesIcon,
     path: "/",
+    iconPath: "/react_icon.svg",
+    fileName: "home.jsx",
   },
   {
     Icon: GithubIcon,
     path: "/github",
+    iconPath: "/markdown_icon.svg",
+    fileName: "github.md",
   },
   {
     Icon: CodeIcon,
     path: "/projects-py",
+    iconPath: "/py_icon.svg",
+    fileName: "projects.py",
   },
   {
     Icon: ComputerIcon,
     path: "/projects-js",
+    iconPath: "/js_icon.svg",
+    fileName: "projects.js",
   },
   {
     Icon: PencilIcon,
     path: "/languages",
+    iconPath: "/json_icon.svg",
+    fileName: "languages.json",
   },
   {
     Icon: MailIcon,
     path: "/contact",
+    iconPath: "/yml_icon.svg",
+    fileName: "contact.yml",
   },
 ];
 
@@ -41,21 +56,36 @@ const sidebarBottomItems = [
   {
     Icon: AccountIcon,
     path: "/resume",
+    iconPath: "/html_icon.svg",
+    fileName: "resume.html",
   },
   {
     Icon: SettingsIcon,
     path: "/settings",
+    iconPath: "/vscode_icon.svg",
+    fileName: "settings",
   },
 ];
 
 const Sidebar = () => {
   const router = useRouter();
+  const addTab = useAppStore((state) => state.addTab);
 
   return (
     <aside className={styles.sidebar}>
       <div className={styles.sidebarTop}>
-        {sidebarTopItems.map(({ Icon, path }) => (
-          <Link href={path} key={path}>
+        {sidebarTopItems.map(({ Icon, path, iconPath, fileName }) => (
+          <Link
+            onClick={() =>
+              addTab({
+                icon: iconPath,
+                fileName,
+                path,
+              })
+            }
+            href={path}
+            key={path}
+          >
             <div
               className={`${styles.iconContainer} ${
                 router.pathname === path && styles.active
@@ -74,9 +104,19 @@ const Sidebar = () => {
         ))}
       </div>
       <div className={styles.sidebarBottom}>
-        {sidebarBottomItems.map(({ Icon, path }) => (
+        {sidebarBottomItems.map(({ Icon, path, iconPath, fileName }) => (
           <div className={styles.iconContainer}>
-            <Link href={path} key={path}>
+            <Link
+              onClick={() =>
+                addTab({
+                  icon: iconPath,
+                  fileName,
+                  path,
+                })
+              }
+              href={path}
+              key={path}
+            >
               <Icon
                 fill={
                   router.pathname === path

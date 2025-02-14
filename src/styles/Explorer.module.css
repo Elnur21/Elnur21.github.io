@@ -2,7 +2,7 @@
   background: var(--explorer-bg);
   width: 18vw;
   color: rgb(225, 228, 232);
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
   border-right: 1px solid var(--explorer-border);
 }
 
@@ -54,6 +54,10 @@
 
 .chevron {
   transition: transform 0.2s;
+}
+
+.active {
+  background: var(--tab-active-bg);
 }
 
 @media screen and (min-width: 2000px) {
