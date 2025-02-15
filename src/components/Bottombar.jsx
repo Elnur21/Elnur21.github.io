@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ErrorIcon from "./icons/ErrorIcon";
 import WarningIcon from "./icons/WarningIcon";
 import BellIcon from "./icons/BellIcon";
@@ -5,12 +6,13 @@ import GithubIcon from "./icons/GithubIcon";
 import LinkedinIcon from "./icons/LinkedinIcon";
 import SourceControlIcon from "./icons/SourceControlIcon";
 import styles from "../styles/Bottombar.module.css";
+import packageJson from "../../package.json";
 
 const Bottombar = () => {
   return (
     <footer className={styles.bottomBar}>
       <div className={styles.container}>
-        <a
+        <Link
           href="https://github.com/Elnur21/Elnur21.github.io"
           target="_blank"
           rel="noreferrer noopener"
@@ -18,7 +20,7 @@ const Bottombar = () => {
         >
           <SourceControlIcon className={styles.icon} />
           <p>main</p>
-        </a>
+        </Link>
         <div className={styles.section}>
           <ErrorIcon className={styles.icon} />
           <p className={styles.errorText}>0</p>&nbsp;&nbsp;
@@ -26,8 +28,9 @@ const Bottombar = () => {
           <p>0</p>
         </div>
       </div>
+      <div className={styles.container}>V{packageJson.version}</div>
       <div className={styles.container}>
-        <a
+        <Link
           href="https://www.linkedin.com/in/elnur-meherremov/"
           target="_blank"
           rel="noopener"
@@ -36,13 +39,13 @@ const Bottombar = () => {
             <LinkedinIcon className={styles.icon} />
             <p>Linkedin</p>
           </div>
-        </a>
-        <a href="https://github.com/Elnur21" target="_blank" rel="noopener">
+        </Link>
+        <Link href="https://github.com/Elnur21" target="_blank" rel="noopener">
           <div className={styles.section}>
             <GithubIcon className={styles.icon} />
             <p>Github</p>
           </div>
-        </a>
+        </Link>
         <div className={styles.section}>
           <BellIcon />
         </div>

@@ -105,7 +105,7 @@ const Sidebar = () => {
       </div>
       <div className={styles.sidebarBottom}>
         {sidebarBottomItems.map(({ Icon, path, iconPath, fileName }) => (
-          <div className={styles.iconContainer}>
+          <div key={path} className={styles.iconContainer}>
             <Link
               onClick={() =>
                 addTab({
@@ -115,7 +115,6 @@ const Sidebar = () => {
                 })
               }
               href={path}
-              key={path}
             >
               <Icon
                 fill={

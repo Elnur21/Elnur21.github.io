@@ -2,8 +2,18 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    loader: "default",
-    domains: ["res.cloudinary.com", "avatars.githubusercontent.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+      },
+    ],
   },
 };
 
