@@ -1,6 +1,6 @@
 {
   "name": "my-portfolio",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -17,6 +17,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-github-calendar": "^4.5.4",
+    "react-toastify": "^11.0.3",
     "zustand": "^5.0.3"
   },
   "devDependencies": {

@@ -56,10 +56,10 @@ export default function HomePage() {
               </div>
             </div>
             <Link href="/resume">
-              <button className={styles.button}>Resume</button>
+              <button className={styles.button + " rounded"}>Resume</button>
             </Link>
             <Link href="/contact">
-              <button className={styles.outlined}>Contact</button>
+              <button className={styles.outlined + " rounded"}>Contact</button>
             </Link>
           </div>
           <div className={styles.right}>

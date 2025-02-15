@@ -1,7 +1,9 @@
 import Image from "next/image";
 import styles from "../styles/Titlebar.module.css";
+import { toast } from "react-toastify";
 
 const Titlebar = () => {
+  const comingSoon = () => toast("Coming soon...");
   return (
     <section className={styles.titlebar}>
       <Image
@@ -12,19 +14,19 @@ const Titlebar = () => {
         className={styles.icon}
       />
       <div className={styles.items}>
-        <p>File</p>
-        <p>Edit</p>
-        <p>View</p>
-        <p>Go</p>
-        <p>Run</p>
-        <p>Terminal</p>
-        <p>Help</p>
+        <p onClick={comingSoon}>File</p>
+        <p onClick={comingSoon}>Edit</p>
+        <p onClick={comingSoon}>View</p>
+        <p onClick={comingSoon}>Go</p>
+        <p onClick={comingSoon}>Run</p>
+        <p onClick={comingSoon}>Terminal</p>
+        <p onClick={comingSoon}>Help</p>
       </div>
       <p className={styles.title}>Elnur Maharramov - Portfolio</p>
       <div className={styles.windowButtons}>
-        <span className={styles.minimize}></span>
-        <span className={styles.maximize}></span>
-        <span className={styles.close}></span>
+        <span onClick={comingSoon} className={styles.minimize}></span>
+        <span onClick={comingSoon} className={styles.maximize}></span>
+        <span onClick={comingSoon} className={styles.close}></span>
       </div>
     </section>
   );

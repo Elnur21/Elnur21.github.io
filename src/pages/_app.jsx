@@ -4,6 +4,7 @@ import "@/styles/themes.css";
 import { Analytics } from "@vercel/analytics/react";
 import CustomHead from "@/components/Head";
 import Layout from "@/components/Layout";
+import { ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <CustomHead title={`Elnur Maharramov | ${pageProps.title}`} />
       <Component {...pageProps} />
+      <ToastContainer />
       <Analytics />
     </Layout>
   );
