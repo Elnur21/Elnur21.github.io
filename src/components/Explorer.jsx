@@ -9,8 +9,9 @@ const Explorer = () => {
   return (
     <div className={styles.explorer}>
       <p className={styles.title}>Explorer</p>
-      {explorerItems.map((item) => (
+      {explorerItems.map((item, index) => (
         <ExplorerItem
+          key={index}
           explorerItems={item.items}
           menuOpen={activeMenus.includes(item.title)}
           activeMenus={activeMenus}
