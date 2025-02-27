@@ -1,7 +1,6 @@
-import { getMLProjects } from "./api/ml-projects";
-import { getBotsProjects } from "./api/bots-projects";
 import styles from "@/styles/ProjectsPage.module.css";
 import ProjectCard from "@/components/ProjectCard";
+import { getMLProjects, getPyBotsProjects } from "./api/projects";
 
 const ProjectsPage = ({ ml_projects, bots_projects }) => {
   return (
@@ -13,7 +12,7 @@ const ProjectsPage = ({ ml_projects, bots_projects }) => {
       </center>
       <hr />
       <div className={styles.container}>
-        {ml_projects.map((project) => (
+        {ml_projects?.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
@@ -23,7 +22,7 @@ const ProjectsPage = ({ ml_projects, bots_projects }) => {
       </center>
       <hr />
       <div className={styles.container}>
-        {bots_projects.map((project) => (
+        {bots_projects?.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
@@ -33,7 +32,7 @@ const ProjectsPage = ({ ml_projects, bots_projects }) => {
 
 export async function getStaticProps() {
   const ml_projects = getMLProjects();
-  const bots_projects = getBotsProjects();
+  const bots_projects = getPyBotsProjects();
 
   return {
     props: { title: "Projects", ml_projects, bots_projects },

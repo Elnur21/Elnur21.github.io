@@ -1,24 +1,23 @@
-import { getMLProjects } from "./api/ml-projects";
-import { getBotsProjects } from "./api/bots-projects";
 import styles from "@/styles/ProjectsPage.module.css";
 import ProjectCard from "@/components/ProjectCard";
+import { getJSProjects } from "./api/projects";
 
-const ProjectsPage = ({ ml_projects, bots_projects }) => {
+const ProjectsPage = ({ js_projects }) => {
   return (
     <>
       <h3>JavaScript Projects</h3>
       <br />
       <center>
-        <h4>Machine Learning</h4>
+        <h4>FullStack projects</h4>
       </center>
       <hr />
       <div className={styles.container}>
-        {ml_projects.map((project) => (
+        {js_projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-      <br />
-      <center>
+      {/* <br /> */}
+      {/* <center>
         <h4>Bots</h4>
       </center>
       <hr />
@@ -26,17 +25,16 @@ const ProjectsPage = ({ ml_projects, bots_projects }) => {
         {bots_projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
-      </div>
+      </div> */}
     </>
   );
 };
 
 export async function getStaticProps() {
-  const ml_projects = getMLProjects();
-  const bots_projects = getBotsProjects();
+  const js_projects = getJSProjects();
 
   return {
-    props: { title: "Projects", ml_projects, bots_projects },
+    props: { title: "Projects", js_projects },
   };
 }
 

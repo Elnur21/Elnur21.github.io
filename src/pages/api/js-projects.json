@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Smart-Edu",
+    "image": "/smart-edu.png",
+    "description": "Nodejs MVC.",
+    "tags": ["JavaScript", "Nodejs", "MVC", "Express", "MongoDB"],
+    "source_code": "https://github.com/Elnur21/smart-edu"
+  },
+  {
+    "id": 2,
+    "name": "CozaStore",
+    "image": "/coza-store.png",
+    "description": "MERN stack.",
+    "tags": ["JavaScript", "Nodejs", "React", "Express", "MongoDB"],
+    "source_code": "https://github.com/Elnur21/coza-store"
+  }
+]

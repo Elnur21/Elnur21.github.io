@@ -9,9 +9,9 @@ import AccountIcon from "./icons/AccountIcon";
 import SettingsIcon from "./icons/SettingsIcon";
 import styles from "../styles/Sidebar.module.css";
 import ComputerIcon from "./icons/ComputerIcon";
-import HtmlIcon from "../../public/HTML5_logo_and_wordmark.svg.png";
+// import HtmlIcon from "../../public/HTML5_logo_and_wordmark.svg.png";
 import { useAppStore } from "@/libs/store";
-import Image from "next/image";
+// import Image from "next/image";
 
 const sidebarTopItems = [
   {
@@ -88,12 +88,12 @@ const Sidebar = () => {
           >
             <div
               className={`${styles.iconContainer} ${
-                router.pathname === path && styles.active
+                router?.pathname === path && styles.active
               }`}
             >
               <Icon
                 fill={
-                  router.pathname === path
+                  router?.pathname === path
                     ? "rgb(225, 228, 232)"
                     : "rgb(106, 115, 125)"
                 }
@@ -118,7 +118,7 @@ const Sidebar = () => {
             >
               <Icon
                 fill={
-                  router.pathname === path
+                  router?.pathname === path
                     ? "rgb(225, 228, 232)"
                     : "rgb(106, 115, 125)"
                 }

@@ -12,6 +12,7 @@
   flex: 1;
   height: min-content;
   overflow-y: auto;
+  height: 85vh;
 }
 
 .content {
@@ -20,7 +21,7 @@
 }
 
 .content::-webkit-scrollbar {
-  width: 15px;
+  width: 10px;
 }
 
 .content::-webkit-scrollbar-track {

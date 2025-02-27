@@ -54,7 +54,7 @@ const ExplorerItem = ({
           >
             <div
               className={`${styles.file}  ${
-                router.pathname === item.path && styles.active
+                router?.pathname === item.path && styles.active
               }`}
             >
               <Image
