@@ -1,8 +1,12 @@
 .tabs {
   display: flex;
-  /* flex-wrap: wrap; */
   background: var(--tabs-bg);
   overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 900px) {
