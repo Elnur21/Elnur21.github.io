@@ -54,6 +54,12 @@ export const explorerItems = [
   },
   {
     title: "Hobbies",
-    items: [],
+    items: [
+      {
+        name: "hobbies.jsx",
+        path: "/hobbies",
+        icon: "react_icon.svg",
+      },
+    ],
   },
 ];
