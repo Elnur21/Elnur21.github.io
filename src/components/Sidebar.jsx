@@ -10,6 +10,7 @@ import SettingsIcon from "./icons/SettingsIcon";
 import styles from "../styles/Sidebar.module.css";
 import ComputerIcon from "./icons/ComputerIcon";
 import HeartIcon from "./icons/HeartIcon";
+import WatchIcon from "./icons/WatchIcon";
 // import HtmlIcon from "../../public/HTML5_logo_and_wordmark.svg.png";
 import { useAppStore } from "@/libs/store";
 // import Image from "next/image";
@@ -56,6 +57,12 @@ const sidebarTopItems = [
     path: "/hobbies",
     iconPath: "/react_icon.svg",
     fileName: "hobbies.jsx",
+  },
+  {
+    Icon: WatchIcon,
+    path: "/experience",
+    iconPath: "/json_icon.svg",
+    fileName: "experience.json",
   },
 ];
 

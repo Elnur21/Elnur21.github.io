@@ -46,7 +46,13 @@ export const explorerItems = [
   },
   {
     title: "Experience",
-    items: [],
+    items: [
+      {
+        name: "experience.json",
+        path: "/experience",
+        icon: "json_icon.svg",
+      },
+    ],
   },
   {
     title: "Blogs",

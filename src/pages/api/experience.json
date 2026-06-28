@@ -1,0 +1,76 @@
+[
+  {
+    "id": 1,
+    "role": "Frontend Intern",
+    "company": "Proton LLC",
+    "period": "04.2022 – 07.2022",
+    "type": "Internship",
+    "description": "Created websites according to given templates and solved tasks using JavaScript, HTML5, CSS3 and Bootstrap 5.",
+    "tags": ["JavaScript", "HTML5", "CSS3", "Bootstrap 5"]
+  },
+  {
+    "id": 2,
+    "role": "Python Mentor",
+    "company": "DataScience Academy",
+    "period": "07.2022 – 09.2022",
+    "type": "Mentorship",
+    "description": "Helped students understand given tasks and reviewed their homework assignments.",
+    "tags": ["Python", "Teaching", "Data Science"]
+  },
+  {
+    "id": 3,
+    "role": "Fullstack Developer",
+    "company": "TaskRider",
+    "period": "03.2023 – 01.2024",
+    "type": "Full-time",
+    "description": "Used pure JavaScript and ExpressJS to create backend services. Built front-end web sites from scratch using ReactJS and NextJS, and created backend APIs with NextJS.",
+    "tags": ["JavaScript", "ReactJS", "NextJS", "ExpressJS"]
+  },
+  {
+    "id": 4,
+    "role": "Frontend Developer",
+    "company": "Taskilled",
+    "period": "05.2023 – 09.2023",
+    "type": "Full-time",
+    "description": "Responsible for responsive design, built responsive sites using ReactJS and Mantine.dev, and created new pages.",
+    "tags": ["ReactJS", "Mantine.dev", "Responsive Design"]
+  },
+  {
+    "id": 5,
+    "role": "Backend Developer",
+    "company": "Insightify",
+    "period": "06.2023 – 08.2023",
+    "type": "Full-time",
+    "description": "Created a CDN with NodeJS/ExpressJS and used NextJS for the main backend. Deployed the site on AWS using Docker and pm2.",
+    "tags": ["NodeJS", "ExpressJS", "NextJS", "Docker", "AWS"]
+  },
+  {
+    "id": 6,
+    "role": "RPA Developer",
+    "company": "UpSystems LLC",
+    "period": "07.2023 – 01.2024",
+    "type": "Full-time",
+    "description": "Created automation bots using Automation Anywhere Control Room, built forms and processes, developed co-pilot bots, and used Generative AI tools including Document AI (IQ Bot).",
+    "tags": ["Automation Anywhere", "RPA", "IQ Bot", "Generative AI"]
+  },
+  {
+    "id": 7,
+    "role": "Data Scientist Intern",
+    "company": "IRIMAS Laboratoire",
+    "location": "France",
+    "period": "01.2024 – 05.2024",
+    "type": "Internship",
+    "description": "Read scientific papers and implemented deep learning models for time series analysis. Plotted and compared results against other experiments.",
+    "tags": ["Python", "Deep Learning", "Time Series", "Research"]
+  },
+  {
+    "id": 8,
+    "role": "Fullstack Developer",
+    "company": "AgileSolutions LLC",
+    "period": "08.2024 – present",
+    "type": "Full-time",
+    "current": true,
+    "description": "Working on multiple CRM and Dialer projects (~20 projects). Using NodeJS for backend and ReactJS for frontend. Managing social media messages via RabbitMQ.",
+    "tags": ["NodeJS", "ReactJS", "RabbitMQ", "CRM"]
+  }
+]
