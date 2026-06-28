@@ -9,6 +9,10 @@ const GithubPage = ({ repos, user }) => {
     light: ["#161B22", "#0e4429", "#006d32", "#26a641", "#39d353"],
   };
 
+  if (!user) {
+    return <p>GitHub data is currently unavailable. Please try again later.</p>;
+  }
+
   return (
     <>
       <a
@@ -68,41 +72,54 @@ const GithubPage = ({ repos, user }) => {
 };
 
 export async function getStaticProps() {
-  const userRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`,
-    {
-      headers: {
-        Authorization: `token ${process.env.GITHUB_API_KEY}`,
-      },
-    }
-  );
-  const user = await userRes.json();
-
-  const repoRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/repos?per_page=100`,
-    {
-      headers: {
-        Authorization: `token ${process.env.GITHUB_API_KEY}`,
-      },
-    }
-  );
-  let repos = await repoRes.json();
-
-  repos = repos
-    .sort((a, b) => {
-      const scoreA = a.stargazers_count + a.watchers_count + a.forks_count;
-      const scoreB = b.stargazers_count + b.watchers_count + b.forks_count;
-      if (scoreB !== scoreA) {
-        return scoreB - scoreA;
+  try {
+    const userRes = await fetch(
+      `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}`,
+      {
+        headers: {
+          Authorization: `token ${process.env.GITHUB_API_KEY}`,
+        },
       }
-      return new Date(b.pushed_at) - new Date(a.pushed_at);
-    })
-    .slice(0, 10);
+    );
 
-  return {
-    props: { title: "GitHub", repos, user },
-    revalidate: 30,
-  };
+    if (!userRes.ok) throw new Error(`GitHub user API error: ${userRes.status}`);
+    const user = await userRes.json();
+
+    const repoRes = await fetch(
+      `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/repos?per_page=100`,
+      {
+        headers: {
+          Authorization: `token ${process.env.GITHUB_API_KEY}`,
+        },
+      }
+    );
+
+    if (!repoRes.ok) throw new Error(`GitHub repos API error: ${repoRes.status}`);
+    let repos = await repoRes.json();
+
+    if (!Array.isArray(repos)) throw new Error("Invalid repos response");
+
+    repos = repos
+      .sort((a, b) => {
+        const scoreA = a.stargazers_count + a.watchers_count + a.forks_count;
+        const scoreB = b.stargazers_count + b.watchers_count + b.forks_count;
+        if (scoreB !== scoreA) {
+          return scoreB - scoreA;
+        }
+        return new Date(b.pushed_at) - new Date(a.pushed_at);
+      })
+      .slice(0, 10);
+
+    return {
+      props: { title: "GitHub", repos, user },
+      revalidate: 30,
+    };
+  } catch {
+    return {
+      props: { title: "GitHub", repos: [], user: null },
+      revalidate: 30,
+    };
+  }
 }
 
 export default GithubPage;

@@ -10,6 +10,10 @@ const LanguagesPage = ({ repos }) => {
     );
   };
 
+  if (Object.keys(repos).length === 0) {
+    return <p>GitHub data is currently unavailable. Please try again later.</p>;
+  }
+
   return (
     <>
       <h3>Programming Languages</h3>
@@ -91,26 +95,38 @@ const LanguagesPage = ({ repos }) => {
 };
 
 export async function getStaticProps() {
-  const repoRes = await fetch(
-    `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/repos?per_page=200`,
-    {
-      headers: {
-        Authorization: `token ${process.env.GITHUB_API_KEY}`,
-      },
-    }
-  );
-  let repos = await repoRes.json();
-  const groupedRepos = repos.reduce((acc, repo) => {
-    const { language, name, description, pushed_at } = repo;
-    if (!acc[language]) {
-      acc[language] = [];
-    }
-    acc[language].push({ name, description, pushed_at, language });
-    return acc;
-  }, {});
-  return {
-    props: { title: "Languages", repos: groupedRepos },
-  };
+  try {
+    const repoRes = await fetch(
+      `https://api.github.com/users/${process.env.NEXT_PUBLIC_GITHUB_USERNAME}/repos?per_page=200`,
+      {
+        headers: {
+          Authorization: `token ${process.env.GITHUB_API_KEY}`,
+        },
+      }
+    );
+
+    if (!repoRes.ok) throw new Error(`GitHub API error: ${repoRes.status}`);
+    const repos = await repoRes.json();
+
+    if (!Array.isArray(repos)) throw new Error("Invalid repos response");
+
+    const groupedRepos = repos.reduce((acc, repo) => {
+      const { language, name, description, pushed_at } = repo;
+      if (!acc[language]) {
+        acc[language] = [];
+      }
+      acc[language].push({ name, description, pushed_at, language });
+      return acc;
+    }, {});
+
+    return {
+      props: { title: "Languages", repos: groupedRepos },
+    };
+  } catch {
+    return {
+      props: { title: "Languages", repos: {} },
+    };
+  }
 }
 
 export default LanguagesPage;
