@@ -1,5 +1,3 @@
-import { Worker, Viewer } from "@react-pdf-viewer/core";
-import "@react-pdf-viewer/core/lib/styles/index.css";
 import styles from "@/styles/ResumePage.module.css";
 
 const myResume = "/Resume.pdf";
@@ -23,15 +21,11 @@ const ResumePage = () => {
         className={styles.pdfContainer}
         style={{ height: "750px", width: "100%" }}
       >
-        <Worker
-          workerUrl={`https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js`}
-        >
-          <Viewer
-            fileUrl={myResume}
-            defaultScale={1.5}
-            onError={(error) => console.error("Error loading PDF:", error)}
-          />
-        </Worker>
+        <iframe
+          src={myResume}
+          style={{ width: "100%", height: "100%", border: "none" }}
+          title="Resume"
+        />
       </div>
     </center>
   );
