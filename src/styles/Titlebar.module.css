@@ -56,6 +56,129 @@
   background: #ff5555;
 }
 
+/* ── Dropdown menus ── */
+
+.menuWrapper {
+  position: relative;
+}
+
+.menuActive {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+.items > .menuWrapper > p:hover,
+.items > .menuWrapper > p.menuActive {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 230px;
+  background: #252526;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  padding: 4px 0;
+  animation: fadeIn 0.1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #cccccc;
+  gap: 24px;
+  user-select: none;
+}
+
+.dropdownItem:hover {
+  background: #094771;
+  color: #fff;
+}
+
+.dropdownLabel {
+  white-space: nowrap;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.dropdownShortcut {
+  color: #888;
+  font-size: 0.72rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.dropdownSeparator {
+  height: 1px;
+  background: #454545;
+  margin: 3px 0;
+}
+
+/* ── Terminal toast ── */
+
+.terminalToast {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 0.75rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+}
+
+.terminalSuccess { color: #4ec9b0; }
+.terminalError   { color: #f44747; }
+.terminalDim     { color: #888; }
+
+/* ── Shortcuts toast ── */
+
+.shortcutsToast {
+  font-size: 0.78rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.shortcutsTitle {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #569cd6;
+  font-size: 0.85rem;
+}
+
+.shortcutRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  background: #3c3c3c;
+  border: 1px solid #555;
+  border-radius: 3px;
+  padding: 1px 6px;
+  color: #d4d4d4;
+  white-space: nowrap;
+  min-width: 110px;
+  display: inline-block;
+}
+
+.shortcutDesc {
+  color: #aaa;
+}
+
+/* ── Responsive ── */
 @media screen and (max-width: 900px) {
   .items p {
     display: none;
