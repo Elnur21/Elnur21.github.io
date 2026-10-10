@@ -10,7 +10,7 @@ const ContactPage = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/contact`, {
+    const res = await fetch("/api/contact", {
       method: "POST",
       body: JSON.stringify({ name, email, subject, message }),
     });
