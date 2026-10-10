@@ -13,6 +13,7 @@
   min-width: 80px;
   max-width: 160px;
   overflow: hidden;
+  user-select: none;
 }
 
 .close {
@@ -30,8 +31,16 @@
   transition: opacity 0.2s, background-color 0.2s;
 }
 
-.tab:hover .close {
+.tab:hover .close,
+.active .close {
   opacity: 1;
+}
+
+/* Touch devices have no hover, so always show the close button */
+@media (hover: none) {
+  .close {
+    opacity: 1;
+  }
 }
 
 .close:hover {
@@ -52,7 +61,8 @@
 .tab:hover {
   border-top: 1px solid var(--accent-color);
   background: var(--tab-active-bg);
-  border-bottom: none;
+  /* Keep the border so the tab height doesn't jump on hover/active */
+  border-bottom-color: transparent;
 }
 
 @media screen and (max-width: 900px) {

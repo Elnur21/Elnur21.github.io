@@ -3,6 +3,7 @@
   background: var(--tabs-bg);
   overflow-x: auto;
   scrollbar-width: none;
+  min-height: 36px;
 }
 
 .tabs::-webkit-scrollbar {
