@@ -613,5 +613,508 @@
       },
       "It was my first research-style project, long before my internship at IRIMAS, and it taught me to spend most of my time understanding and cleaning the data."
     ]
+  },
+  {
+    "slug": "first-mobile-app-flutter-social-network",
+    "title": "My First Mobile App: A Social Network in Flutter",
+    "date": "2022-10-20",
+    "readTime": 4,
+    "summary": "Posts, comments, follows and a personal feed, built with Flutter and Firebase, with Cloud Functions doing the heavy lifting behind the scenes.",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "Firebase",
+      "Mobile"
+    ],
+    "source": "https://github.com/Elnur21/socialapp",
+    "cover": {
+      "label": "flutter run",
+      "color": "#54c5f8"
+    },
+    "body": [
+      "My first mobile app was an ambitious one: a small social network. I built it with Flutter and Firebase and pushed it to GitHub between 18 and 20 October 2022.",
+      {
+        "h": "What it does"
+      },
+      {
+        "list": [
+          "Sign up, log in (including Google sign-in), and reset a forgotten password with Firebase Auth.",
+          "Upload posts with images or videos, stored in Firebase Storage.",
+          "Comment on posts, follow people and search for users.",
+          "See a personal feed (I called it the \"flow\") of posts from the people you follow.",
+          "Edit your profile and read announcements."
+        ]
+      },
+      {
+        "h": "The interesting part: building the feed"
+      },
+      "The hardest question was how to show each user a feed of posts from everyone they follow. Querying every followed account on each app launch would be slow. Instead I used Firebase Cloud Functions to copy posts into a separate feed collection for each follower, as soon as something changes:",
+      {
+        "list": [
+          "When you follow someone, their existing posts are copied into your feed.",
+          "When you unfollow them, their posts are removed from your feed.",
+          "When someone publishes, edits or deletes a post, the change is pushed to all of their followers' feeds."
+        ]
+      },
+      {
+        "code": "exports.addedNewPost = functions.firestore\n  .document('posts/{followingId}/userPosts/{postId}')\n  .onCreate(async (snapshot, context) => {\n    // copy the new post into every follower's feed\n  });"
+      },
+      "This pattern is called fan-out on write. It makes writes a bit more expensive, but reading a feed becomes a single, fast query. I didn't know the name at the time, but it is how many real social apps work.",
+      {
+        "h": "What I learned"
+      },
+      "Flutter showed me that one codebase can produce a real mobile app, and Firebase showed me that a backend can be just a set of rules and triggers. Two days later I started my next Flutter app, a vocabulary app."
+    ]
+  },
+  {
+    "slug": "vocabulary-app-flutter-sqlite",
+    "title": "A Vocabulary App with 175,000 Phrases, Offline",
+    "date": "2022-10-23",
+    "readTime": 3,
+    "summary": "My second Flutter app: search a French–English phrase list offline and build your own vocabulary in Azerbaijani, English, Turkish and Russian.",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "SQLite",
+      "Mobile"
+    ],
+    "source": "https://github.com/Elnur21/vocabulary-app",
+    "cover": {
+      "src": "/blogs/vocabulary-app-screens.jpg",
+      "alt": "Screens of the vocabulary app"
+    },
+    "body": [
+      "Right after my first Flutter app, I built something I wanted to use myself: a vocabulary app for learning French. I wrote it on 22 and 23 October 2022.",
+      {
+        "img": "/blogs/vocabulary-app-screens.jpg",
+        "width": 1616,
+        "height": 900,
+        "alt": "Four screens of the vocabulary app: search, a saved word, the phrase list and the add word form",
+        "caption": "Searching phrases, a saved word with its translations, the full phrase list, and the form to add a new word."
+      },
+      {
+        "h": "Two vocabularies in one app"
+      },
+      {
+        "list": [
+          "French–English: a built-in list of 175,622 phrase pairs. You type a word and see every phrase that uses it, such as \"cours\" in \"Je cours tous les jours\".",
+          "Your Vocabulary: words you add yourself, with a French word and its translation in Azerbaijani, Russian, English and Turkish."
+        ]
+      },
+      {
+        "h": "Why SQLite"
+      },
+      "A phrase list that big has to work without a network connection, and it has to search fast. The app ships the phrases as JSON and stores everything in a local SQLite database through the sqflite package. Searching, adding and deleting words all happen on the device, with no backend at all.",
+      {
+        "h": "What I learned"
+      },
+      "After a Firebase app, this was the opposite approach: everything local. It taught me to choose the storage based on the data. Shared, social data belongs in the cloud. Large, read-only reference data and personal notes work better on the phone.",
+      "In December 2023 I added screenshots to the README, and in March 2024 I set up Dependabot to keep its packages up to date."
+    ]
+  },
+  {
+    "slug": "first-data-science-app-streamlit",
+    "title": "My First Data Science Tools: Streamlit and Web Scraping",
+    "date": "2022-09-08",
+    "readTime": 3,
+    "summary": "A three-page Streamlit app for exploring and modelling a dataset, and scrapers built with BeautifulSoup and Scrapy.",
+    "tags": [
+      "Python",
+      "Streamlit",
+      "scikit-learn",
+      "Web Scraping"
+    ],
+    "source": "https://github.com/Elnur21/streamlit",
+    "cover": {
+      "label": "st.sidebar.selectbox()",
+      "color": "#ff4b4b"
+    },
+    "body": [
+      "In September 2022, around the end of my time as a Python mentor at DataScience Academy, I wrote two small projects that taught me the basics of working with data: a Streamlit app and a few web scrapers.",
+      {
+        "h": "A machine learning app in three pages"
+      },
+      "The Streamlit app turns a dataset into an interactive tool. A sidebar switches between three pages:",
+      {
+        "list": [
+          "Home: a description of the dataframe and its columns.",
+          "EDA: null value checks, imputation choices for categorical and numeric columns, imbalance checks, and plots (KDE, box, violin, swarm and bar).",
+          "Modelling: pick a scaler (Standard, MinMax or Robust), encode the data, split it, train models such as logistic regression, a decision tree or Gaussian Naive Bayes, and read the classification report."
+        ]
+      },
+      "Making every step a dropdown taught me something important: each preprocessing choice changes the result, and seeing it change live is the fastest way to understand why.",
+      {
+        "h": "Getting data from the web"
+      },
+      "The next day I published my scraping notebooks. With requests and BeautifulSoup I collected listing locations and links from bina.az, a real estate site in Azerbaijan, and post titles and votes from a Reddit community. I also tried Scrapy on its practice site, quotes.toscrape.com.",
+      {
+        "h": "Takeaway"
+      },
+      "Most data science work happens before the model: getting the data, cleaning it, and understanding it. These two projects were my first real practice at that."
+    ]
+  },
+  {
+    "slug": "finbiz-code-academy-final-project",
+    "title": "Finbiz: My Code Academy Final Project",
+    "date": "2023-07-22",
+    "readTime": 4,
+    "summary": "A responsive business website built in two weeks with Sass, vanilla JavaScript, a small Express API and Jest tests. My teacher liked it a lot.",
+    "tags": [
+      "HTML",
+      "Sass",
+      "JavaScript",
+      "Express",
+      "Jest"
+    ],
+    "source": "https://github.com/Elnur21/finbiz",
+    "cover": {
+      "src": "/blogs/finbiz-home.jpg",
+      "alt": "Finbiz home page"
+    },
+    "body": [
+      "Finbiz was my final frontend project at Code Academy. I built it between 10 and 22 July 2023, in about 50 commits, and I was proud when my teacher really liked the result.",
+      {
+        "img": "/blogs/finbiz-home.jpg",
+        "width": 1440,
+        "height": 900,
+        "alt": "Finbiz home page with the headline Let's create your success",
+        "caption": "The Finbiz home page, still live on Vercel."
+      },
+      {
+        "h": "Built page by page"
+      },
+      "The commit history reads like a diary. I built the home page section by section (header, banner, business progress, about, slideshow, team, testimonials), then the contact and blog pages, and then spent a whole day making every section responsive. Each step went through a develop branch and a pull request.",
+      {
+        "h": "Structure"
+      },
+      {
+        "list": [
+          "Sass split into abstracts (variables, mixins, animations), base, components, layout and pages, compiled into one compressed CSS file.",
+          "Vanilla JavaScript for the slideshow, tabs, a video modal and the blog page.",
+          "A small Express server that serves the team, services, latest posts and blog data.",
+          "Blog pagination and search, plus a details page for each post.",
+          "Jest tests with jsdom that load the HTML and check its structure and styles."
+        ]
+      },
+      {
+        "h": "Going beyond the brief"
+      },
+      "The task was a frontend project, but I wanted the pages to load real data instead of hard-coded HTML. Adding the Express API and loading states made the site feel like a real product, and writing tests for HTML and CSS was something new for me.",
+      "The project is still maintained: Dependabot keeps its dependencies updated, most recently in September 2026."
+    ]
+  },
+  {
+    "slug": "opengl-day-night-scene",
+    "title": "Learning Computer Graphics with OpenGL and Python",
+    "date": "2023-12-10",
+    "readTime": 3,
+    "summary": "From drawing circles and moving cubes to a small 3D scene with a moving camera, lighting and a day/night cycle.",
+    "tags": [
+      "Python",
+      "OpenGL",
+      "Computer Graphics"
+    ],
+    "source": "https://github.com/Elnur21/simple_game_OpenGL",
+    "cover": {
+      "label": "glutMainLoop()",
+      "color": "#7fbf3f"
+    },
+    "body": [
+      "At the end of 2023 I learned computer graphics with OpenGL in Python. After years of building UIs out of HTML elements, drawing every shape myself was a very different experience.",
+      {
+        "h": "The lab exercises"
+      },
+      "In November 2023 I published my lab work: drawing circles, placing a cone on a circle, and animating moving cubes. These exercises are all about transformations. You translate, rotate and scale a shape, and the order of those operations completely changes the result.",
+      {
+        "h": "A scene with a day/night cycle"
+      },
+      "In December 2023 I put it together in a small 3D scene with PyOpenGL and GLUT:",
+      {
+        "list": [
+          "A camera you can move around, with yaw and pitch for looking around.",
+          "A light source with ambient and diffuse lighting.",
+          "A day/night toggle on a timer that changes the sky colour and the brightness of the whole scene."
+        ]
+      },
+      {
+        "h": "What I learned"
+      },
+      "Graphics programming made matrices and vectors concrete. A camera is just a transformation, and lighting is just maths on surface normals. It also gave me a lot of respect for game engines, which do all of this for you."
+    ]
+  },
+  {
+    "slug": "logistic-regression-from-scratch",
+    "title": "Logistic Regression from Scratch vs. Deep Learning",
+    "date": "2024-02-12",
+    "readTime": 4,
+    "summary": "I wrote a multi-class logistic regression in NumPy and compared it with published deep learning results on the UCR archive. It lost, and that was the point.",
+    "tags": [
+      "Python",
+      "NumPy",
+      "Machine Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/LogisticRegression",
+    "cover": {
+      "src": "/blogs/logreg-vs-fcn-mlp.png",
+      "alt": "My logistic regression compared with FCN and MLP",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "At the start of my internship at IRIMAS I wanted a baseline I fully understood before touching deep learning. So I wrote logistic regression from scratch in NumPy and tested it on time series datasets from the UCR archive.",
+      {
+        "h": "The model"
+      },
+      {
+        "list": [
+          "One-vs-rest: one binary classifier per class, and the class with the highest score wins.",
+          "Sigmoid activation and gradient descent on the weights and a bias.",
+          "Mini-batches of 16, a learning rate of 0.01 and 5,000 iterations."
+        ]
+      },
+      {
+        "code": "for class_label in range(num_classes):\n    binary_labels = np.where(Y == class_label, 1, 0)\n    # train one sigmoid classifier per class ..."
+      },
+      {
+        "h": "The comparison"
+      },
+      "I compared my test accuracy with published results for deep learning models on the same datasets: MLP, FCN, ResNet, Encoder, MCNN, MCDCNN, Time-CNN, t-LeNet and TWIESN.",
+      {
+        "img": "/blogs/logreg-vs-fcn-mlp.png",
+        "width": 1300,
+        "height": 480,
+        "alt": "Scatter plots comparing logistic regression with FCN and MLP",
+        "caption": "One point per dataset. FCN beat my logistic regression on 14 datasets out of 15, and MLP on 13.",
+        "light": true
+      },
+      {
+        "h": "Why losing was useful"
+      },
+      "The plots show exactly what deep models add on time series. A linear model treats each time step as an unrelated feature, while convolutions find shapes wherever they appear in the series. After this I moved on to MLP, FCN and ResNet, and finally understood why they are built the way they are."
+    ]
+  },
+  {
+    "slug": "reimplementing-tsc-models",
+    "title": "Re-implementing FCN, ResNet, ROCKET, InceptionTime and LITE",
+    "date": "2024-02-28",
+    "readTime": 5,
+    "summary": "Two weeks of rebuilding the classic time series classifiers myself, from a 268-minute FCN run to a custom LITE model.",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/ROCKET",
+    "cover": {
+      "src": "/blogs/inceptiontime-car-training.png",
+      "alt": "InceptionTime training curves on the Car dataset",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "In February 2024 I set myself a rule: for every important time series classifier, write my own version and get results on the UCR datasets. Each model got its own repository.",
+      {
+        "h": "MLP, FCN and ResNet"
+      },
+      "I started with an MLP, first without and then with dropout, and then implemented FCN and ResNet. GPUs were my first problem. One commit message from 19 February says it all: \"GET RESULTS OF FCN AFTER 268 MINUTES\".",
+      {
+        "h": "ROCKET"
+      },
+      "ROCKET takes a completely different approach. It generates thousands of random convolution kernels, extracts two simple features from each, and trains a linear RidgeClassifierCV on top. The kernels themselves are never trained.",
+      {
+        "img": "/blogs/rocket-car-runs.png",
+        "width": 640,
+        "height": 480,
+        "alt": "ROCKET train and test accuracy over ten runs on the Car dataset",
+        "caption": "My ROCKET on the Car dataset over 10 runs: perfect training accuracy (blue) and around 88–90% test accuracy (orange).",
+        "light": true
+      },
+      {
+        "h": "InceptionTime"
+      },
+      "For InceptionTime I trained versions with one, two and three Inception modules to see how depth affects learning, and saved the loss and accuracy curves for each run.",
+      {
+        "img": "/blogs/inceptiontime-car-training.png",
+        "width": 2000,
+        "height": 800,
+        "alt": "InceptionTime loss and accuracy over epochs on the Car dataset",
+        "caption": "Loss and accuracy over epochs on the Car dataset for one of my InceptionTime runs.",
+        "light": true
+      },
+      {
+        "h": "LITE"
+      },
+      "The last one was LITE, a light Inception-style model. I built a custom LITE model and finished testing it on 28 February 2024.",
+      {
+        "h": "What I learned"
+      },
+      {
+        "list": [
+          "Reading the code of a paper is not the same as understanding it. Writing it is.",
+          "Results vary between runs, so always run several times before comparing.",
+          "A simple model with random features (ROCKET) can compete with a deep network, and train much faster."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "what-do-cnn-filters-learn",
+    "title": "Do Two CNNs Learn the Same Filters?",
+    "date": "2024-02-27",
+    "readTime": 3,
+    "summary": "I trained one FCN on the train split and one on the test split of 20 datasets, then compared their first-layer filters with DTW and t-SNE.",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/FCN_filter_test",
+    "cover": {
+      "src": "/blogs/fcn-filters-beef.png",
+      "alt": "t-SNE map of first-layer FCN filters on the Beef dataset",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "Deep learning models are often called black boxes. During my internship I wanted to look inside one, so I asked a simple question: if two FCNs learn from different data drawn from the same problem, do they learn the same filters?",
+      {
+        "h": "The experiment"
+      },
+      {
+        "list": [
+          "For each of 20 UCR datasets, train one FCN on the training split and another on the test split.",
+          "Take the 128 filters of the first convolution layer from each model.",
+          "Compare the filters using dynamic time warping (DTW) distances, which suit shapes that may be shifted in time.",
+          "Project them into 2D with t-SNE, using perplexities of 3, 5, 10 and 15."
+        ]
+      },
+      {
+        "img": "/blogs/fcn-filters-beef.png",
+        "width": 640,
+        "height": 480,
+        "alt": "Scatter plot of first-layer filters from two FCNs on the Beef dataset",
+        "caption": "First-layer filters on the Beef dataset. Blue: the model trained on the train split. Orange: the model trained on the test split.",
+        "light": true
+      },
+      {
+        "h": "What I saw"
+      },
+      "On many datasets the two colours are mixed together: both models end up with filters of similar shapes, even though they never saw the same examples. It suggests that the first layer learns general building blocks of the signal, not details of particular samples.",
+      "Trying several perplexities mattered. t-SNE pictures can change a lot with this setting, so a pattern only counts if it shows up in all of them."
+    ]
+  },
+  {
+    "slug": "classic-ml-credit-cards-and-chemistry",
+    "title": "Classic Machine Learning: Credit Cards and Chemistry",
+    "date": "2024-02-23",
+    "readTime": 4,
+    "summary": "Two team projects with scikit-learn: predicting good and bad credit card clients, and filling gaps in a chemical dataset before classifying molecules.",
+    "tags": [
+      "Python",
+      "scikit-learn",
+      "Machine Learning",
+      "Data Analysis"
+    ],
+    "source": "https://github.com/Elnur21/Data_mining_on_chemical_data",
+    "cover": {
+      "src": "/blogs/chemical-head-families.png",
+      "alt": "Pie chart of surfactant head families",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "On 23 February 2024 I published several machine learning notebooks from team projects, together with a ridge and lasso regression study. Two of them taught me the most.",
+      {
+        "h": "Credit card approval"
+      },
+      "The task was to decide whether an applicant is a \"good\" or \"bad\" client. The catch: the dataset doesn't say what \"bad\" means, so the label has to be built from the repayment history, for example with a vintage analysis.",
+      "The second catch was imbalance. Almost every client was \"good\", so a model that always says \"good\" looks accurate and is useless.",
+      {
+        "img": "/blogs/credit-card-balancing.png",
+        "width": 840,
+        "height": 430,
+        "alt": "Class balance before and after oversampling",
+        "caption": "Target classes before balancing (99.6% to 0.4%) and after oversampling (50/50).",
+        "light": true
+      },
+      "After cleaning and feature engineering, we compared K-means, SVC and logistic regression, using pipelines and GridSearchCV for hyperparameters, before and after fixing the imbalance.",
+      {
+        "h": "Chemical data mining"
+      },
+      "The second project used a dataset of 199 surfactant molecules with 18 attributes, collected from scientific papers. Many values were missing, and instead of just using the mean, we filled several of them with chemistry formulas: molar mass, Amin and the critical micelle concentration (CMC).",
+      {
+        "img": "/blogs/chemical-head-families.png",
+        "width": 507,
+        "height": 389,
+        "alt": "Pie chart of head families in the dataset",
+        "caption": "The head families we tried to predict from CMC, surface tension and Amin.",
+        "light": true
+      },
+      "After encoding, robust scaling and oversampling, we compared four classifiers. With GridSearchCV the decision tree reached 91.8%, random forest 91.6%, KNN 90.7% and SVC 85.1%.",
+      {
+        "h": "Takeaway"
+      },
+      "In both projects the model was the easy part. Defining the label, handling imbalance and filling missing values correctly made the real difference."
+    ]
+  },
+  {
+    "slug": "uno-react-native-online-multiplayer",
+    "title": "Building an Online UNO Game in React Native",
+    "date": "2025-12-28",
+    "readTime": 5,
+    "summary": "A card game app with Firebase sign-in, chat and tournaments, which I took online with real-time multiplayer and +4 bluff challenges.",
+    "tags": [
+      "React Native",
+      "TypeScript",
+      "Firebase",
+      "Mobile",
+      "Games"
+    ],
+    "source": "https://github.com/Elnur21/uno_game_app",
+    "cover": {
+      "label": "+4  bluff?",
+      "color": "#ed1c24"
+    },
+    "body": [
+      "UNO is my longest-running mobile project. I started it in August 2024, and on 28 December 2025 I made the biggest change: real online multiplayer.",
+      {
+        "h": "From Expo to React Native CLI"
+      },
+      "My first React Native code was two small Expo apps, a cars catalogue and a book list with a details screen, which I uploaded in May 2023. For UNO I needed native Firebase modules and Google sign-in, so on day one I moved from Expo to the React Native CLI.",
+      {
+        "h": "The first version (August 2024)"
+      },
+      {
+        "list": [
+          "Firebase Auth with Google sign-in.",
+          "A users screen, chat rooms and tournaments.",
+          "An offline game, with all the game rules in a React context."
+        ]
+      },
+      {
+        "h": "Going online (December 2025)"
+      },
+      "Online play meant the game state could no longer live on one phone. I added an online cards context that syncs the deck, players' hands and turns through Firebase, while the same UI components work for both offline and online games.",
+      {
+        "list": [
+          "Turn management that stays correct when several players act.",
+          "+2 and +4 cards that give the penalty to the right player and move the turn correctly.",
+          "A bluff challenge: when someone plays a +4, the next player can challenge it as a bluff.",
+          "Choosing a colour after a wild card, synced to everyone.",
+          "Fewer re-renders in the game and chat screens, by keeping previous values in refs."
+        ]
+      },
+      "In March 2026 I added a mode for more players.",
+      {
+        "h": "What I learned"
+      },
+      "A card game looks simple until several phones have to agree on the same state. Most of the work was making sure every action produced exactly one correct state change, no matter who acted first."
+    ]
   }
 ]

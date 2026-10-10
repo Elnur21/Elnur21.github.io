@@ -117,9 +117,12 @@ const Article = ({ post, prev, next, onOpen }) => (
     <h1 className={styles.articleTitle}>{post.title}</h1>
     <Meta blog={post} />
     <Tags tags={post.tags} />
-    <div className={styles.hero}>
-      <Cover blog={post} large />
-    </div>
+    {/* Skip the hero when the cover image is already shown as a figure */}
+    {!post.body.some((block) => block.img && block.img === post.cover?.src) && (
+      <div className={styles.hero}>
+        <Cover blog={post} large />
+      </div>
+    )}
     <div className={styles.body}>
       {post.body.map((block, i) => (
         <Block key={i} block={block} />
@@ -220,14 +223,15 @@ const BlogsPage = ({ blogs, tags }) => {
 export async function getStaticProps() {
   const blogs = getBlogs();
 
-  // Tags used by more than one post, most common first
+  // The 10 most common tags shared by more than one post
   const counts = {};
   blogs.forEach((blog) =>
     blog.tags.forEach((tag) => (counts[tag] = (counts[tag] || 0) + 1))
   );
   const tags = Object.keys(counts)
     .filter((tag) => counts[tag] > 1)
-    .sort((a, b) => counts[b] - counts[a]);
+    .sort((a, b) => counts[b] - counts[a])
+    .slice(0, 10);
 
   return {
     props: { title: "Blogs", blogs, tags },
