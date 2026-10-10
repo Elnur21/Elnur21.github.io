@@ -35,7 +35,7 @@
   margin-left: auto;
 }
 
-.windowButtons * {
+.windowButtons > span {
   margin-left: 0.5rem;
   height: 13px;
   width: 13px;
@@ -45,7 +45,40 @@
 
 .minimize {
   background: #f1fa8c;
-  margin-left: auto;
+}
+
+/* Chat toggle, left of the window buttons like VS Code's chat button */
+.chatToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 0;
+  margin-right: 0.5rem;
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  background: transparent;
+  color: rgb(204, 204, 204);
+  font-family: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.chatToggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.chatToggleActive {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+@media screen and (max-width: 600px) {
+  .chatLabel {
+    display: none;
+  }
 }
 
 .maximize {

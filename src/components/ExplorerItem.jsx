@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { useAppStore } from "@/libs/store";
+import { useT } from "@/i18n";
 import ChevronRight from "../components/icons/ChevronRight";
 import styles from "../styles/Explorer.module.css";
 
@@ -15,6 +16,7 @@ const ExplorerItem = ({
   title,
 }) => {
   const router = useRouter();
+  const t = useT();
   const addTab = useAppStore((state) => state.addTab);
   return (
     <div>
@@ -34,7 +36,8 @@ const ExplorerItem = ({
           className={styles.chevron}
           style={menuOpen ? { transform: "rotate(90deg)" } : {}}
         />
-        {title}
+        {/* Brand names stay English, so uppercase "Github" isn't "GİTHUB" in Azerbaijani */}
+        <span lang={title === "Github" ? "en" : undefined}>{t(`explorer.groups.${title}`)}</span>
       </label>
       <div
         className={styles.files}

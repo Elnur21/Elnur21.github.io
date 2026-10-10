@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  // English (default, no URL prefix), Azerbaijani (/az) and Russian (/ru)
+  i18n: {
+    locales: ["en", "az", "ru"],
+    defaultLocale: "en",
+  },
   images: {
     remotePatterns: [
       {

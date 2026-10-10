@@ -5,8 +5,10 @@ import { Analytics } from "@vercel/analytics/react";
 import CustomHead from "@/components/Head";
 import Layout from "@/components/Layout";
 import { ToastContainer } from "react-toastify";
+import { useT } from "@/i18n";
 
 function MyApp({ Component, pageProps }) {
+  const t = useT();
   useEffect(() => {
     if (localStorage.getItem("theme")) {
       document.documentElement.setAttribute(
@@ -18,7 +20,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Layout>
-      <CustomHead title={`Elnur Maharramov | ${pageProps.title}`} />
+      <CustomHead
+        title={`${t("meta.name")} | ${t(`titles.${pageProps.title}`)}`}
+      />
       <Component {...pageProps} />
       <ToastContainer />
       <Analytics />

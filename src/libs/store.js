@@ -20,7 +20,20 @@ export const useAppStore = create()(
             ? get().tabs
             : [...get().tabs, newTab],
         }),
+
+      // Chat panel
+      chatOpen: false,
+      toggleChat: () => set({ chatOpen: !get().chatOpen }),
+      setChatOpen: (chatOpen) => set({ chatOpen }),
+      chatMessages: [],
+      addChatMessage: (message) =>
+        set({ chatMessages: [...get().chatMessages, message] }),
+      clearChat: () => set({ chatMessages: [] }),
     }),
-    { name: "portfolio-store" }
+    {
+      name: "portfolio-store",
+      // The conversation itself is not saved, only whether the panel is open
+      partialize: ({ tabs, chatOpen }) => ({ tabs, chatOpen }),
+    }
   )
 );

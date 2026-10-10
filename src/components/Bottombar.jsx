@@ -5,10 +5,16 @@ import BellIcon from "./icons/BellIcon";
 import GithubIcon from "./icons/GithubIcon";
 import LinkedinIcon from "./icons/LinkedinIcon";
 import SourceControlIcon from "./icons/SourceControlIcon";
+import CommentIcon from "./icons/CommentIcon";
+import { useAppStore } from "@/libs/store";
+import { useT } from "@/i18n";
 import styles from "../styles/Bottombar.module.css";
 import packageJson from "../../package.json";
 
 const Bottombar = () => {
+  const toggleChat = useAppStore((state) => state.toggleChat);
+  const t = useT();
+
   return (
     <footer className={styles.bottomBar}>
       <div className={styles.container}>
@@ -46,6 +52,10 @@ const Bottombar = () => {
             <p>Github</p>
           </div>
         </Link>
+        <div className={styles.section} onClick={toggleChat} title={t("titlebar.toggleChat")}>
+          <CommentIcon width={12} height={12} className={styles.icon} />
+          <p>{t("bottombar.chat")}</p>
+        </div>
         <div className={styles.section}>
           <BellIcon />
         </div>

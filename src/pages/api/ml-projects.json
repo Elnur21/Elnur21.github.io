@@ -4,31 +4,79 @@
     "name": "Custom Disjoint-CNN",
     "image": "/DisJoint-CNN.png",
     "description": "Apply Deptswise and Separable Convolutional layers instead of 2 D Convolutional layers",
-    "tags": ["Tensorflow", "CNN", "Pandas"],
-    "source_code": "https://github.com/Elnur21/Custom-Disjoint-CNN"
+    "tags": [
+      "Tensorflow",
+      "CNN",
+      "Pandas"
+    ],
+    "source_code": "https://github.com/Elnur21/Custom-Disjoint-CNN",
+    "az": {
+      "description": "2D konvolyusiya qatları əvəzinə depthwise və separable konvolyusiya qatlarının tətbiqi."
+    },
+    "ru": {
+      "description": "Depthwise- и separable-свёртки вместо обычных 2D-свёрточных слоёв."
+    }
   },
   {
     "id": 2,
     "name": "World Statistics Analyze",
     "image": "/barplot.png",
     "description": "Create statistics of energy, temperature, gas etc. according to different years for the countries.",
-    "tags": ["Linux", "Gnuplot"],
-    "source_code": "https://github.com/Elnur21/World_Statistics_Analyze"
+    "tags": [
+      "Linux",
+      "Gnuplot"
+    ],
+    "source_code": "https://github.com/Elnur21/World_Statistics_Analyze",
+    "az": {
+      "name": "Dünya statistikası analizi",
+      "description": "Ölkələr üzrə enerji, temperatur, qaz və s. göstəricilərin illər üzrə statistikası."
+    },
+    "ru": {
+      "name": "Анализ мировой статистики",
+      "description": "Статистика по энергетике, температуре, газу и другим показателям стран за разные годы."
+    }
   },
   {
     "id": 3,
     "name": "Filter Analyze for DL TSC models",
     "image": "/ArrowHead_filters.png",
     "description": "Plot filters of FCN, ResNet, Inception, ROCKET and LITE models.",
-    "tags": ["Tensorflow", "Pandas", "Numpy", "CNN", "Matplotlib"],
-    "source_code": "https://github.com/Elnur21/Kernels_visualization"
+    "tags": [
+      "Tensorflow",
+      "Pandas",
+      "Numpy",
+      "CNN",
+      "Matplotlib"
+    ],
+    "source_code": "https://github.com/Elnur21/Kernels_visualization",
+    "az": {
+      "name": "DL TSC modellərinin filtr analizi",
+      "description": "FCN, ResNet, Inception, ROCKET və LITE modellərinin filtrlərinin vizuallaşdırılması."
+    },
+    "ru": {
+      "name": "Анализ фильтров DL-моделей TSC",
+      "description": "Визуализация фильтров моделей FCN, ResNet, Inception, ROCKET и LITE."
+    }
   },
   {
     "id": 4,
     "name": "Fill missing values in chemical dataset",
     "image": "/1_-MKLEtyrPeyqH4gESl1ueA.png",
-    "description": "Plot filters of FCN, ResNet, Inception, ROCKET and LITE models.",
-    "tags": ["Pandas", "Numpy", "Sklearn", "Matplotlib"],
-    "source_code": "https://github.com/Elnur21/Data_mining_on_chemical_data"
+    "description": "Fill missing values in a surfactant dataset using chemistry formulas, then classify the molecules.",
+    "tags": [
+      "Pandas",
+      "Numpy",
+      "Sklearn",
+      "Matplotlib"
+    ],
+    "source_code": "https://github.com/Elnur21/Data_mining_on_chemical_data",
+    "az": {
+      "name": "Kimyəvi datasetdə boş dəyərlərin doldurulması",
+      "description": "Səthi aktiv maddələr datasetindəki boş dəyərləri kimya düsturları ilə doldurub molekulları təsnif etmək."
+    },
+    "ru": {
+      "name": "Заполнение пропусков в химическом датасете",
+      "description": "Заполнение пропусков в датасете ПАВ по химическим формулам и классификация молекул."
+    }
   }
 ]

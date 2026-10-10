@@ -4,15 +4,37 @@
     "name": "Helper telegram bot",
     "image": "/1_YVTFl1UEkt3_rkez-DIU9w.png",
     "description": "A bot that can tag active users with different words, can give information about group, can type with you, can delete bad messages.",
-    "tags": ["Python", "Telegram"],
-    "source_code": "https://github.com/Elnur21/telegram-bots/blob/main/helper-bot.py"
+    "tags": [
+      "Python",
+      "Telegram"
+    ],
+    "source_code": "https://github.com/Elnur21/telegram-bots/blob/main/helper-bot.py",
+    "az": {
+      "name": "Köməkçi Telegram botu",
+      "description": "Aktiv istifadəçiləri müxtəlif sözlərlə etiketləyə, qrup haqqında məlumat verə, sizinlə yazışa və pis mesajları silə bilən bot."
+    },
+    "ru": {
+      "name": "Telegram-бот помощник",
+      "description": "Бот, который отмечает активных участников разными словами, рассказывает о группе, переписывается с вами и удаляет плохие сообщения."
+    }
   },
   {
     "id": 2,
     "name": "Message sender telegram bot",
     "image": "/1_YVTFl1UEkt3_rkez-DIU9w.png",
     "description": "A bot that can get user messages and sends to channel.",
-    "tags": ["Python", "Telegram"],
-    "source_code": "https://github.com/Elnur21/telegram-bots/blob/main/message-sender-bot.py"
+    "tags": [
+      "Python",
+      "Telegram"
+    ],
+    "source_code": "https://github.com/Elnur21/telegram-bots/blob/main/message-sender-bot.py",
+    "az": {
+      "name": "Mesaj göndərən Telegram botu",
+      "description": "İstifadəçi mesajlarını qəbul edib kanala göndərən bot."
+    },
+    "ru": {
+      "name": "Telegram-бот для отправки сообщений",
+      "description": "Бот, который принимает сообщения пользователей и публикует их в канал."
+    }
   }
 ]

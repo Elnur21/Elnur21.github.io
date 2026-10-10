@@ -1,8 +1,11 @@
 import { useState } from "react";
 import styles from "@/styles/ContactPage.module.css";
 import ContactCode from "@/components/ContactCode";
+import { useT } from "@/i18n";
+
 
 const ContactPage = () => {
+  const t = useT();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -15,28 +18,28 @@ const ContactPage = () => {
       body: JSON.stringify({ name, email, subject, message }),
     });
     if (res.ok) {
-      alert("Your response has been received!");
+      alert(t("contact.success"));
       setName("");
       setEmail("");
       setSubject("");
       setMessage("");
     } else {
-      alert("There was an error. Please try again in a while.");
+      alert(t("contact.error"));
     }
   };
 
   return (
     <div className={styles.container}>
       <div>
-        <h3 className={styles.heading}>Find Me On</h3>
+        <h3 className={styles.heading}>{t("contact.findMe")}</h3>
         <ContactCode />
       </div>
       <div>
-        <h3 className={styles.heading}>Or Fill Out This Form</h3>
+        <h3 className={styles.heading}>{t("contact.orFill")}</h3>
         <form className={styles.form} onSubmit={submitForm}>
           <div className={styles.flex}>
             <div style={{ width: "100%" }}>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">{t("contact.name")}</label>
               <input
                 className="rounded"
                 type="text"
@@ -48,7 +51,7 @@ const ContactPage = () => {
               />
             </div>
             <div style={{ width: "100%" }}>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">{t("contact.email")}</label>
               <input
                 className="rounded"
                 type="email"
@@ -61,7 +64,7 @@ const ContactPage = () => {
             </div>
           </div>
           <div>
-            <label htmlFor="name">Subject</label>
+            <label htmlFor="subject">{t("contact.subject")}</label>
             <input
               className="rounded"
               type="text"
@@ -73,7 +76,7 @@ const ContactPage = () => {
             />
           </div>
           <div>
-            <label htmlFor="message">Message</label>
+            <label htmlFor="message">{t("contact.message")}</label>
             <textarea
               className="rounded"
               name="message"
@@ -85,7 +88,7 @@ const ContactPage = () => {
             ></textarea>
           </div>
           <button className="rounded" style={{ width: "100%" }} type="submit">
-            Submit
+            {t("contact.submit")}
           </button>
         </form>
       </div>

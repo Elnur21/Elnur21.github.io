@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styles from "@/styles/LanguagesPage.module.css";
+import { useT, formatDate } from "@/i18n";
 
 const LanguagesPage = ({ repos }) => {
+  const t = useT();
   const [openLanguage, setOpenLanguage] = useState(null);
 
   const toggleAccordion = (language) => {
@@ -11,12 +13,12 @@ const LanguagesPage = ({ repos }) => {
   };
 
   if (Object.keys(repos).length === 0) {
-    return <p>GitHub data is currently unavailable. Please try again later.</p>;
+    return <p>{t("common.githubUnavailable")}</p>;
   }
 
   return (
     <>
-      <h3>Programming Languages</h3>
+      <h3>{t("languages.title")}</h3>
       <br />
       <div className={styles.container}>
         {Object.keys(repos).map((language) => (
@@ -65,11 +67,11 @@ const LanguagesPage = ({ repos }) => {
                       <div className={styles.content}>
                         <h3>{repo.name}</h3>
                         <p>
-                          <strong>Description:</strong> {repo.description}
+                          <strong>{t("languages.description")}</strong> {repo.description}
                         </p>
                         <p>
-                          <strong>Last Pushed At:</strong>{" "}
-                          {new Date(repo.pushed_at).toLocaleDateString()}
+                          <strong>{t("languages.lastPushed")}</strong>{" "}
+                          {formatDate(repo.pushed_at, t.locale)}
                         </p>
                         <div className={styles.cta}>
                           <a
@@ -78,7 +80,7 @@ const LanguagesPage = ({ repos }) => {
                             rel="noopener noreferrer"
                             className={styles.underline}
                           >
-                            View Repository
+                            {t("languages.view")}
                           </a>
                         </div>
                       </div>

@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import styles from '../styles/ThemeInfo.module.css';
+import { useT } from "@/i18n";
+
 
 const ThemeInfo = ({ icon, name, publisher, theme }) => {
+  const t = useT();
   const setTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
@@ -15,7 +18,7 @@ const ThemeInfo = ({ icon, name, publisher, theme }) => {
           <h3>{name}</h3>
           <h5>{publisher}</h5>
         </div>
-        <button onClick={() => setTheme(theme)}>Set Color Theme</button>
+        <button onClick={() => setTheme(theme)}>{t('settings.setTheme')}</button>
       </div>
     </div>
   );

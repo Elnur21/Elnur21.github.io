@@ -1,6 +1,6 @@
 import styles from "../styles/ContactCode.module.css";
 
-const contactItems = [
+export const contactItems = [
   {
     social: "Email",
     link: "elnur2370@gmail.com",

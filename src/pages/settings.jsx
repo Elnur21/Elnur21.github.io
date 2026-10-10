@@ -1,10 +1,13 @@
 import ThemeInfo from "@/components/ThemeInfo";
 import styles from "@/styles/SettingsPage.module.css";
+import { useT } from "@/i18n";
+
 
 const SettingsPage = () => {
+  const t = useT();
   return (
     <>
-      <h2>Manage Themes</h2>
+      <h2>{t("settings.title")}</h2>
       <div className={styles.container}>
         <ThemeInfo
           name="Dracula"

@@ -5,18 +5,9 @@ import { useAppStore } from "@/libs/store";
 import styles from "@/styles/InsightsPage.module.css";
 import blogStyles from "@/styles/BlogInsightsPage.module.css";
 import { getBlogs } from "./api/blogs";
+import { useT, getT, formatDate } from "@/i18n";
 
-const MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
 
-// "2024-05-16" -> "16 May 2024", "2024-05" -> "May 2024"
-const formatDate = (date) => {
-  const [year, month, day] = date.split("-");
-  const label = `${MONTHS[Number(month) - 1]} ${year}`;
-  return day ? `${Number(day)} ${label}` : label;
-};
 
 const countWords = (text) => (text.match(/\S+/g) || []).length;
 
@@ -46,15 +37,17 @@ const PostLink = ({ slug, className, children }) => {
 
 // Year x month grid, shaded by how many posts were published that month
 const Heatmap = ({ calendar, max }) => {
+  const t = useT();
+  const months = t("months.short");
   const [active, setActive] = useState(null);
 
   return (
     <div className={blogStyles.heatmap}>
       <div className={blogStyles.heatRow}>
         <span />
-        {MONTHS.map((month) => (
+        {months.map((month) => (
           <span key={month} className={blogStyles.heatMonth}>
-            {month[0]}
+            {month[0].toUpperCase()}
           </span>
         ))}
         <span />
@@ -82,7 +75,7 @@ const Heatmap = ({ calendar, max }) => {
                 {active === key && (
                   <div className={`${styles.tooltip} ${blogStyles.heatTooltip}`}>
                     <strong>
-                      {MONTHS[m]} {year}: {posts.length} post{posts.length === 1 ? "" : "s"}
+                      {months[m]} {year}: {t("blogInsights.posts", { count: posts.length })}
                     </strong>
                     {posts.map((title) => (
                       <span key={title}>{title}</span>
@@ -96,7 +89,7 @@ const Heatmap = ({ calendar, max }) => {
         </div>
       ))}
       <div className={blogStyles.heatLegend}>
-        less
+        {t("blogInsights.less")}
         {[0, 1, 2, 3].map((level) => (
           <span
             key={level}
@@ -108,17 +101,17 @@ const Heatmap = ({ calendar, max }) => {
             }}
           />
         ))}
-        more
+        {t("blogInsights.more")}
       </div>
     </div>
   );
 };
 
-const TagBars = ({ tags }) => (
+const TagBars = ({ tags, t }) => (
   <div className={styles.languages}>
     {tags.map(({ tag, count }) => (
       <div key={tag} className={styles.languageRow}>
-        <span className={styles.languageName}>{tag}</span>
+        <span className={styles.languageName}>{t.tag(tag)}</span>
         <div className={styles.languageTrack}>
           <div
             className={styles.languageBar}
@@ -129,19 +122,21 @@ const TagBars = ({ tags }) => (
           />
         </div>
         <span className={styles.languageValue}>
-          {count} post{count === 1 ? "" : "s"}
+          {t("blogInsights.posts", { count })}
         </span>
       </div>
     ))}
   </div>
 );
 
-const InsightsPage = ({ stats, calendar, maxPerMonth, tags, pairs, eras, highlights }) => (
+const InsightsPage = ({ stats, calendar, maxPerMonth, tags, pairs, eras, highlights }) => {
+  const t = useT();
+  return (
   <>
     <div className={styles.header}>
       <span className={styles.comment}>{"# blog-insights.py"}</span>
       <span className={styles.comment}>
-        {"# What I write about, how often, and how much"}
+        {t("blogInsights.comment")}
       </span>
     </div>
 
@@ -155,26 +150,26 @@ const InsightsPage = ({ stats, calendar, maxPerMonth, tags, pairs, eras, highlig
     </div>
 
     <div className={styles.grid}>
-      <Section title="Publishing calendar" comment="# hover a month to see its posts">
+      <Section title={t("blogInsights.sections.calendar")} comment={t("blogInsights.sections.calendarHint")}>
         <Heatmap calendar={calendar} max={maxPerMonth} />
       </Section>
-      <Section title="Most written-about tags" comment="# top 10 across all posts">
-        <TagBars tags={tags} />
+      <Section title={t("blogInsights.sections.tags")} comment={t("blogInsights.sections.tagsHint")}>
+        <TagBars tags={tags} t={t} />
       </Section>
     </div>
 
-    <Section title="What I wrote about each year" comment="# top tags per year">
+    <Section title={t("blogInsights.sections.years")} comment={t("blogInsights.sections.yearsHint")}>
       <div className={blogStyles.eras}>
         {eras.map(({ year, posts, tags: yearTags }) => (
           <div key={year} className={blogStyles.era}>
             <span className={blogStyles.eraYear}>{year}</span>
             <span className={blogStyles.eraCount}>
-              {posts} post{posts === 1 ? "" : "s"}
+              {t("blogInsights.posts", { count: posts })}
             </span>
             <div className={blogStyles.eraTags}>
               {yearTags.map((tag) => (
                 <span key={tag} className={blogStyles.eraTag}>
-                  {tag}
+                  {t.tag(tag)}
                 </span>
               ))}
             </div>
@@ -183,7 +178,7 @@ const InsightsPage = ({ stats, calendar, maxPerMonth, tags, pairs, eras, highlig
       </div>
     </Section>
 
-    <Section title="Highlights">
+    <Section title={t("blogInsights.sections.highlights")}>
       <div className={styles.highlights}>
         {highlights.map(({ label, slug, title, detail }) => (
           <PostLink key={label} slug={slug} className={styles.highlight}>
@@ -196,13 +191,13 @@ const InsightsPage = ({ stats, calendar, maxPerMonth, tags, pairs, eras, highlig
     </Section>
 
     {pairs.length > 0 && (
-      <Section title="Often written together" comment="# tag pairs that share the most posts">
+      <Section title={t("blogInsights.sections.pairs")} comment={t("blogInsights.sections.pairsHint")}>
         <div className={blogStyles.pairs}>
           {pairs.map(({ a, b, count }) => (
             <div key={`${a}+${b}`} className={blogStyles.pair}>
-              <span className={blogStyles.pairTag}>{a}</span>
+              <span className={blogStyles.pairTag}>{t.tag(a)}</span>
               <span className={blogStyles.pairPlus}>+</span>
-              <span className={blogStyles.pairTag}>{b}</span>
+              <span className={blogStyles.pairTag}>{t.tag(b)}</span>
               <span className={blogStyles.pairCount}>× {count}</span>
             </div>
           ))}
@@ -210,10 +205,13 @@ const InsightsPage = ({ stats, calendar, maxPerMonth, tags, pairs, eras, highlig
       </Section>
     )}
   </>
-);
+  );
+};
 
-export async function getStaticProps() {
-  const blogs = getBlogs();
+export async function getStaticProps({ locale }) {
+  const t = getT(locale);
+  const number = (n) => n.toLocaleString({ en: "en-US", az: "az-AZ", ru: "ru-RU" }[t.locale]);
+  const blogs = getBlogs(locale);
 
   // Measure each post's body
   const posts = blogs.map((blog) => {
@@ -250,14 +248,14 @@ export async function getStaticProps() {
     .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
 
   const stats = [
-    { label: "posts", value: posts.length },
-    { label: "words written", value: totalWords.toLocaleString("en-US") },
-    { label: "minutes of reading", value: sum("readTime") },
-    { label: "figures & screenshots", value: sum("images") },
-    { label: "lines of code shown", value: sum("codeLines") },
-    { label: "distinct tags", value: rankedTags.length },
-    { label: "posts with source code", value: posts.filter((p) => p.source).length },
-    { label: "years covered", value: lastYear - firstYear + 1 },
+    { label: t("blogInsights.stats.posts"), value: posts.length },
+    { label: t("blogInsights.stats.words"), value: number(totalWords) },
+    { label: t("blogInsights.stats.minutes"), value: sum("readTime") },
+    { label: t("blogInsights.stats.images"), value: sum("images") },
+    { label: t("blogInsights.stats.code"), value: sum("codeLines") },
+    { label: t("blogInsights.stats.tags"), value: rankedTags.length },
+    { label: t("blogInsights.stats.source"), value: posts.filter((p) => p.source).length },
+    { label: t("blogInsights.stats.years"), value: lastYear - firstYear + 1 },
   ];
 
   // Publishing calendar, newest year first
@@ -326,17 +324,17 @@ export async function getStaticProps() {
 
   const card = (label, post, detail) => ({ label, slug: post.slug, title: post.title, detail });
   const highlights = [
-    card("first post", oldest, formatDate(oldest.date)),
-    card("latest post", newest, formatDate(newest.date)),
-    card("longest read", longest, `${longest.words.toLocaleString("en-US")} words · ${longest.readTime} min`),
-    card("quickest read", shortest, `${shortest.words.toLocaleString("en-US")} words · ${shortest.readTime} min`),
-    card("most visual", visual, `${visual.images} images`),
-    card("most tagged", tagged, tagged.tags.join(", ")),
-    ...(codey.codeLines ? [card("most code", codey, `${codey.codeLines} lines of code`)] : []),
+    card(t("blogInsights.highlights.first"), oldest, formatDate(oldest.date, locale)),
+    card(t("blogInsights.highlights.latest"), newest, formatDate(newest.date, locale)),
+    card(t("blogInsights.highlights.longest"), longest, t("blogInsights.wordsMinutes", { words: number(longest.words), minutes: longest.readTime })),
+    card(t("blogInsights.highlights.quickest"), shortest, t("blogInsights.wordsMinutes", { words: number(shortest.words), minutes: shortest.readTime })),
+    card(t("blogInsights.highlights.visual"), visual, t("blogInsights.images", { count: visual.images })),
+    card(t("blogInsights.highlights.tagged"), tagged, tagged.tags.map(t.tag).join(", ")),
+    ...(codey.codeLines ? [card(t("blogInsights.highlights.code"), codey, t("blogInsights.codeLines", { count: codey.codeLines }))] : []),
     card(
-      "back after a break",
+      t("blogInsights.highlights.break"),
       gap.before,
-      `${gap.months} months after “${gap.after.title}”`
+      t("blogInsights.breakDetail", { months: gap.months, title: gap.after.title })
     ),
   ];
 

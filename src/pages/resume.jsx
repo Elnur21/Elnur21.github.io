@@ -1,18 +1,21 @@
 import styles from "@/styles/ResumePage.module.css";
+import { useT } from "@/i18n";
+
 
 const myResume = "/Resume.pdf";
 
 const ResumePage = () => {
+  const t = useT();
   return (
     <center>
       <h3>
-        Resume (
+        {t("resume.title")} (
         <a
           href={myResume}
           className={styles.underline}
           download="ElnurMaharramov_CV.pdf"
         >
-          Download
+          {t("resume.download")}
         </a>
         )
       </h3>
@@ -24,7 +27,7 @@ const ResumePage = () => {
         <iframe
           src={myResume}
           style={{ width: "100%", height: "100%", border: "none" }}
-          title="Resume"
+          title={t("resume.title")}
         />
       </div>
     </center>

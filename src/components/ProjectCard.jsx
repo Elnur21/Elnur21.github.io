@@ -1,7 +1,10 @@
 import Image from "next/image";
 import styles from "../styles/ProjectCard.module.css";
+import { useT } from "@/i18n";
+
 
 const ProjectCard = ({ project }) => {
+  const t = useT();
   const lowResImageUrl = project.image.replace(/(\.[a-z]+)$/, "m$1");
   return (
     <div className={styles.card}>
@@ -32,7 +35,7 @@ const ProjectCard = ({ project }) => {
               rel="noopener noreferrer"
               className={styles.underline}
             >
-              Code
+              {t("projects.code")}
             </a>
           )}
           {project.demo && (
@@ -42,7 +45,7 @@ const ProjectCard = ({ project }) => {
               rel="noopener noreferrer"
               className={styles.underline}
             >
-              Demo
+              {t("projects.demo")}
             </a>
           )}
           {project.scholar && (
@@ -52,7 +55,7 @@ const ProjectCard = ({ project }) => {
               rel="noopener noreferrer"
               className={styles.underline}
             >
-              Paper
+              {t("projects.paper")}
             </a>
           )}
           {project.pypi && (

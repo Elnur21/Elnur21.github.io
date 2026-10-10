@@ -1,14 +1,17 @@
 import styles from "@/styles/ProjectsPage.module.css";
 import ProjectCard from "@/components/ProjectCard";
+import { useT } from "@/i18n";
+
 import { getJSProjects } from "./api/projects";
 
 const ProjectsPage = ({ js_projects }) => {
+  const t = useT();
   return (
     <>
-      <h3>JavaScript Projects</h3>
+      <h3>{t("projects.jsTitle")}</h3>
       <br />
       <center>
-        <h4>FullStack projects</h4>
+        <h4>{t("projects.fullstack")}</h4>
       </center>
       <hr />
       <div className={styles.container}>
@@ -30,8 +33,8 @@ const ProjectsPage = ({ js_projects }) => {
   );
 };
 
-export async function getStaticProps() {
-  const js_projects = getJSProjects();
+export async function getStaticProps({ locale }) {
+  const js_projects = getJSProjects(locale);
 
   return {
     props: { title: "Projects", js_projects },

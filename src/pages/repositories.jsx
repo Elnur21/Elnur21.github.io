@@ -5,11 +5,8 @@ import StarIcon from "@/components/icons/StarIcon";
 import GithubIcon from "@/components/icons/GithubIcon";
 import LinkIcon from "@/components/icons/LinkIcon";
 import styles from "@/styles/RepositoriesPage.module.css";
+import { useT, formatDate } from "@/i18n";
 
-const MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
 
 // Same colors GitHub uses for its language dots
 const LANGUAGE_COLORS = {
@@ -33,19 +30,14 @@ const LANGUAGE_COLORS = {
 };
 
 const SORTS = {
-  pushed: { label: "Recently pushed", fn: (a, b) => new Date(b.pushed_at) - new Date(a.pushed_at) },
-  created: { label: "Newest", fn: (a, b) => new Date(b.created_at) - new Date(a.created_at) },
-  stars: { label: "Most stars", fn: (a, b) => b.stargazers_count - a.stargazers_count || b.forks_count - a.forks_count },
-  name: { label: "Name", fn: (a, b) => a.name.localeCompare(b.name) },
+  pushed: { fn: (a, b) => new Date(b.pushed_at) - new Date(a.pushed_at) },
+  created: { fn: (a, b) => new Date(b.created_at) - new Date(a.created_at) },
+  stars: { fn: (a, b) => b.stargazers_count - a.stargazers_count || b.forks_count - a.forks_count },
+  name: { fn: (a, b) => a.name.localeCompare(b.name) },
 };
 
-// Formatted by hand (not toLocaleDateString) so server and client render the same string
-const formatDate = (iso) => {
-  const date = new Date(iso);
-  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-};
 
-const RepoRow = ({ repo }) => (
+const RepoRow = ({ repo, t }) => (
   <article className={styles.repo}>
     <div className={styles.repoMain}>
       <div className={styles.repoHead}>
@@ -57,8 +49,8 @@ const RepoRow = ({ repo }) => (
         >
           {repo.name}
         </a>
-        {repo.fork && <span className={styles.badge}>fork</span>}
-        {repo.archived && <span className={styles.badge}>archived</span>}
+        {repo.fork && <span className={styles.badge}>{t("repositories.fork")}</span>}
+        {repo.archived && <span className={styles.badge}>{t("repositories.archived")}</span>}
       </div>
       {repo.description && <p className={styles.description}>{repo.description}</p>}
       {repo.topics.length > 0 && (
@@ -86,15 +78,15 @@ const RepoRow = ({ repo }) => (
         <span>
           <ForkIcon className={styles.icon} /> {repo.forks_count}
         </span>
-        <span>Updated {formatDate(repo.pushed_at)}</span>
+        <span>{t("repositories.updated", { date: formatDate(repo.pushed_at, t.locale, { short: true }) })}</span>
       </div>
     </div>
     <div className={styles.links}>
-      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" title="Source">
+      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" title={t("repositories.source")}>
         <GithubIcon height={18} width={18} className={styles.icon} />
       </a>
       {repo.homepage && (
-        <a href={repo.homepage} target="_blank" rel="noopener noreferrer" title="Live demo">
+        <a href={repo.homepage} target="_blank" rel="noopener noreferrer" title={t("repositories.liveDemo")}>
           <LinkIcon height={18} width={18} className={styles.icon} />
         </a>
       )}
@@ -103,6 +95,7 @@ const RepoRow = ({ repo }) => (
 );
 
 const RepositoriesPage = ({ repos, languages }) => {
+  const t = useT();
   const [query, setQuery] = useState("");
   const [language, setLanguage] = useState(null);
   const [sort, setSort] = useState("pushed");
@@ -124,15 +117,15 @@ const RepositoriesPage = ({ repos, languages }) => {
   }, [repos, query, language, sort, liveOnly]);
 
   if (repos.length === 0) {
-    return <p>GitHub data is currently unavailable. Please try again later.</p>;
+    return <p>{t("common.githubUnavailable")}</p>;
   }
 
   const stats = [
-    { label: "repositories", value: repos.length },
-    { label: "stars", value: repos.reduce((sum, r) => sum + r.stargazers_count, 0) },
-    { label: "forks", value: repos.reduce((sum, r) => sum + r.forks_count, 0) },
-    { label: "languages", value: languages.length },
-    { label: "live demos", value: repos.filter((r) => r.homepage).length },
+    { label: t("repositories.stats.repositories"), value: repos.length },
+    { label: t("repositories.stats.stars"), value: repos.reduce((sum, r) => sum + r.stargazers_count, 0) },
+    { label: t("repositories.stats.forks"), value: repos.reduce((sum, r) => sum + r.forks_count, 0) },
+    { label: t("repositories.stats.languages"), value: languages.length },
+    { label: t("repositories.stats.demos"), value: repos.filter((r) => r.homepage).length },
   ];
 
   return (
@@ -140,7 +133,7 @@ const RepositoriesPage = ({ repos, languages }) => {
       <div className={styles.header}>
         <span className={styles.comment}>{"// repositories.json"}</span>
         <span className={styles.comment}>
-          {"// Every public repository, searchable and sortable"}
+          {t("repositories.comment")}
         </span>
       </div>
 
@@ -157,7 +150,7 @@ const RepositoriesPage = ({ repos, languages }) => {
         <input
           type="search"
           className={styles.search}
-          placeholder="Search name, description or topic..."
+          placeholder={t("repositories.search")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -166,9 +159,9 @@ const RepositoriesPage = ({ repos, languages }) => {
           value={sort}
           onChange={(e) => setSort(e.target.value)}
         >
-          {Object.entries(SORTS).map(([key, { label }]) => (
+          {Object.keys(SORTS).map((key) => (
             <option key={key} value={key}>
-              {label}
+              {t(`repositories.sorts.${key}`)}
             </option>
           ))}
         </select>
@@ -178,7 +171,7 @@ const RepositoriesPage = ({ repos, languages }) => {
             checked={liveOnly}
             onChange={(e) => setLiveOnly(e.target.checked)}
           />
-          Live demo
+          {t("repositories.liveDemo")}
         </label>
       </div>
 
@@ -195,21 +188,21 @@ const RepositoriesPage = ({ repos, languages }) => {
                 style={{ background: LANGUAGE_COLORS[lang] || "var(--accent-color)" }}
               />
             )}
-            {lang || "All"}
+            {lang || t("repositories.all")}
           </button>
         ))}
       </div>
 
       <p className={styles.count}>
-        {filtered.length} of {repos.length} repositories
+        {t("repositories.count", { shown: filtered.length, total: repos.length })}
       </p>
 
       <div className={styles.list}>
         {filtered.map((repo) => (
-          <RepoRow key={repo.id} repo={repo} />
+          <RepoRow key={repo.id} repo={repo} t={t} />
         ))}
         {filtered.length === 0 && (
-          <p className={styles.empty}>{"// no repositories match these filters"}</p>
+          <p className={styles.empty}>{t("repositories.empty")}</p>
         )}
       </div>
     </>

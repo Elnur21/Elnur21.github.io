@@ -1,0 +1,85 @@
+.switcher {
+  position: relative;
+  margin-left: auto;
+  margin-right: 0.4rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 7px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  background: transparent;
+  color: rgb(204, 204, 204);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.button:hover,
+.button[aria-expanded="true"] {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.caret {
+  font-size: 0.6rem;
+  opacity: 0.7;
+}
+
+/* Same look as the title bar's dropdown menus */
+.menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 170px;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: #252526;
+  border: 1px solid #454545;
+  border-radius: 4px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  color: #ccc;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+/* globals.css gives every <li> a markdown-style "* " marker */
+.option::before {
+  content: none !important;
+}
+
+.option:hover {
+  background: #04395e;
+  color: #fff;
+}
+
+.code {
+  width: 22px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.active {
+  color: #fff;
+}
+
+.check {
+  margin-left: auto;
+  color: var(--accent-color);
+}

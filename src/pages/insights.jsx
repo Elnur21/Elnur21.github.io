@@ -2,11 +2,8 @@ import { useState } from "react";
 import Image from "next/image";
 
 import styles from "@/styles/InsightsPage.module.css";
+import { useT, getT, formatDate } from "@/i18n";
 
-const MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
 
 // Same colors GitHub uses for its language dots
 const LANGUAGE_COLORS = {
@@ -31,17 +28,12 @@ const LANGUAGE_COLORS = {
 
 const DAY = 24 * 60 * 60 * 1000;
 
-// Formatted by hand (not toLocaleDateString) so server and client render the same string
-const formatDate = (iso) => {
-  const date = new Date(iso);
-  return `${date.getUTCDate()} ${MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-};
 
-const formatDuration = (days) => {
-  if (days < 1) return "same day";
-  if (days < 60) return `${days} day${days === 1 ? "" : "s"}`;
-  if (days < 730) return `${Math.round(days / 30)} months`;
-  return `${(days / 365).toFixed(1)} years`;
+const formatDuration = (days, t) => {
+  if (days < 1) return t("insights.duration.sameDay");
+  if (days < 60) return t("insights.duration.days", { count: days });
+  if (days < 730) return t("insights.duration.months", { n: Math.round(days / 30) });
+  return t("insights.duration.years", { n: (days / 365).toFixed(1) });
 };
 
 const languageColor = (language) => LANGUAGE_COLORS[language] || "var(--accent-color)";
@@ -54,7 +46,7 @@ const Section = ({ title, comment, children }) => (
   </section>
 );
 
-const Profile = ({ user, yearsOnGithub }) => (
+const Profile = ({ user, yearsOnGithub, t }) => (
   <a
     href={user.html_url}
     target="_blank"
@@ -75,13 +67,13 @@ const Profile = ({ user, yearsOnGithub }) => (
       <h2 className={styles.name}>{user.name || user.login}</h2>
       <span className={styles.profileMeta}>
         @{user.login}
-        {user.location && ` · ${user.location}`} · on GitHub for {yearsOnGithub} years
+        {user.location && ` · ${user.location}`} · {t("insights.onGithub", { years: yearsOnGithub })}
       </span>
     </div>
   </a>
 );
 
-const YearChart = ({ years }) => {
+const YearChart = ({ years, t }) => {
   const [active, setActive] = useState(null);
   const max = Math.max(...years.map((y) => y.count));
 
@@ -100,12 +92,12 @@ const YearChart = ({ years }) => {
           {active === year.year && (
             <div className={styles.tooltip}>
               <strong>
-                {year.year}: {year.count} repo{year.count === 1 ? "" : "s"}
+                {year.year}: {t("insights.repoCount", { count: year.count })}
               </strong>
               {year.names.slice(0, 6).map((name) => (
                 <span key={name}>{name}</span>
               ))}
-              {year.names.length > 6 && <span>+{year.names.length - 6} more</span>}
+              {year.names.length > 6 && <span>{t("insights.more", { n: year.names.length - 6 })}</span>}
             </div>
           )}
           <span className={styles.yearValue}>{year.count}</span>
@@ -122,13 +114,13 @@ const YearChart = ({ years }) => {
   );
 };
 
-const LanguageBars = ({ languages, total }) => (
+const LanguageBars = ({ languages, total, t }) => (
   <div className={styles.languages}>
     {languages.map(({ language, count }) => (
-      <div key={language} className={styles.languageRow} title={`${language}: ${count} repos`}>
+      <div key={language} className={styles.languageRow} title={`${language}: ${t("insights.repoCount", { count })}`}>
         <span className={styles.languageName}>
           <span className={styles.dot} style={{ background: languageColor(language) }} />
-          {language}
+          {language === "Other" ? t("insights.other") : language}
         </span>
         <div className={styles.languageTrack}>
           <div
@@ -147,7 +139,7 @@ const LanguageBars = ({ languages, total }) => (
   </div>
 );
 
-const TopicCloud = ({ topics }) => {
+const TopicCloud = ({ topics, t }) => {
   const max = topics[0]?.count || 1;
   return (
     <div className={styles.cloud}>
@@ -155,7 +147,7 @@ const TopicCloud = ({ topics }) => {
         <span
           key={topic}
           className={styles.cloudTopic}
-          title={`${count} repo${count === 1 ? "" : "s"}`}
+          title={t("insights.repoCount", { count })}
           style={{
             fontSize: `${0.75 + (count / max) * 0.75}rem`,
             opacity: 0.55 + (count / max) * 0.45,
@@ -181,7 +173,7 @@ const Highlight = ({ label, repo, detail }) => (
   </a>
 );
 
-const GitLog = ({ repos }) => {
+const GitLog = ({ repos, t }) => {
   const [showAll, setShowAll] = useState(false);
   const visible = showAll ? repos : repos.slice(0, 8);
 
@@ -206,7 +198,7 @@ const GitLog = ({ repos }) => {
             >
               <span className={styles.graph}>*</span>
               <span className={styles.hash}>{repo.hash}</span>
-              <span className={styles.logDate}>{formatDate(repo.created_at)}</span>
+              <span className={styles.logDate}>{formatDate(repo.created_at, t.locale, { short: true })}</span>
               {repo.language && (
                 <span className={styles.logLanguage}>
                   <span className={styles.dot} style={{ background: languageColor(repo.language) }} />
@@ -223,7 +215,7 @@ const GitLog = ({ repos }) => {
       })}
       {repos.length > 8 && (
         <button className={styles.more} onClick={() => setShowAll(!showAll)}>
-          {showAll ? "$ git log -n 8" : `$ git log --all  (${repos.length - 8} more)`}
+          {showAll ? "$ git log -n 8" : `$ git log --all  ${t("insights.logMore", { n: repos.length - 8 })}`}
         </button>
       )}
     </div>
@@ -231,8 +223,9 @@ const GitLog = ({ repos }) => {
 };
 
 const InsightsPage = ({ user, stats, years, languages, topics, highlights, log, yearsOnGithub }) => {
+  const t = useT();
   if (!user) {
-    return <p>GitHub data is currently unavailable. Please try again later.</p>;
+    return <p>{t("common.githubUnavailable")}</p>;
   }
 
   return (
@@ -240,11 +233,11 @@ const InsightsPage = ({ user, stats, years, languages, topics, highlights, log, 
       <div className={styles.header}>
         <span className={styles.comment}>{"# insights.py"}</span>
         <span className={styles.comment}>
-          {"# What my public GitHub repositories say about how I build"}
+          {t("insights.comment")}
         </span>
       </div>
 
-      <Profile user={user} yearsOnGithub={yearsOnGithub} />
+      <Profile user={user} yearsOnGithub={yearsOnGithub} t={t} />
 
       <div className={styles.stats}>
         {stats.map(({ label, value }) => (
@@ -256,15 +249,15 @@ const InsightsPage = ({ user, stats, years, languages, topics, highlights, log, 
       </div>
 
       <div className={styles.grid}>
-        <Section title="Repositories created per year" comment="# hover a bar to see the repos">
-          <YearChart years={years} />
+        <Section title={t("insights.sections.perYear")} comment={t("insights.sections.perYearHint")}>
+          <YearChart years={years} t={t} />
         </Section>
-        <Section title="Languages" comment="# primary language of each repo">
-          <LanguageBars languages={languages} total={log.length} />
+        <Section title={t("insights.sections.languages")} comment={t("insights.sections.languagesHint")}>
+          <LanguageBars languages={languages} total={log.length} t={t} />
         </Section>
       </div>
 
-      <Section title="Highlights">
+      <Section title={t("insights.sections.highlights")}>
         <div className={styles.highlights}>
           {highlights.map((h) => (
             <Highlight key={h.label} {...h} />
@@ -273,19 +266,20 @@ const InsightsPage = ({ user, stats, years, languages, topics, highlights, log, 
       </Section>
 
       {topics.length > 0 && (
-        <Section title="Topics" comment="# bigger = used in more repos">
-          <TopicCloud topics={topics} />
+        <Section title={t("insights.sections.topics")} comment={t("insights.sections.topicsHint")}>
+          <TopicCloud topics={topics} t={t} />
         </Section>
       )}
 
-      <Section title="Timeline" comment="# git log --graph --reverse-chronological">
-        <GitLog repos={log} />
+      <Section title={t("insights.sections.timeline")} comment="# git log --graph --reverse-chronological">
+        <GitLog repos={log} t={t} />
       </Section>
     </>
   );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
+  const t = getT(locale);
   const empty = {
     props: { title: "Insights", user: null },
     revalidate: 30,
@@ -323,12 +317,12 @@ export async function getStaticProps() {
     const sum = (key) => repos.reduce((total, repo) => total + (repo[key] || 0), 0);
     const recentlyActive = repos.filter((repo) => age(repo.pushed_at) <= 90).length;
     const stats = [
-      { label: "public repos", value: rawUser.public_repos },
-      { label: "stars earned", value: sum("stargazers_count") },
-      { label: "forks", value: sum("forks_count") },
-      { label: "followers", value: rawUser.followers },
-      { label: "live demos", value: repos.filter((repo) => repo.homepage).length },
-      { label: "active in last 90 days", value: recentlyActive },
+      { label: t("insights.stats.repos"), value: rawUser.public_repos },
+      { label: t("insights.stats.stars"), value: sum("stargazers_count") },
+      { label: t("insights.stats.forks"), value: sum("forks_count") },
+      { label: t("insights.stats.followers"), value: rawUser.followers },
+      { label: t("insights.stats.demos"), value: repos.filter((repo) => repo.homepage).length },
+      { label: t("insights.stats.active"), value: recentlyActive },
     ];
 
     // Repos created per year, with no gaps between the first and last year
@@ -382,28 +376,28 @@ export async function getStaticProps() {
     const tagged = pick((r) => (r.topics || []).length);
 
     const highlights = [
-      { label: "first repository", repo: slim(oldest), detail: formatDate(oldest.created_at) },
-      { label: "newest repository", repo: slim(newest), detail: formatDate(newest.created_at) },
-      { label: "last push", repo: slim(latestPush), detail: formatDate(latestPush.pushed_at) },
+      { label: t("insights.highlights.first"), repo: slim(oldest), detail: formatDate(oldest.created_at, locale) },
+      { label: t("insights.highlights.newest"), repo: slim(newest), detail: formatDate(newest.created_at, locale) },
+      { label: t("insights.highlights.lastPush"), repo: slim(latestPush), detail: formatDate(latestPush.pushed_at, locale) },
       {
-        label: "most popular",
+        label: t("insights.highlights.popular"),
         repo: slim(starred),
-        detail: `${starred.stargazers_count} ★ · ${starred.forks_count} forks`,
+        detail: t("insights.starsForks", { stars: starred.stargazers_count, forks: starred.forks_count }),
       },
       {
-        label: "longest maintained",
+        label: t("insights.highlights.longest"),
         repo: slim(longest),
-        detail: formatDuration(age(longest.created_at, longest.pushed_at)),
+        detail: formatDuration(age(longest.created_at, longest.pushed_at), t),
       },
       {
-        label: "largest codebase",
+        label: t("insights.highlights.largest"),
         repo: slim(biggest),
         detail: `${(biggest.size / 1024).toFixed(1)} MB`,
       },
       {
-        label: "most tagged",
+        label: t("insights.highlights.tagged"),
         repo: slim(tagged),
-        detail: `${(tagged.topics || []).length} topics`,
+        detail: t("insights.topicCount", { count: (tagged.topics || []).length }),
       },
     ];
 

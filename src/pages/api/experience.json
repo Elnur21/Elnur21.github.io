@@ -6,7 +6,20 @@
     "period": "04.2022 – 07.2022",
     "type": "Internship",
     "description": "Created websites according to given templates and solved tasks using JavaScript, HTML5, CSS3 and Bootstrap 5.",
-    "tags": ["JavaScript", "HTML5", "CSS3", "Bootstrap 5"]
+    "tags": [
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Bootstrap 5"
+    ],
+    "az": {
+      "role": "Frontend təcrübəçi",
+      "description": "Verilmiş şablonlara əsasən saytlar hazırladım və JavaScript, HTML5, CSS3 və Bootstrap 5 ilə tapşırıqlar həll etdim."
+    },
+    "ru": {
+      "role": "Frontend-стажёр",
+      "description": "Верстал сайты по готовым макетам и решал задачи на JavaScript, HTML5, CSS3 и Bootstrap 5."
+    }
   },
   {
     "id": 2,
@@ -15,7 +28,19 @@
     "period": "07.2022 – 09.2022",
     "type": "Mentorship",
     "description": "Helped students understand given tasks and reviewed their homework assignments.",
-    "tags": ["Python", "Teaching", "Data Science"]
+    "tags": [
+      "Python",
+      "Teaching",
+      "Data Science"
+    ],
+    "az": {
+      "role": "Python mentoru",
+      "description": "Tələbələrə tapşırıqları başa düşməkdə kömək etdim və ev tapşırıqlarını yoxladım."
+    },
+    "ru": {
+      "role": "Ментор по Python",
+      "description": "Помогал студентам разбираться в заданиях и проверял их домашние работы."
+    }
   },
   {
     "id": 3,
@@ -24,7 +49,20 @@
     "period": "03.2023 – 01.2024",
     "type": "Full-time",
     "description": "Used pure JavaScript and ExpressJS to create backend services. Built front-end web sites from scratch using ReactJS and NextJS, and created backend APIs with NextJS.",
-    "tags": ["JavaScript", "ReactJS", "NextJS", "ExpressJS"]
+    "tags": [
+      "JavaScript",
+      "ReactJS",
+      "NextJS",
+      "ExpressJS"
+    ],
+    "az": {
+      "role": "Fullstack developer",
+      "description": "Backend servislərini təmiz JavaScript və ExpressJS ilə yazdım. ReactJS və NextJS ilə saytları sıfırdan qurdum, NextJS ilə backend API-lər hazırladım."
+    },
+    "ru": {
+      "role": "Fullstack-разработчик",
+      "description": "Писал бэкенд-сервисы на чистом JavaScript и ExpressJS. С нуля делал сайты на ReactJS и NextJS и создавал API на NextJS."
+    }
   },
   {
     "id": 4,
@@ -33,7 +71,19 @@
     "period": "05.2023 – 09.2023",
     "type": "Full-time",
     "description": "Responsible for responsive design, built responsive sites using ReactJS and Mantine.dev, and created new pages.",
-    "tags": ["ReactJS", "Mantine.dev", "Responsive Design"]
+    "tags": [
+      "ReactJS",
+      "Mantine.dev",
+      "Responsive Design"
+    ],
+    "az": {
+      "role": "Frontend developer",
+      "description": "Responsiv dizayna cavabdeh idim: ReactJS və Mantine.dev ilə responsiv saytlar qurdum və yeni səhifələr hazırladım."
+    },
+    "ru": {
+      "role": "Frontend-разработчик",
+      "description": "Отвечал за адаптивную вёрстку: делал адаптивные сайты на ReactJS и Mantine.dev и создавал новые страницы."
+    }
   },
   {
     "id": 5,
@@ -42,7 +92,21 @@
     "period": "06.2023 – 08.2023",
     "type": "Full-time",
     "description": "Created a CDN with NodeJS/ExpressJS and used NextJS for the main backend. Deployed the site on AWS using Docker and pm2.",
-    "tags": ["NodeJS", "ExpressJS", "NextJS", "Docker", "AWS"]
+    "tags": [
+      "NodeJS",
+      "ExpressJS",
+      "NextJS",
+      "Docker",
+      "AWS"
+    ],
+    "az": {
+      "role": "Backend developer",
+      "description": "NodeJS/ExpressJS ilə CDN qurdum, əsas backend üçün NextJS istifadə etdim. Saytı Docker və pm2 ilə AWS-də deploy etdim."
+    },
+    "ru": {
+      "role": "Бэкенд-разработчик",
+      "description": "Сделал CDN на NodeJS/ExpressJS, основной бэкенд был на NextJS. Развернул сайт на AWS с помощью Docker и pm2."
+    }
   },
   {
     "id": 6,
@@ -51,7 +115,20 @@
     "period": "07.2023 – 01.2024",
     "type": "Full-time",
     "description": "Created automation bots using Automation Anywhere Control Room, built forms and processes, developed co-pilot bots, and used Generative AI tools including Document AI (IQ Bot).",
-    "tags": ["Automation Anywhere", "RPA", "IQ Bot", "Generative AI"]
+    "tags": [
+      "Automation Anywhere",
+      "RPA",
+      "IQ Bot",
+      "Generative AI"
+    ],
+    "az": {
+      "role": "RPA developer",
+      "description": "Automation Anywhere Control Room ilə avtomatlaşdırma botları yaratdım, formlar və proseslər qurdum, co-pilot botlar hazırladım və Document AI (IQ Bot) kimi generativ AI alətlərindən istifadə etdim."
+    },
+    "ru": {
+      "role": "RPA-разработчик",
+      "description": "Создавал ботов автоматизации в Automation Anywhere Control Room, строил формы и процессы, разрабатывал co-pilot ботов и использовал инструменты генеративного ИИ, включая Document AI (IQ Bot)."
+    }
   },
   {
     "id": 7,
@@ -61,7 +138,22 @@
     "period": "01.2024 – 05.2024",
     "type": "Internship",
     "description": "Read scientific papers and implemented deep learning models for time series analysis. Plotted and compared results against other experiments.",
-    "tags": ["Python", "Deep Learning", "Time Series", "Research"]
+    "tags": [
+      "Python",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "az": {
+      "role": "Data Scientist",
+      "location": "Fransa",
+      "description": "Elmi məqalələri oxudum və zaman sıralarının analizi üçün deep learning modellərini implementasiya etdim. Nəticələri qrafiklərlə digər eksperimentlərlə müqayisə etdim."
+    },
+    "ru": {
+      "role": "Data Scientist",
+      "location": "Франция",
+      "description": "Читал научные статьи и реализовывал модели глубокого обучения для анализа временных рядов. Строил графики и сравнивал результаты с другими экспериментами."
+    }
   },
   {
     "id": 8,
@@ -71,6 +163,19 @@
     "type": "Full-time",
     "current": true,
     "description": "Working on multiple CRM and Dialer projects (~20 projects). Using NodeJS for backend and ReactJS for frontend. Managing social media messages via RabbitMQ.",
-    "tags": ["NodeJS", "ReactJS", "RabbitMQ", "CRM"]
+    "tags": [
+      "NodeJS",
+      "ReactJS",
+      "RabbitMQ",
+      "CRM"
+    ],
+    "az": {
+      "role": "Fullstack developer",
+      "description": "Bir çox CRM və Dialer layihəsi üzərində işləyirəm (~20 layihə). Backend üçün NodeJS, frontend üçün ReactJS istifadə edirəm. Sosial şəbəkə mesajlarını RabbitMQ ilə idarə edirəm."
+    },
+    "ru": {
+      "role": "Fullstack-разработчик",
+      "description": "Работаю над множеством CRM- и Dialer-проектов (~20 проектов). На бэкенде использую NodeJS, на фронтенде ReactJS. Обрабатываю сообщения из соцсетей через RabbitMQ."
+    }
   }
 ]

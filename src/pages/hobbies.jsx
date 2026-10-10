@@ -1,5 +1,7 @@
 import styles from "@/styles/HobbiesPage.module.css";
 import { getHobbies } from "./api/hobbies";
+import { useT } from "@/i18n";
+
 
 // Line icons drawn on a 24x24 grid; stroke follows each card's color
 const ICONS = {
@@ -55,12 +57,13 @@ const HobbyIcon = ({ name }) => (
 );
 
 const HobbiesPage = ({ hobbies }) => {
+  const t = useT();
   return (
     <>
       <div className={styles.header}>
         <span className={styles.comment}>{"// hobbies.jsx"}</span>
         <span className={styles.comment}>
-          {"// Things I enjoy outside of work"}
+          {t("hobbies.comment")}
         </span>
       </div>
       <div className={styles.container}>
@@ -94,8 +97,8 @@ const HobbiesPage = ({ hobbies }) => {
   );
 };
 
-export async function getStaticProps() {
-  const hobbies = getHobbies();
+export async function getStaticProps({ locale }) {
+  const hobbies = getHobbies(locale);
 
   return {
     props: { title: "Hobbies", hobbies },

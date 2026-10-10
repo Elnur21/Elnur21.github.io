@@ -3,9 +3,11 @@ import { useRouter } from "next/router";
 
 import styles from "../styles/Tab.module.css";
 import { useAppStore } from "@/libs/store";
+import { useT } from "@/i18n";
 
 const Tab = ({ icon, filename, path }) => {
   const router = useRouter();
+  const t = useT();
   const tabs = useAppStore((state) => state.tabs);
   const removeTab = useAppStore((state) => state.removeTab);
   const isActive = router?.pathname === path;
@@ -39,7 +41,7 @@ const Tab = ({ icon, filename, path }) => {
     >
       <Image src={icon} alt={filename} height={18} width={18} />
       <p>{filename}</p>
-      <span className={styles.close} onClick={closeTab} aria-label="Close tab">
+      <span className={styles.close} onClick={closeTab} aria-label={t("tab.close")}>
         x
       </span>
     </div>

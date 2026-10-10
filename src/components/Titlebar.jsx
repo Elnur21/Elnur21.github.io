@@ -4,6 +4,9 @@ import Image from "next/image";
 import styles from "../styles/Titlebar.module.css";
 import { useAppStore } from "@/libs/store";
 import { toast } from "react-toastify";
+import CommentIcon from "./icons/CommentIcon";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useT } from "@/i18n";
 
 const PAGE_TABS = {
   "/": { icon: "/react_icon.svg", fileName: "home.jsx" },
@@ -18,51 +21,56 @@ const PAGE_TABS = {
   "/blogs": { icon: "/markdown_icon.svg", fileName: "blogs.md" },
 };
 
+// [keys, description key in titlebar.shortcuts]
 const SHORTCUTS = [
-  ["Ctrl + `", "New Terminal"],
-  ["Ctrl + W", "Close Tab"],
-  ["Ctrl + Shift + P", "Command Palette"],
-  ["Ctrl + /", "Toggle Comment"],
-  ["Alt + ↑ / ↓", "Move Line"],
-  ["Ctrl + L", "Copy Page URL"],
-  ["Ctrl + F", "Find in Page"],
-  ["F11", "Toggle Fullscreen"],
+  ["Ctrl + `", "newTerminal"],
+  ["Ctrl + W", "closeTab"],
+  ["Ctrl + Shift + P", "commandPalette"],
+  ["Ctrl + /", "toggleComment"],
+  ["Alt + ↑ / ↓", "moveLine"],
+  ["Ctrl + L", "copyUrl"],
+  ["Ctrl + F", "find"],
+  ["F11", "fullscreen"],
 ];
 
+// Items with a `key` are translated (titlebar.items.<key>); items with a
+// `label` are file names and stay as they are
 const MENUS = [
   {
     label: "File",
     items: [
-      { label: "Open Home", shortcut: "Ctrl+H", action: "navigate", path: "/" },
-      { label: "Download Resume", shortcut: "Ctrl+S", action: "downloadResume" },
+      { key: "openHome", shortcut: "Ctrl+H", action: "navigate", path: "/" },
+      { key: "downloadResume", shortcut: "Ctrl+S", action: "downloadResume" },
       { type: "separator" },
-      { label: "Close Tab", shortcut: "Ctrl+W", action: "closeTab" },
+      { key: "closeTab", shortcut: "Ctrl+W", action: "closeTab" },
     ],
   },
   {
     label: "Edit",
     items: [
-      { label: "Copy Page URL", shortcut: "Ctrl+L", action: "copyUrl" },
-      { label: "Find in Page", shortcut: "Ctrl+F", action: "findInPage" },
+      { key: "copyUrl", shortcut: "Ctrl+L", action: "copyUrl" },
+      { key: "findInPage", shortcut: "Ctrl+F", action: "findInPage" },
       { type: "separator" },
-      { label: "Toggle Fullscreen", shortcut: "F11", action: "toggleFullscreen" },
+      { key: "toggleFullscreen", shortcut: "F11", action: "toggleFullscreen" },
     ],
   },
   {
     label: "View",
     items: [
-      { label: "Zoom In", shortcut: "Ctrl++", action: "zoomIn" },
-      { label: "Zoom Out", shortcut: "Ctrl+-", action: "zoomOut" },
-      { label: "Reset Zoom", shortcut: "Ctrl+0", action: "resetZoom" },
+      { key: "zoomIn", shortcut: "Ctrl++", action: "zoomIn" },
+      { key: "zoomOut", shortcut: "Ctrl+-", action: "zoomOut" },
+      { key: "resetZoom", shortcut: "Ctrl+0", action: "resetZoom" },
       { type: "separator" },
-      { label: "Toggle Fullscreen", shortcut: "F11", action: "toggleFullscreen" },
+      { key: "toggleChat", shortcut: "Ctrl+Alt+I", action: "toggleChat" },
+      { type: "separator" },
+      { key: "toggleFullscreen", shortcut: "F11", action: "toggleFullscreen" },
     ],
   },
   {
     label: "Go",
     items: [
-      { label: "Back", shortcut: "Alt+←", action: "goBack" },
-      { label: "Forward", shortcut: "Alt+→", action: "goForward" },
+      { key: "back", shortcut: "Alt+←", action: "goBack" },
+      { key: "forward", shortcut: "Alt+→", action: "goForward" },
       { type: "separator" },
       { label: "~/home.jsx", shortcut: "", action: "navigate", path: "/" },
       { label: "~/resume.html", shortcut: "", action: "navigate", path: "/resume" },
@@ -78,32 +86,32 @@ const MENUS = [
   {
     label: "Run",
     items: [
-      { label: "▶  Start Dev Server", shortcut: "F5", action: "runDev" },
-      { label: "⚙  Build Project", shortcut: "Ctrl+F5", action: "runBuild" },
+      { key: "runDev", shortcut: "F5", action: "runDev" },
+      { key: "runBuild", shortcut: "Ctrl+F5", action: "runBuild" },
       { type: "separator" },
-      { label: "■  Stop", shortcut: "Shift+F5", action: "runStop" },
+      { key: "runStop", shortcut: "Shift+F5", action: "runStop" },
     ],
   },
   {
     label: "Terminal",
     items: [
-      { label: "New Terminal", shortcut: "Ctrl+`", action: "newTerminal" },
-      { label: "Run npm install", shortcut: "", action: "npmInstall" },
-      { label: "Run npm run dev", shortcut: "", action: "npmDev" },
+      { key: "newTerminal", shortcut: "Ctrl+`", action: "newTerminal" },
+      { key: "npmInstall", shortcut: "", action: "npmInstall" },
+      { key: "npmDev", shortcut: "", action: "npmDev" },
       { type: "separator" },
-      { label: "Kill Terminal", shortcut: "", action: "killTerminal" },
+      { key: "killTerminal", shortcut: "", action: "killTerminal" },
     ],
   },
   {
     label: "Help",
     items: [
-      { label: "Welcome", shortcut: "", action: "welcome" },
-      { label: "Keyboard Shortcuts", shortcut: "Ctrl+K S", action: "shortcuts" },
+      { key: "welcome", shortcut: "", action: "welcome" },
+      { key: "shortcuts", shortcut: "Ctrl+K S", action: "shortcuts" },
       { type: "separator" },
-      { label: "View on GitHub", shortcut: "", action: "github" },
-      { label: "Contact Me", shortcut: "", action: "navigate", path: "/contact" },
+      { key: "github", shortcut: "", action: "github" },
+      { key: "contact", shortcut: "", action: "navigate", path: "/contact" },
       { type: "separator" },
-      { label: "About", shortcut: "", action: "about" },
+      { key: "about", shortcut: "", action: "about" },
     ],
   },
 ];
@@ -127,6 +135,12 @@ const TerminalToast = ({ lines }) => (
 export default function Titlebar() {
   const router = useRouter();
   const { addTab, removeTab, tabs } = useAppStore();
+  const chatOpen = useAppStore((state) => state.chatOpen);
+  const toggleChat = useAppStore((state) => state.toggleChat);
+  // chatOpen is restored from localStorage; only reflect it after mount
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const t = useT();
   const [openMenu, setOpenMenu] = useState(null);
   const [zoom, setZoom] = useState(100);
   const ref = useRef(null);
@@ -160,38 +174,42 @@ export default function Titlebar() {
         a.href = "/Resume.pdf";
         a.download = "ElnurMaharramov_CV.pdf";
         a.click();
-        toast.success("📄 Downloading resume...");
+        toast.success(t("titlebar.toasts.downloading"));
         break;
 
       case "closeTab": {
         const path = router.pathname;
-        if (path === "/") { toast.info("Cannot close the last tab."); return; }
+        if (path === "/") { toast.info(t("titlebar.toasts.cannotClose")); return; }
         removeTab(path);
         const remaining = tabs.filter((t) => t.path !== path);
         router.push(remaining.length ? remaining[remaining.length - 1].path : "/");
-        toast.info("Tab closed.");
+        toast.info(t("titlebar.toasts.tabClosed"));
         break;
       }
 
       case "copyUrl":
         navigator.clipboard.writeText(window.location.href).then(() =>
-          toast.success("🔗 URL copied to clipboard!")
+          toast.success(t("titlebar.toasts.urlCopied"))
         );
         break;
 
       case "findInPage":
         window.dispatchEvent(new KeyboardEvent("keydown", { key: "f", ctrlKey: true, bubbles: true }));
         document.dispatchEvent(new KeyboardEvent("keydown", { key: "f", ctrlKey: true, bubbles: true }));
-        toast.info("🔍 Use Ctrl+F to search in this page.");
+        toast.info(t("titlebar.toasts.findHint"));
+        break;
+
+      case "toggleChat":
+        toggleChat();
         break;
 
       case "toggleFullscreen":
         if (!document.fullscreenElement) {
           document.documentElement.requestFullscreen().catch(() => {});
-          toast.info("⛶ Entered fullscreen. Press F11 or Esc to exit.");
+          toast.info(t("titlebar.toasts.fullscreenOn"));
         } else {
           document.exitFullscreen();
-          toast.info("Exited fullscreen.");
+          toast.info(t("titlebar.toasts.fullscreenOff"));
         }
         break;
 
@@ -199,7 +217,7 @@ export default function Titlebar() {
         const next = Math.min(zoom + 10, 150);
         setZoom(next);
         document.body.style.zoom = `${next}%`;
-        toast.info(`🔍 Zoom: ${next}%`);
+        toast.info(`🔍 ${t("titlebar.toasts.zoom", { n: next })}`);
         break;
       }
 
@@ -207,14 +225,14 @@ export default function Titlebar() {
         const next = Math.max(zoom - 10, 70);
         setZoom(next);
         document.body.style.zoom = `${next}%`;
-        toast.info(`🔎 Zoom: ${next}%`);
+        toast.info(`🔎 ${t("titlebar.toasts.zoom", { n: next })}`);
         break;
       }
 
       case "resetZoom":
         setZoom(100);
         document.body.style.zoom = "100%";
-        toast.info("↺ Zoom reset to 100%");
+        toast.info(t("titlebar.toasts.zoomReset"));
         break;
 
       case "goBack":
@@ -265,7 +283,7 @@ export default function Titlebar() {
         toast.warn(
           <TerminalToast lines={[
             { text: "^C", type: "error" },
-            { text: "Process terminated.", type: "dim" },
+            { text: t("titlebar.toasts.processTerminated"), type: "dim" },
           ]} />,
           { autoClose: 3000 }
         );
@@ -276,7 +294,7 @@ export default function Titlebar() {
           <TerminalToast lines={[
             { text: "elnur@portfolio:~$", type: "success" },
             { text: "" },
-            { text: 'Type "help" for available commands.', type: "dim" },
+            { text: t("titlebar.toasts.typeHelp"), type: "dim" },
           ]} />,
           { autoClose: 4000 }
         );
@@ -307,7 +325,7 @@ export default function Titlebar() {
       case "killTerminal":
         toast.warn(
           <TerminalToast lines={[
-            { text: "^C  Process killed.", type: "error" },
+            { text: `^C  ${t("titlebar.toasts.processKilled")}`, type: "error" },
           ]} />,
           { autoClose: 3000 }
         );
@@ -316,10 +334,10 @@ export default function Titlebar() {
       case "welcome":
         toast.info(
           <TerminalToast lines={[
-            { text: "👋 Welcome to Elnur's Portfolio!" },
+            { text: t("titlebar.toasts.welcomeTitle") },
             { text: "" },
-            { text: "Built with Next.js + VS Code theme.", type: "dim" },
-            { text: "Navigate using the sidebar or explorer.", type: "dim" },
+            { text: t("titlebar.toasts.welcomeBuilt"), type: "dim" },
+            { text: t("titlebar.toasts.welcomeNavigate"), type: "dim" },
           ]} />,
           { autoClose: 5000 }
         );
@@ -328,11 +346,11 @@ export default function Titlebar() {
       case "shortcuts":
         toast.info(
           <div className={styles.shortcutsToast}>
-            <div className={styles.shortcutsTitle}>Keyboard Shortcuts</div>
+            <div className={styles.shortcutsTitle}>{t("titlebar.toasts.shortcutsTitle")}</div>
             {SHORTCUTS.map(([key, desc]) => (
               <div key={key} className={styles.shortcutRow}>
                 <kbd className={styles.kbd}>{key}</kbd>
-                <span className={styles.shortcutDesc}>{desc}</span>
+                <span className={styles.shortcutDesc}>{t(`titlebar.shortcuts.${desc}`)}</span>
               </div>
             ))}
           </div>,
@@ -349,9 +367,9 @@ export default function Titlebar() {
           <TerminalToast lines={[
             { text: "Elnur Maharramov — Portfolio v2.5.0" },
             { text: "" },
-            { text: "Fullstack Developer @ AgileSolutions", type: "dim" },
-            { text: "Built with Next.js, React, Zustand", type: "dim" },
-            { text: "Designed as a VS Code experience", type: "dim" },
+            { text: t("titlebar.toasts.aboutRole"), type: "dim" },
+            { text: t("titlebar.toasts.aboutBuilt"), type: "dim" },
+            { text: t("titlebar.toasts.aboutDesign"), type: "dim" },
           ]} />,
           { autoClose: 6000 }
         );
@@ -364,7 +382,7 @@ export default function Titlebar() {
 
   const handleMinimize = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    toast.info("↑ Scrolled to top.");
+    toast.info(t("titlebar.toasts.scrolledTop"));
   };
 
   const handleMaximize = () => {
@@ -378,9 +396,9 @@ export default function Titlebar() {
   const handleClose = () => {
     toast.success(
       <TerminalToast lines={[
-        { text: "👋 Thanks for visiting!" },
+        { text: t("titlebar.toasts.thanks") },
         { text: "" },
-        { text: "Redirecting to GitHub...", type: "dim" },
+        { text: t("titlebar.toasts.redirecting"), type: "dim" },
       ]} />,
       { autoClose: 2500, onClose: () => window.open("https://github.com/Elnur21", "_blank") }
     );
@@ -404,7 +422,7 @@ export default function Titlebar() {
                 setOpenMenu(openMenu === menu.label ? null : menu.label)
               }
             >
-              {menu.label}
+              {t(`titlebar.menus.${menu.label}`)}
             </p>
             {openMenu === menu.label && (
               <div className={styles.dropdown}>
@@ -417,7 +435,9 @@ export default function Titlebar() {
                       className={styles.dropdownItem}
                       onClick={() => handleAction(item)}
                     >
-                      <span className={styles.dropdownLabel}>{item.label}</span>
+                      <span className={styles.dropdownLabel}>
+                        {item.key ? t(`titlebar.items.${item.key}`) : item.label}
+                      </span>
                       {item.shortcut && (
                         <span className={styles.dropdownShortcut}>
                           {item.shortcut}
@@ -431,11 +451,22 @@ export default function Titlebar() {
           </div>
         ))}
       </div>
-      <p className={styles.title}>Elnur Maharramov - Portfolio</p>
+      <p className={styles.title}>{t("titlebar.title")}</p>
       <div className={styles.windowButtons}>
-        <span onClick={handleMinimize} className={styles.minimize} title="Scroll to top" />
-        <span onClick={handleMaximize} className={styles.maximize} title="Toggle Fullscreen" />
-        <span onClick={handleClose} className={styles.close} title="Close" />
+        <LanguageSwitcher />
+        <button
+          onClick={toggleChat}
+          className={`${styles.chatToggle} ${mounted && chatOpen ? styles.chatToggleActive : ""}`}
+          title={t("titlebar.toggleChat")}
+          aria-label={t("titlebar.items.toggleChat")}
+          aria-pressed={mounted && chatOpen}
+        >
+          <CommentIcon width={15} height={15} />
+          <span className={styles.chatLabel}>{t("titlebar.chat")}</span>
+        </button>
+        <span onClick={handleMinimize} className={styles.minimize} title={t("titlebar.scrollTop")} />
+        <span onClick={handleMaximize} className={styles.maximize} title={t("titlebar.fullscreen")} />
+        <span onClick={handleClose} className={styles.close} title={t("titlebar.close")} />
       </div>
     </section>
   );

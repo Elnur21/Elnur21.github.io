@@ -1,19 +1,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
+import { useT } from "@/i18n";
+
 
 export default function HomePage() {
+  const t = useT();
   return (
     <>
       <div className={styles.container}>
         <div className={styles.foreground}>
           <div className={styles.content}>
-            <h1 className={styles.name}>Elnur Maharramov</h1>
-            <h6 className={styles.bio}>Full stack developer</h6>
+            <h1 className={styles.name}>{t("meta.name")}</h1>
+            <h6 className={styles.bio}>{t("home.role")}</h6>
             <div className={styles.cardContainer}>
               <div className={styles.card}>
                 <div className={styles.content}>
-                  <h4>Main Skills</h4>
+                  <h4>{t("home.mainSkills")}</h4>
                   <div className={styles.tags}>
                     <span key="Research" className="Research">
                       HTML5/CSS3
@@ -56,10 +59,10 @@ export default function HomePage() {
               </div>
             </div>
             <Link href="/resume">
-              <button className={styles.button + " rounded"}>Resume</button>
+              <button className={styles.button + " rounded"}>{t("home.resume")}</button>
             </Link>
             <Link href="/contact">
-              <button className={styles.outlined + " rounded"}>Contact</button>
+              <button className={styles.outlined + " rounded"}>{t("home.contact")}</button>
             </Link>
           </div>
           <div className={styles.right}>
@@ -69,7 +72,7 @@ export default function HomePage() {
                 src="/me.jpeg"
                 width={300}
                 height={300}
-                alt="picture"
+                alt={t("home.photo")}
               />
             </div>
           </div>

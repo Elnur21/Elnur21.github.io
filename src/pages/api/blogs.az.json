@@ -1,0 +1,1120 @@
+[
+  {
+    "slug": "learning-python-by-building-games",
+    "title": "Python-u kiçik oyunlar yazaraq öyrənmək",
+    "date": "2023-05-24",
+    "readTime": 3,
+    "summary": "Tkinter-də ping-pong, Connect Four və X-O: niyə kiçik oyunlar mənim üçün dövrləri, state-i və event-ləri anlamağın ən sürətli yolu oldu.",
+    "tags": [
+      "Python",
+      "Tkinter",
+      "Games"
+    ],
+    "source": "https://github.com/Elnur21/connect4",
+    "body": [
+      "Developer kimi hələ yenicə yolumu tapdığım vaxtlarda fərq etdim ki, tutoriallar mənə sintaksisi öyrədir, amma proqramın zaman ərzində necə \"yaşadığını\" göstərmir. Ona görə də 2023-cü ilin may ayında, bir gün ərzində GitHub-a üç kiçik oyun yüklədim: Ping Pong, Connect Four və X-O. Hamısı Python və Tkinter ilə yazılmışdı.",
+      {
+        "h": "Niyə məhz oyunlar?"
+      },
+      "Oyun sizi istənilən real tətbiqdə vacib olan məsələlərlə üz-üzə qoyur:",
+      {
+        "list": [
+          "State: növbə kimdədir, lövhədə nə var, hesab neçədir.",
+          "Event-lər: düymə basılması və mouse klikləri sizin kodunuz hazır olanda yox, istifadəçi istədiyi anda gəlir.",
+          "Dövr (loop): ekran pəncərəni dondurmadan təkrar-təkrar yenidən çəkilməlidir.",
+          "Qaydalar: Connect Four-da dörd daşın bir xətdə olmasını yoxlamaq 2D massivlərlə işləmək üçün yaxşı məşqdir."
+        ]
+      },
+      {
+        "h": "Eyni oyun, iki dil"
+      },
+      "X-O oyununu iki dəfə yazdım: bir dəfə Tkinter-də, bir dəfə də React-də. Eyni məntiqi iki fərqli mühitdə yazanda aydın görünürdü ki, hansı hissələr oyunun özüdür (lövhə və qələbə yoxlaması), hansılar isə sadəcə UI qatıdır. Məntiqlə təqdimatın bu cür ayrılması bu gün də hər gün istifadə etdiyim yanaşmadır.",
+      {
+        "h": "Nəticə"
+      },
+      "Yeni dil öyrənirsinizsə, onuncu todo tətbiqini yazmaq əvəzinə kiçik bir oyun qurun. Real problemlərlə çox tez qarşılaşacaqsınız və onları həll etmək üçün həqiqətən həvəsiniz olacaq."
+    ],
+    "cover": {
+      "label": "connect_four.py",
+      "color": "#ffd43b"
+    }
+  },
+  {
+    "slug": "building-a-vscode-style-portfolio",
+    "title": "Portfoliom niyə VS Code-a bənzəyir",
+    "date": "2023-06-18",
+    "readTime": 4,
+    "summary": "Bu saytın arxasındakı ideya: günlərimi keçirdiyim redaktoru xatırlatmaq üçün explorer, tablar, temalar və title bar ilə qurulmuş Next.js portfoliosu.",
+    "tags": [
+      "Next.js",
+      "React",
+      "Zustand",
+      "CSS"
+    ],
+    "source": "https://github.com/Elnur21/Elnur21.github.io",
+    "body": [
+      "Bu repository-ni 18 iyun 2023-cü ildə yaratdım. Elə bir portfolio istəyirdim ki, heç bir söz yazmadan \"developer\" olduğumu desin. Həyatımda ən tanış ekran isə VS Code-dur. Buna görə sayt bir redaktordur: hər səhifə bir fayldır və onları explorer, sidebar və tablar vasitəsilə gəzirsiniz.",
+      {
+        "h": "Necə qurulub"
+      },
+      {
+        "list": [
+          "Next.js səhifələri, hər biri getStaticProps ilə, belə ki, hər \"fayl\" əvvəlcədən render olunur və sürətlə açılır.",
+          "localStorage-də saxlanan Zustand store-u, hansı tabların açıq olduğunu yadda saxlayır.",
+          "Temalar (Dracula, GitHub Dark, Ayu, Nord, Night Owl) üçün CSS dəyişənləri, data-theme atributu ilə dəyişdirilir.",
+          "Layihələr, iş təcrübəsi və hobbilər üçün /api altında kiçik JSON faylları, beləliklə kontent layout-dan ayrı saxlanılır."
+        ]
+      },
+      {
+        "img": "/blogs/portfolio-themes.png",
+        "width": 1440,
+        "height": 860,
+        "alt": "Tema seçimləri olan Settings səhifəsi",
+        "caption": "Tema dəyişdiricisi: Dracula, GitHub Dark, Ayu, Nord və Night Owl."
+      },
+      {
+        "h": "Ən çətini tablar oldu"
+      },
+      "Tablar onları özün yazana qədər sadə görünür. Aktiv tabı bağlayanda hansı tab açılmalıdır? localStorage-də saxlanmış tablar serverin render etdiyi ilə üst-üstə düşməsə, nə baş verir? Bu yaxınlarda bu hissəni yenidən yazdım ki, tabın bağlanması VS Code-dakı kimi işləsin: fokus sağdakı taba, o yoxdursa soldakına keçir.",
+      {
+        "h": "Hələ də böyüyür"
+      },
+      "Bu layihə 2023-cü ildən mənimlədir və göstərməyə dəyər yeni bir şey öyrəndikcə ona yeni funksiya əlavə edirəm. Bu blog explorer-dəki ən yeni fayldır."
+    ],
+    "cover": {
+      "src": "/blogs/portfolio-home.png",
+      "alt": "Bu VS Code üslublu portfolionun ana səhifəsi"
+    }
+  },
+  {
+    "slug": "coza-store-mern",
+    "title": "Coza Store: ilk tam MERN tətbiqim",
+    "date": "2023-05-22",
+    "readTime": 3,
+    "summary": "MongoDB, Express, React və Node ilə onlayn mağaza qurmaq və layihəni client və server hissələrinə bölməyin mənə öyrətdikləri.",
+    "tags": [
+      "MongoDB",
+      "Express",
+      "React",
+      "Node.js"
+    ],
+    "source": "https://github.com/Elnur21/coza-store",
+    "body": [
+      "Coza Store MERN stack ilə, yəni MongoDB, Express, React və Node.js ilə qurduğum onlayn mağazadır. Bu, hər iki tərəfi tamamilə özümün yazdığım ilk layihə idi: bir repository-də yan-yana yaşayan React client və Express server.",
+      {
+        "h": "İki qovluq, bir məhsul"
+      },
+      "Repository-də yuxarı səviyyədə cəmi iki qovluq var: client və server. Bu struktur məni API-yə bir müqavilə kimi baxmağa məcbur etdi. Client-i məhsulların necə saxlandığı maraqlandırmamalıdır, server-i isə onların necə göstərildiyi.",
+      {
+        "h": "Nə öyrəndim"
+      },
+      {
+        "list": [
+          "Məhsullar, səbətlər və istifadəçilər üçün REST endpoint-lərinin dizaynını.",
+          "Məlumatları cədvəllər əvəzinə MongoDB-də document-lər şəklində modelləşdirməyi.",
+          "İki dev server arasında environment dəyişənlərini və CORS-u idarə etməyi.",
+          "Frontend-i Vercel-ə deploy etməyi."
+        ]
+      },
+      "Yeni ideyaları sınamaq üçün hələ də bu layihəyə qayıdıram və o, bu saytda göstərilən layihələrdən biridir."
+    ],
+    "cover": {
+      "src": "/coza-store.png",
+      "alt": "Coza Store ana səhifəsi"
+    }
+  },
+  {
+    "slug": "frontend-and-backend-summer-2023",
+    "title": "Frontend və backend arasında keçən bir yay",
+    "date": "2023-09",
+    "readTime": 4,
+    "summary": "Taskilled-də React və Mantine ilə responsive səhifələr, Insightify-da isə Docker və pm2 ilə AWS-ə deploy edilmiş Node.js CDN.",
+    "tags": [
+      "React",
+      "Mantine",
+      "Node.js",
+      "Docker",
+      "AWS"
+    ],
+    "body": [
+      "2023-cü ilin yayı karyeramın indiyə qədərki ən gərgin dövrü oldu. TaskRider-dəki full-stack işimlə paralel olaraq Taskilled-də frontend developer, Insightify-da isə backend developer kimi çalışırdım. Hər gün bunlar arasında keçid etmək mənə istənilən kursdan daha çox şey öyrətdi.",
+      {
+        "h": "Taskilled-də frontend"
+      },
+      "Əsas işim responsive dizayn idi. ReactJS və Mantine.dev ilə yeni səhifələr qururdum və mövcud səhifələrin bütün ekran ölçülərində düzgün işləməsini təmin edirdim. Mantine-in hook-ları və layout komponentləri xeyli vaxta qənaət etdi, amma əsl dərs bu oldu: dizaynı mobile-first qurmaq və desktop-a sadəcə təkmilləşdirmə kimi baxmaq.",
+      {
+        "h": "Insightify-da backend"
+      },
+      "Backend tərəfdə Node.js və Express ilə CDN servisi yazdım, əsas backend isə Next.js üzərində işləyirdi. Sonra hər şeyi Docker ilə AWS-ə deploy etdim və proseslərin daim işlək qalmasını pm2 ilə təmin etdim.",
+      {
+        "list": [
+          "Docker sayəsində lokal və production mühitləri eyni oldu.",
+          "pm2 restart-ları, logları və zero-downtime reload-ları heç bir əlavə zəhmət olmadan verdi.",
+          "Statik faylları yaxşı təqdim etmək əsasən caching header-ları ilə bağlıdır."
+        ]
+      },
+      {
+        "h": "Nəticə"
+      },
+      "Hər iki tərəfdə eyni vaxtda işləmək məni hər birində daha yaxşı developer etdi. Frontend developer kimi indi payload ölçüsü və caching barədə düşünürəm. Backend developer kimi isə UI-ın əslində nəyə ehtiyacı olduğunu düşünürəm."
+    ],
+    "cover": {
+      "label": "docker + pm2 → aws",
+      "color": "#569cd6"
+    }
+  },
+  {
+    "slug": "rpa-bots-at-upsystems",
+    "title": "RPA botları qurarkən öyrəndiklərim",
+    "date": "2024-01",
+    "readTime": 3,
+    "summary": "Automation Anywhere, IQ Bot ilə document AI və co-pilot botlar: UpSystems-də RPA developer kimi işlədiyim dövrdən qeydlər.",
+    "tags": [
+      "RPA",
+      "Automation Anywhere",
+      "IQ Bot",
+      "Generative AI"
+    ],
+    "body": [
+      "2023-cü ilin iyulundan 2024-cü ilin yanvarına qədər UpSystems LLC-də RPA developer kimi işlədim. Robotic Process Automation mənim üçün yeni bir dünya idi: istifadəçilər üçün tətbiq yazmaq əvəzinə, tətbiqlərdən istifadəçilərin etdiyi kimi istifadə edən botlar qurursan.",
+      {
+        "h": "Nə üzərində işlədim"
+      },
+      {
+        "list": [
+          "Automation Anywhere Control Room-da avtomatlaşdırma botları.",
+          "İnsanlara texniki bilik olmadan botları işə salmağa və onlara məlumat ötürməyə imkan verən formalar və proseslər.",
+          "İnsanı əvəz etmək əvəzinə onunla yanaşı işləyən co-pilot botlar.",
+          "IQ Bot ilə document AI: sənədlərdən strukturlaşdırılmış məlumatların çıxarılması."
+        ]
+      },
+      {
+        "h": "Dərslər"
+      },
+      "Ən böyük sürpriz RPA-nın koddan çox prosesə aid olması idi. Bot onun əvəz etdiyi tapşırığı nə qədər yaxşı başa düşdüyün qədər yaxşıdır, buna görə də işin böyük hissəsi nəyisə qurmazdan əvvəl \"...olanda dəqiq nə baş verir?\" sualını verməkdir.",
+      "Bu iş həm də mənə production-da generative AI ilə ilk real təcrübəmi qazandırdı və bu, birbaşa növbəti addımıma apardı: deep learning üzrə tədqiqat."
+    ],
+    "cover": {
+      "label": "bot.run()",
+      "color": "#f5a623"
+    }
+  },
+  {
+    "slug": "time-series-classification-reading-list",
+    "title": "Zaman sıralarının təsnifatı üçün deep learning: oxu siyahım",
+    "date": "2024-02-09",
+    "readTime": 4,
+    "summary": "Tədqiqat təcrübəm zamanı xülasəsini yazdığım məqalələr: UCR arxivi və FCN baseline-larından ROCKET, InceptionTime, LITE və attention-a qədər.",
+    "tags": [
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://elnur21.github.io/TSC_summaries/",
+    "body": [
+      "2024-cü ilin yanvarında Fransada IRIMAS laboratoriyasında data science üzrə təcrübəyə başladım. Tapşırığım zaman sıralarının təsnifatı (time series classification, TSC) mövzusunda məqalələri oxumaq, modelləri implement etmək və nəticələri müqayisə etmək idi. Hər şeyi izləyə bilmək üçün hər məqalənin xülasəsini yazdım və onları kiçik bir sayt kimi dərc etdim: TSC_summaries.",
+      {
+        "h": "Siyahı"
+      },
+      {
+        "list": [
+          "The UCR Time Series Archive: demək olar ki, hər məqalənin nəticə göstərdiyi benchmark.",
+          "Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline (FCN, ResNet).",
+          "Deep learning for time series classification: a review.",
+          "ROCKET: təsadüfi konvolyusiya kernel-ləri ilə qeyri-adi dərəcədə sürətli və dəqiq təsnifat.",
+          "InceptionTime: Inception əsaslı şəbəkələrdən ibarət ansambl.",
+          "LITE: boosting üsulları ilə yüngül Inception modeli.",
+          "Çoxölçülü zaman sıralarının təsnifatı üçün Disjoint-CNN.",
+          "Self-supervised learning ilə TSC-nin təkmilləşdirilməsi (TRILITE).",
+          "Attention Is All You Need, üstəlik zaman sıralarının proqnozlaşdırılması üçün transformer-lər."
+        ]
+      },
+      {
+        "h": "Məqalələri necə oxuyuram"
+      },
+      "Hər məqalə üçün dörd şeyi qeyd edirdim: problemi, əsas ideyanı bir cümlədə, arxitekturanı və necə qiymətləndirildiyini. Sonra modeli özüm implement edirdim. 2024-cü ilin fevralında MLP, logistic regression, ROCKET və InceptionTime-ın öz versiyalarımı push etdim. Məqalə yalnız kod işləyəndən sonra həqiqətən aydın olurdu.",
+      {
+        "img": "/blogs/trilite-positive-samples.png",
+        "width": 1557,
+        "height": 915,
+        "alt": "MixUp və maskalama ilə pozitiv nümunənin yaradılması",
+        "caption": "TRILITE məqaləsindən: pozitiv nümunə referans sıranı digər iki sıra ilə qarışdırıb, sonra onun bir hissəsini maskalamaqla yaradılır. Belə şəkilləri addım-addım təhlil etmək, metodu implement etməzdən əvvəl onu həqiqətən başa düşdüyümə əmin olmağın yolu idi.",
+        "light": true
+      },
+      "TSC sahəsinə yenicə başlayırsınızsa, UCR arxivi məqaləsi və FCN baseline ilə başlayın, sonra ROCKET-i oxuyun. Bu, \"deep\" sözünün nə demək olduğu barədə fikrinizi dəyişəcək."
+    ],
+    "cover": {
+      "src": "/ArrowHead_filters.png",
+      "alt": "ArrowHead dataset-i üzərində birinci qat filtrlərinin scatter plot-u",
+      "light": true,
+      "fit": "contain"
+    }
+  },
+  {
+    "slug": "research-internship-irimas",
+    "title": "IRIMAS-da beş aylıq tədqiqat",
+    "date": "2024-05",
+    "readTime": 5,
+    "summary": "LITE və TRILITE-ın təkrar istehsalı, çoxölçülü zaman sıraları üçün xüsusi Disjoint-CNN və tədqiqatın əslində necə işlədiyini öyrənmək.",
+    "tags": [
+      "Python",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/Custom-Disjoint-CNN",
+    "body": [
+      "Fransadakı IRIMAS laboratoriyasında təcrübəm 2024-cü ilin yanvarından mayına qədər davam etdi. Bu, məhsul üzərində deyil, tədqiqat laboratoriyasında tam ştat işlədiyim ilk dəfə idi və problemlərə yanaşmamı dəyişdi.",
+      {
+        "h": "Təkmilləşdirməzdən əvvəl təkrarla"
+      },
+      "Öyrəndiyim ilk qayda: bir modeli keçməyə çalışmazdan əvvəl onun nəticələrini təkrar əldə et. Zaman sıraları üçün yüngül, Inception üslublu şəbəkə olan LITE-ı yenidən implement etdim, sonra TRILITE-ın kodu ilə işlədim. TRILITE univariate UCR dataset-lərindən təmsilləri öyrənmək üçün triplet loss istifadə edən self-supervised yanaşmadır və onu semi-supervised rejimdə də öyrətmək olar.",
+      {
+        "img": "/blogs/trilite-triplet-loss.png",
+        "width": 881,
+        "height": 650,
+        "alt": "Triplet loss ilə öyrədilən bir encoder-ə daxil olan referans, pozitiv və neqativ sıralar",
+        "caption": "TRILITE-ın quruluşu: referans, pozitiv və neqativ sıralar triplet loss ilə öyrədilən bir encoder-dən keçir. Şəkil TRILITE kod repository-sindəndir.",
+        "light": true
+      },
+      {
+        "h": "Xüsusi Disjoint-CNN"
+      },
+      "Əsas eksperimentim çoxölçülü zaman sıralarının təsnifatı (MTSC) idi. Disjoint-CNN çoxölçülü məlumatları zaman və fəza (kanal üzrə) konvolyusiyalarını ayırmaqla emal edir. Mən xüsusi bir variant qurdum və onu orijinalla yanaşı işə saldım, sonra dəyişikliklərin harada kömək etdiyini, harada etmədiyini görmək üçün hər ikisinin training accuracy-sini və nəticələrini qrafikə köçürdüm.",
+      "Aşağıdakı scatter plot hər dataset-i (xüsusi modelin accuracy-si, orijinalın accuracy-si) nöqtəsində yerləşdirir. Diaqonaldan aşağıdakı nöqtələr mənim versiyamın daha yaxşı nəticə göstərdiyi dataset-lərdir: xüsusi model üçün 15, orijinal üçün 5 və 1 bərabərlik.",
+      {
+        "img": "/blogs/disjoint-cnn-compare.png",
+        "width": 640,
+        "height": 480,
+        "alt": "Xüsusi və orijinal Disjoint-CNN arasında accuracy-nin birə-bir müqayisəsi",
+        "caption": "Xüsusi və orijinal Disjoint-CNN, hər dataset üçün bir nöqtə.",
+        "light": true
+      },
+      {
+        "h": "Tədqiqat mənə nə öyrətdi"
+      },
+      {
+        "list": [
+          "İki dəfədən çox işə salacağın hər şey üçün notebook yox, script yaz.",
+          "Hər nəticəni öz konfiqurasiyası ilə birlikdə saxla, yoxsa onu nəyin yaratdığını bilməyəcəksən.",
+          "Mənfi nəticə də nəticədir. Qrafikini çək və irəli get.",
+          "Əvvəlcə qiymətləndirmə bölməsini oxu: o, müəlliflərin əslində nəyi optimallaşdırdığını göstərir."
+        ]
+      },
+      "Təcrübədən sonra da Disjoint-CNN kodu üzərində işləməyə davam etdim, son yeniliklər 2024-cü ilin avqustunda olub."
+    ],
+    "cover": {
+      "src": "/DisJoint-CNN.png",
+      "alt": "1+1D bloklu Disjoint-CNN arxitekturası",
+      "light": true,
+      "fit": "contain"
+    }
+  },
+  {
+    "slug": "crm-and-dialers-at-agilesolutions",
+    "title": "AgileSolutions-da başlanğıc: CRM-lər, dialer-lər və RabbitMQ",
+    "date": "2024-08",
+    "readTime": 3,
+    "summary": "Yenidən full-stack işə qayıdış: çoxsaylı CRM və dialer layihələrində Node.js və React, sosial media mesajları isə RabbitMQ üzərindən axır.",
+    "tags": [
+      "Node.js",
+      "React",
+      "RabbitMQ",
+      "CRM"
+    ],
+    "body": [
+      "2024-cü ilin avqustunda tədqiqat təcrübəmdən sonra məhsul üzərində işə qayıdaraq full-stack developer kimi AgileSolutions LLC-yə qoşuldum. O vaxtdan bəri backend-də Node.js, frontend-də React ilə təxminən iyirmi CRM və dialer layihəsi üzərində işləmişəm.",
+      {
+        "h": "Niyə message queue"
+      },
+      "İşin ən maraqlı hissələrindən biri sosial media mesajlarının emalıdır. Mesajlar çoxlu kanaldan, gözlənilməz tezliklə gəlir və onlardan birini belə itirmək qəbuledilməzdir. RabbitMQ ortada dayanır: producer-lər gələn mesajları dərc edir, consumer-lər isə onları öz templəri ilə emal edir.",
+      {
+        "list": [
+          "Trafik sıçrayışları servisi çökdürmək əvəzinə queue tərəfindən udulur.",
+          "Consumer-i mesaj itirmədən restart və ya deploy etmək olur.",
+          "Emal məntiqinə toxunmadan yeni kanallar əlavə etmək mümkündür."
+        ]
+      },
+      {
+        "h": "Eyni vaxtda çoxlu layihə üzərində işləmək"
+      },
+      "İyirmi layihə o deməkdir ki, eyni problemi iki dəfə həll etməyə vaxtın yoxdur. Yan layihələrimin çoxu buradan yaranır: hansısa pattern-in təkrarlandığını görəndə onu təkrar istifadə oluna bilən bir şeyə çevirməyə çalışıram."
+    ],
+    "cover": {
+      "label": "queue.publish(msg)",
+      "color": "#ff8a3d"
+    }
+  },
+  {
+    "slug": "chess-with-tkinter-and-minimax",
+    "title": "Tkinter, MSSQL və Minimax botu ilə şahmat",
+    "date": "2025-01-17",
+    "readTime": 3,
+    "summary": "Python-da minimax AI rəqibi olan və oyun məlumatlarını Microsoft SQL Server-də saxlayan desktop şahmat oyunu.",
+    "tags": [
+      "Python",
+      "Tkinter",
+      "MSSQL",
+      "AI"
+    ],
+    "source": "https://github.com/Elnur21/chess",
+    "body": [
+      "İlk Tkinter oyunlarımdan təxminən iki il sonra eyni alətlərə daha böyük bir iş üçün qayıtdım: şahmat. Bu iki layihəni müqayisə etmək nə qədər inkişaf etdiyimi görmək üçün yaxşı üsuldur.",
+      {
+        "h": "Stack"
+      },
+      {
+        "list": [
+          "Desktop UI üçün Tkinter.",
+          "Gedişlərin yaradılması və qaydaların yoxlanması üçün python-chess kitabxanası.",
+          "Oyun məlumatlarını saxlamaq üçün Microsoft SQL Server.",
+          "Bot oyunçu üçün minimax alqoritmi."
+        ]
+      },
+      {
+        "h": "Qaydaları yenidən icad etməyin"
+      },
+      "Şahmat qaydaları xüsusi hallarla doludur: qalaqoyma, keçərkən vurma, piyadanın çevrilməsi, pat. Gedişlərin yoxlanması üçün kitabxanadan istifadə etmək mənə həqiqətən maraqlı olan hissəyə, yəni AI-a fokuslanmağa imkan verdi.",
+      {
+        "h": "Qısaca minimax"
+      },
+      "Bot bir neçə gediş irəlini görür. O, fərz edir ki, özü üçün ən yaxşı gedişi seçəcək, mən isə onun üçün ən pis gedişi seçəcəyəm, sonra alınan mövqeləri qiymətləndirir. Hətta dayaz axtarış və sadə material hesablaması ilə belə bot təəccüblü dərəcədə əsəbiləşdirici oynayır.",
+      "O vaxtdan bəri layihəni təkmilləşdirməyə davam edirəm, sonuncu dəfə 2026-cı ilin iyununda."
+    ],
+    "cover": {
+      "label": "♞ minimax(depth=3)",
+      "color": "#4ec9b0"
+    }
+  },
+  {
+    "slug": "one-filter-format-four-orms",
+    "title": "Bir filter formatı, dörd ORM",
+    "date": "2025-02-16",
+    "readTime": 4,
+    "summary": "dynamic-query-builder price_gte=10 kimi düz filterləri Prisma, Mongoose, TypeORM və ya Sequelize query-lərinə çevirir.",
+    "tags": [
+      "JavaScript",
+      "Node.js",
+      "Prisma",
+      "Mongoose",
+      "TypeORM",
+      "Sequelize"
+    ],
+    "source": "https://github.com/Elnur21/dynamic-query-builder",
+    "body": [
+      "Çoxsaylı CRM layihələrində eyni kodu təkrar-təkrar yazırdım: filterləri query string-dən oxu və onları verilənlər bazası query-sinə çevir. Dəyişən yeganə şey ORM idi. Buna görə də dynamic-query-builder-i yazdım.",
+      {
+        "h": "İdeya"
+      },
+      "Filterlər düz obyekt şəklində gəlir: hər açar field_condition formasındadır, hər dəyər isə müqayisə ediləcək qiymətdir:",
+      {
+        "code": "{\n  price_gte: 10,\n  price_lt: 100,\n  name_c: \"phone\",\n  status_ne: \"archived\"\n}"
+      },
+      "Kitabxanada hər ORM üçün bir builder var: buildPrismaQuery, buildMongooseQuery, buildTypeORMQuery və buildSequelizeQuery. Sequelize üçün onun Op obyektini də ötürürsünüz.",
+      {
+        "h": "Dəstəklənən şərtlər"
+      },
+      {
+        "list": [
+          "lt, lte, gt, gte: müqayisələr.",
+          "between: iki dəyərdən ibarət massiv kimi verilən aralıq.",
+          "contains (alias c): böyük-kiçik hərfə həssas olmayan uyğunluq; caseSensitiveContains (alias csc).",
+          "eq, ne və bərabərlik üçün default (suffiks olmadan).",
+          "neContains: ehtiva etmir."
+        ]
+      },
+      {
+        "h": "Niyə düz?"
+      },
+      "Düz açarlar URL-lərdən, formalardan və loglardan heç bir əlavə kodlaşdırma olmadan keçir, frontend-in isə API-nin arxasında hansı verilənlər bazasının dayandığını bilməsinə ehtiyac qalmır. Backend tək bir request-i dəyişmədən Mongoose-dan Prisma-ya keçə bilər."
+    ],
+    "cover": {
+      "label": "{ price_gte: 10 }",
+      "color": "#dcdcaa"
+    }
+  },
+  {
+    "slug": "local-voice-ai-assistant-azerbaijani",
+    "title": "Azərbaycan dilində tam lokal səsli AI assistent",
+    "date": "2026-04-24",
+    "readTime": 5,
+    "summary": "Mikrofona danış, səsli cavab al: speech-to-text üçün Whisper, LLM üçün Ollama, səs üçün Edge TTS, üstəlik bilik bazası.",
+    "tags": [
+      "Python",
+      "Whisper",
+      "Ollama",
+      "LLM",
+      "AI"
+    ],
+    "source": "https://github.com/Elnur21/local-ai-audio-conference",
+    "body": [
+      "Səsli assistentlərin çoxu ingilis dili üçün qurulub. Mən elə bir assistent istəyirdim ki, Azərbaycan dilini başa düşsün, öz bilik bazamdan cavab versin və tamamilə öz kompüterimdə işləsin. Nəticədə AI Səs Konfransı yarandı: brauzerdə danışa biləcəyiniz səsli assistent.",
+      {
+        "h": "Pipeline"
+      },
+      {
+        "list": [
+          "Speech-to-text: Whisper large-v3 mikrofondan gələn səsi mətnə çevirir.",
+          "Retrieval: sentence-transformer modeli bilik bazasında uyğun yazıları tapır.",
+          "LLM: Ollama ilə işləyən model (məsələn, llama3) cavabı yazır.",
+          "Text-to-speech: Edge TTS cavabı səsləndirir."
+        ]
+      },
+      "Hamısını uvicorn ilə işləyən FastAPI tətbiqi birləşdirir, UI isə mikrofon düyməsi olan sadə bir səhifədir.",
+      {
+        "h": "Noutbuk GPU-sunda işləmək"
+      },
+      "Hədəf təvazökar avadanlıq idi: 4 GB VRAM-lı NVIDIA RTX 3050. Whisper large-v3 təxminən 1.5 GB, embedding modeli isə təxminən 120 MB-dır, hər ikisi ilk işə salınmada yüklənir. Əsas fənd modelləri request-lər arasında yaddaşda saxlamaq və Ollama-nı ayrıca servis kimi işlətməkdir.",
+      {
+        "h": "Niyə lokal?"
+      },
+      "API açarları yoxdur, hər request üçün xərc yoxdur və səs kompüterdən kənara çıxmır. Daxili sənədlər ola biləcək bilik bazası üçün sonuncu məqam ən vacibidir.",
+      "Bir gün sonra eyni speech-to-text ideyası üzərində qurulmuş Telegram botu olan whisper-bot-a başladım."
+    ],
+    "cover": {
+      "label": "whisper → ollama → tts",
+      "color": "#c586c0"
+    }
+  },
+  {
+    "slug": "crm-micro-frontends-with-vite",
+    "title": "CRM-i Vite ilə micro-frontend-lərə bölmək",
+    "date": "2026-07-14",
+    "readTime": 4,
+    "summary": "Shell tətbiqi və üç remote (Customers, Deals, Dashboard), Vite üçün Module Federation ilə runtime-da birləşdirilir.",
+    "tags": [
+      "React",
+      "Vite",
+      "Micro-Frontends",
+      "Module Federation"
+    ],
+    "source": "https://github.com/Elnur21/crm-microfrontend",
+    "body": [
+      "Çoxlu CRM üzərində işlədikdən sonra fərqli bir arxitekturanı sınamaq istədim: hər biznes domeni ayrıca qurulub ayrıca deploy olunan müstəqil tətbiq olsaydı necə olardı? crm-microfrontend məhz bunu edən kiçik eksperimentdir və Vite, React və @originjs/vite-plugin-federation istifadə edir.",
+      {
+        "h": "Struktur"
+      },
+      {
+        "code": "shell/      host app (5000): layout, routing, auth, profile, settings\ncustomers/  remote (5001): exposes CustomersApp\ndeals/      remote (5002): exposes DealsApp\ndashboard/  remote (5003): exposes DashboardApp"
+      },
+      "Shell remote-ları runtime-da yükləyir. Biznes səhifələri (Customers, Deals, Dashboard) remote-lardır. Bütün tətbiqə aid ümumi məsələlər (auth, layout, profil, ayarlar, bildirişlər) isə shell-də qalır, çünki onlar bir domenə aid deyil, hər səhifəyə tətbiq olunur.",
+      {
+        "h": "Qəsdən təkrarlama"
+      },
+      "Hər tətbiqin öz mock məlumatları və ortaq design token-ləri olan öz kiçik stylesheet-i var. Bu token-ləri kopyalamaq əvvəlcə səhv kimi görünür, amma əsas məqsəd elə budur: komanda ortaq paketin release-ini kimləsə razılaşdırmadan Deals tətbiqini dəyişib yayımlaya bilər.",
+      {
+        "h": "Nə vaxt buna dəyər"
+      },
+      "Micro-frontend-lər real mürəkkəblik əlavə edir. Onlar bir neçə komanda böyük məhsulun fərqli hissələrinə sahib olanda özünü doğruldur. Tək komanda üçün yaxşı strukturlaşdırılmış monolit adətən daha sadədir. Bu eksperiment o sərhədin harada keçdiyini anlamağa kömək etdi."
+    ],
+    "cover": {
+      "label": "shell ⟶ remotes",
+      "color": "#61dafb"
+    }
+  },
+  {
+    "slug": "world-statistics-awk-gnuplot",
+    "title": "awk və gnuplot ilə dünya enerji və temperatur statistikası",
+    "date": "2022-09-27",
+    "readTime": 5,
+    "summary": "Komanda tədqiqat layihəsi: ölkələr üzrə enerji və temperatur məlumatlarını awk ilə təmizləmək, birləşdirmək və gnuplot ilə qrafiklərə çevirmək.",
+    "tags": [
+      "Research",
+      "Data Analysis",
+      "awk",
+      "gnuplot",
+      "Linux"
+    ],
+    "source": "https://github.com/Elnur21/World_Statistics_Analyze",
+    "cover": {
+      "src": "/blogs/world-stats-production-1990-2013.png",
+      "alt": "1990 və 2013-cü illərdə kömür, neft və qaz üzrə ilk 5 istehsalçı",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "2022-ci ilin sentyabrında iki komanda yoldaşım, Azad Kichibekov və Emil Aliyev ilə birlikdə data analizi layihəsi üzərində işlədim. Sual sadə idi: 1990-cı ildən bəri ölkələr üzrə enerji istehsalı, enerji istehlakı və temperatur necə dəyişib? Cavabı komanda sətri alətləri ilə tapdıq: məlumatları emal etmək üçün awk, qrafik çəkmək üçün gnuplot.",
+      {
+        "h": "Məlumatlar"
+      },
+      {
+        "list": [
+          "Enerji: hər ölkə və ya region üçün bir fayl olmaqla 241 CSV faylı, kömür, neft, qaz, hidro, günəş, külək və digər mənbələr üzrə istehsal və istehlak göstəriciləri ilə.",
+          "Temperatur: hər ölkə üçün aylıq orta temperaturları və onların qeyri-müəyyənliyini ehtiva edən GlobalLandTemperaturesByCountry dataset-i."
+        ]
+      },
+      {
+        "h": "awk ilə təmizləmə"
+      },
+      "İşin böyük hissəsi iki çox fərqli dataset-i eyni formaya salmaq idi. Hər addım üçün kiçik awk script-i yazdıq və onları bir-birinə zəncirləmək mümkün olsun deyə com/ qovluğunda saxladıq:",
+      {
+        "list": [
+          "241 enerji faylını yalnız ilk header-i saxlamaqla bir CSV-də birləşdirmək.",
+          "Yalnız 1990-cı və sonrakı illəri saxlamaq.",
+          "Aylıq tarixləri (yyyy-mm-dd) illərə çevirmək.",
+          "Temperatur və ya qeyri-müəyyənlik dəyəri olmayan sətirləri atmaq.",
+          "İl və ölkə üzrə qruplaşdırıb aylıq temperaturların ortasını tapmaq.",
+          "Temperatur və enerji məlumatlarını il və ölkə üzrə join etmək."
+        ]
+      },
+      "Aylıq tarixləri illərə çevirən addım budur:",
+      {
+        "code": "# input $1 yyyy-mm-dd\n# output $1 yyyy\n{\n    gsub(/-[0-9]{2}-[0-9]{2}/, \"\", $1);\n    print $0;\n}"
+      },
+      {
+        "h": "Mənim hissəm: qrafiklər"
+      },
+      "Mən vizuallaşdırma tərəfində işləyirdim. Hər qrafik bir sətirlik awk filteri ilə qidalanan və Jupyter notebook-dan işə salınan gnuplot script-idir, beləliklə istənilən qrafiki xam məlumatlardan tək bir komanda ilə yenidən qurmaq olur.",
+      {
+        "img": "/blogs/world-stats-production-1990-2013.png",
+        "width": 1300,
+        "height": 1000,
+        "alt": "1990-cı ildə kömür, neft və qaz üzrə ilk 5 istehsalçı, 2013-cü illə müqayisədə",
+        "caption": "1990 (yuxarı sıra) və 2013-cü illərdə (aşağı sıra) kömür, neft və qaz üzrə ilk 5 istehsalçı.",
+        "light": true
+      },
+      "1990-cı ili 2013-cü illə müqayisə etmək ən böyük dəyişiklikləri göstərdi. 1990-cı ildə kömür istehsalında Çin, ABŞ və Avropa bir-birinə yaxın idi. 2013-cü ilə qədər isə Çinin kömür istehsalı hamıdan bir neçə dəfə çox idi. Qazda 1990-cı ildə Rusiya liderlik edirdi, 2013-cü ilə qədər isə ABŞ birinci yerə yüksəlmişdi.",
+      {
+        "img": "/blogs/world-stats-renewables-2013.png",
+        "width": 1300,
+        "height": 1000,
+        "alt": "2013-cü ildə hidro, günəş və külək enerjisi üzrə ilk 5 istehlakçı",
+        "caption": "2013-cü ildə hidro, günəş və külək enerjisi üzrə ilk 5 istehlakçı.",
+        "light": true
+      },
+      "2013-cü ildə bərpa olunan enerji mənbələri üzrə hidroda Çin, həm günəş, həm də külək enerjisində isə Avropa liderlik edirdi; günəş enerjisində tək ölkə kimi birinci yerdə Almaniya idi.",
+      {
+        "img": "/blogs/world-stats-greenhouse.png",
+        "width": 1300,
+        "height": 1000,
+        "alt": "2000-2013-cü illərdə Azərbaycanda istixana qazı emissiyaları və 2013-cü ildə ilk 5 emissiya mənbəyi",
+        "caption": "Solda: 2000-2013-cü illərdə Azərbaycanda istixana qazı emissiyaları. Sağda: 2013-cü ildə ən çox emissiya edən 5 ölkə.",
+        "light": true
+      },
+      "Həmçinin Fransa, Almaniya, Avropa, Türkiyə və Azərbaycan üçün 1990, 1995, 2000 və 2010-cu illərdə orta temperaturların qrafikini çəkdim. 2010-cu ildə həm Türkiyə, həm də Azərbaycan 1990-cı illə müqayisədə təxminən iki dərəcə isti idi.",
+      {
+        "img": "/barplot.png",
+        "width": 800,
+        "height": 600,
+        "alt": "1990, 1995, 2000 və 2010-cu illərdə beş ölkənin orta temperaturları",
+        "caption": "Dörd il üzrə beş ölkədə orta temperatur.",
+        "light": true
+      },
+      {
+        "h": "Nə öyrəndim"
+      },
+      {
+        "list": [
+          "awk hələ də CSV fayllarını filterləmək, qruplaşdırmaq və birləşdirməyin ən sürətli yollarından biridir, kiçik script-lərdən ibarət pipeline-ı isə debug etmək asandır.",
+          "Dataset-lərdə ölkələr \"Europe\" və \"Africa\" kimi regionlarla qarışıq olur. Onları müqayisə edib-etməyəcəyinizə şüurlu şəkildə qərar verməlisiniz, yoxsa ilk 5 qrafikləri sizi yanıldacaq.",
+          "Çatışmayan dəyərlər hər yerdədir. Hər hansı ortalama hesablamazdan əvvəl onlarla necə davranmağa qərar vermək istənilən qrafik ayarından daha vacib idi.",
+          "Hər qrafiki script kimi saxlamaq səhvi düzəltməyi və bütün qrafikləri bir neçə dəqiqəyə yenidən qurmağı çox asanlaşdırdı."
+        ]
+      },
+      "Bu, IRIMAS-dakı təcrübəmdən xeyli əvvəl, tədqiqat xarakterli ilk layihəm idi və mənə vaxtımın çoxunu məlumatları anlamağa və təmizləməyə sərf etməyi öyrətdi."
+    ]
+  },
+  {
+    "slug": "first-mobile-app-flutter-social-network",
+    "title": "İlk mobil tətbiqim: Flutter-də sosial şəbəkə",
+    "date": "2022-10-20",
+    "readTime": 4,
+    "summary": "Postlar, şərhlər, izləmələr və şəxsi lent: Flutter və Firebase ilə qurulub, ağır işi isə arxa planda Cloud Functions görür.",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "Firebase",
+      "Mobile"
+    ],
+    "source": "https://github.com/Elnur21/socialapp",
+    "cover": {
+      "label": "flutter run",
+      "color": "#54c5f8"
+    },
+    "body": [
+      "İlk mobil tətbiqim kifayət qədər iddialı idi: kiçik bir sosial şəbəkə. Onu Flutter və Firebase ilə qurdum və 18-20 oktyabr 2022-ci il tarixləri arasında GitHub-a yüklədim.",
+      {
+        "h": "Nə edir"
+      },
+      {
+        "list": [
+          "Firebase Auth ilə qeydiyyat, giriş (Google ilə giriş də daxil olmaqla) və unudulmuş parolun bərpası.",
+          "Firebase Storage-də saxlanılan şəkil və ya videolu postların yüklənməsi.",
+          "Postlara şərh yazmaq, insanları izləmək və istifadəçi axtarmaq.",
+          "İzlədiyin insanların postlarından ibarət şəxsi lent (mən onu \"flow\" adlandırmışdım).",
+          "Profilini redaktə etmək və elanları oxumaq."
+        ]
+      },
+      {
+        "h": "Maraqlı hissə: lentin qurulması"
+      },
+      "Ən çətin sual hər istifadəçiyə izlədiyi hər kəsin postlarından ibarət lenti necə göstərmək idi. Tətbiq hər açılanda izlənilən bütün hesabları sorğulamaq yavaş olardı. Bunun əvəzinə Firebase Cloud Functions ilə nəsə dəyişən kimi postları hər izləyici üçün ayrıca feed kolleksiyasına kopyalayırdım:",
+      {
+        "list": [
+          "Kimisə izləməyə başlayanda onun mövcud postları sənin lentinə kopyalanır.",
+          "İzləməni dayandıranda onun postları lentindən silinir.",
+          "Kimsə post dərc edəndə, redaktə edəndə və ya siləndə dəyişiklik onun bütün izləyicilərinin lentlərinə ötürülür."
+        ]
+      },
+      {
+        "code": "exports.addedNewPost = functions.firestore\n  .document('posts/{followingId}/userPosts/{postId}')\n  .onCreate(async (snapshot, context) => {\n    // copy the new post into every follower's feed\n  });"
+      },
+      "Bu pattern fan-out on write adlanır. Yazma əməliyyatları bir az bahalı olur, amma lenti oxumaq tək, sürətli bir query-yə çevrilir. O vaxt bunun adını bilmirdim, amma bir çox real sosial tətbiqlər məhz belə işləyir.",
+      {
+        "h": "Nə öyrəndim"
+      },
+      "Flutter mənə göstərdi ki, bir codebase-dən real mobil tətbiq çıxa bilər, Firebase isə göstərdi ki, backend sadəcə qaydalar və trigger-lər toplusu ola bilər. İki gün sonra növbəti Flutter tətbiqimə, lüğət tətbiqinə başladım."
+    ]
+  },
+  {
+    "slug": "vocabulary-app-flutter-sqlite",
+    "title": "175,000 ifadəli oflayn lüğət tətbiqi",
+    "date": "2022-10-23",
+    "readTime": 3,
+    "summary": "İkinci Flutter tətbiqim: fransız-ingilis ifadələr siyahısında oflayn axtarış və Azərbaycan, ingilis, türk və rus dillərində öz lüğətini yaratmaq.",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "SQLite",
+      "Mobile"
+    ],
+    "source": "https://github.com/Elnur21/vocabulary-app",
+    "cover": {
+      "src": "/blogs/vocabulary-app-screens.jpg",
+      "alt": "Lüğət tətbiqinin ekranları"
+    },
+    "body": [
+      "İlk Flutter tətbiqimdən dərhal sonra özüm istifadə etmək istədiyim bir şey qurdum: fransız dilini öyrənmək üçün lüğət tətbiqi. Onu 22 və 23 oktyabr 2022-ci il tarixlərində yazdım.",
+      {
+        "img": "/blogs/vocabulary-app-screens.jpg",
+        "width": 1616,
+        "height": 900,
+        "alt": "Lüğət tətbiqinin dörd ekranı: axtarış, saxlanılmış söz, ifadələr siyahısı və söz əlavə etmə forması",
+        "caption": "İfadələrin axtarışı, tərcümələri ilə saxlanılmış söz, tam ifadələr siyahısı və yeni söz əlavə etmə forması."
+      },
+      {
+        "h": "Bir tətbiqdə iki lüğət"
+      },
+      {
+        "list": [
+          "Fransız-ingilis: 175,622 ifadə cütündən ibarət daxili siyahı. Sözü yazırsınız və onun işləndiyi bütün ifadələri görürsünüz, məsələn, \"Je cours tous les jours\" ifadəsində \"cours\".",
+          "Sizin lüğətiniz: özünüz əlavə etdiyiniz sözlər; fransızca söz və onun Azərbaycan, rus, ingilis və türk dillərinə tərcüməsi."
+        ]
+      },
+      {
+        "h": "Niyə SQLite"
+      },
+      "Bu qədər böyük ifadələr siyahısı internet bağlantısı olmadan işləməli və sürətlə axtarılmalıdır. Tətbiq ifadələri JSON şəklində özü ilə gətirir və hər şeyi sqflite paketi vasitəsilə lokal SQLite verilənlər bazasında saxlayır. Sözlərin axtarışı, əlavə edilməsi və silinməsi tamamilə cihazda baş verir, heç bir backend olmadan.",
+      {
+        "h": "Nə öyrəndim"
+      },
+      "Firebase tətbiqindən sonra bu, tam əks yanaşma idi: hər şey lokal. Bu mənə yaddaşı məlumatın növünə görə seçməyi öyrətdi. Ortaq, sosial məlumatların yeri bulud, böyük, yalnız oxunan arayış məlumatları və şəxsi qeydlər isə telefonda daha yaxşı işləyir.",
+      "2023-cü ilin dekabrında README-yə ekran görüntüləri əlavə etdim, 2024-cü ilin martında isə paketlərini aktual saxlamaq üçün Dependabot qurdum."
+    ]
+  },
+  {
+    "slug": "first-data-science-app-streamlit",
+    "title": "İlk data science alətlərim: Streamlit və web scraping",
+    "date": "2022-09-08",
+    "readTime": 3,
+    "summary": "Dataset-i araşdırmaq və modelləşdirmək üçün üç səhifəli Streamlit tətbiqi və BeautifulSoup və Scrapy ilə yazılmış scraper-lər.",
+    "tags": [
+      "Python",
+      "Streamlit",
+      "scikit-learn",
+      "Web Scraping"
+    ],
+    "source": "https://github.com/Elnur21/streamlit",
+    "cover": {
+      "label": "st.sidebar.selectbox()",
+      "color": "#ff4b4b"
+    },
+    "body": [
+      "2022-ci ilin sentyabrında, DataScience Academy-də Python mentoru kimi fəaliyyətimin sonlarına yaxın, mənə məlumatlarla işləməyin əsaslarını öyrədən iki kiçik layihə yazdım: Streamlit tətbiqi və bir neçə web scraper.",
+      {
+        "h": "Üç səhifədə machine learning tətbiqi"
+      },
+      "Streamlit tətbiqi dataset-i interaktiv alətə çevirir. Sidebar üç səhifə arasında keçid edir:",
+      {
+        "list": [
+          "Home: dataframe-in və onun sütunlarının təsviri.",
+          "EDA: null dəyərlərin yoxlanması, kateqorial və rəqəmsal sütunlar üçün imputation seçimləri, balanssızlıq yoxlamaları və qrafiklər (KDE, box, violin, swarm və bar).",
+          "Modelling: scaler seçmək (Standard, MinMax və ya Robust), məlumatları encode etmək, bölmək, logistic regression, decision tree və ya Gaussian Naive Bayes kimi modelləri öyrətmək və classification report-u oxumaq."
+        ]
+      },
+      "Hər addımı dropdown-a çevirmək mənə vacib bir şey öyrətdi: hər preprocessing seçimi nəticəni dəyişir və bu dəyişikliyi canlı görmək səbəbini anlamağın ən sürətli yoludur.",
+      {
+        "h": "Məlumatları internetdən almaq"
+      },
+      "Növbəti gün scraping notebook-larımı dərc etdim. requests və BeautifulSoup ilə Azərbaycanın daşınmaz əmlak saytı olan bina.az-dan elanların ünvanlarını və linklərini, bir Reddit icmasından isə postların başlıqlarını və səslərini topladım. Həmçinin Scrapy-ni onun məşq saytı olan quotes.toscrape.com üzərində sınadım.",
+      {
+        "h": "Nəticə"
+      },
+      "Data science işinin böyük hissəsi modeldən əvvəl baş verir: məlumatları əldə etmək, təmizləmək və anlamaq. Bu iki layihə bu sahədə ilk real təcrübəm oldu."
+    ]
+  },
+  {
+    "slug": "finbiz-code-academy-final-project",
+    "title": "Finbiz: Code Academy-dəki final layihəm",
+    "date": "2023-07-22",
+    "readTime": 4,
+    "summary": "Sass, vanilla JavaScript, kiçik Express API və Jest testləri ilə iki həftəyə qurulmuş responsive biznes saytı. Müəllimimin çox xoşuna gəldi.",
+    "tags": [
+      "HTML",
+      "Sass",
+      "JavaScript",
+      "Express",
+      "Jest"
+    ],
+    "source": "https://github.com/Elnur21/finbiz",
+    "cover": {
+      "src": "/blogs/finbiz-home.jpg",
+      "alt": "Finbiz ana səhifəsi"
+    },
+    "body": [
+      "Finbiz Code Academy-dəki final frontend layihəm idi. Onu 10-22 iyul 2023-cü il tarixləri arasında, təxminən 50 commit ilə qurdum və müəllimimin nəticəni həqiqətən bəyənməsi məni çox sevindirdi.",
+      {
+        "img": "/blogs/finbiz-home.jpg",
+        "width": 1440,
+        "height": 900,
+        "alt": "Let's create your success başlıqlı Finbiz ana səhifəsi",
+        "caption": "Finbiz ana səhifəsi, hələ də Vercel-də canlıdır."
+      },
+      {
+        "h": "Səhifə-səhifə qurulub"
+      },
+      "Commit tarixçəsi gündəlik kimi oxunur. Ana səhifəni bölmə-bölmə qurdum (header, banner, business progress, about, slideshow, team, testimonials), sonra əlaqə və blog səhifələrini, daha sonra isə bütün günü hər bölməni responsive etməyə sərf etdim. Hər addım develop branch-ından və pull request-dən keçirdi.",
+      {
+        "h": "Struktur"
+      },
+      {
+        "list": [
+          "Sass abstracts (dəyişənlər, mixin-lər, animasiyalar), base, components, layout və pages hissələrinə bölünüb və bir sıxılmış CSS faylına compile olunur.",
+          "Slideshow, tablar, video modal və blog səhifəsi üçün vanilla JavaScript.",
+          "Komanda, xidmətlər, son postlar və blog məlumatlarını təqdim edən kiçik Express server.",
+          "Blog üçün pagination və axtarış, üstəlik hər post üçün ətraflı səhifə.",
+          "HTML-i yükləyib onun strukturunu və stillərini yoxlayan, jsdom ilə yazılmış Jest testləri."
+        ]
+      },
+      {
+        "h": "Tapşırıqdan kənara çıxmaq"
+      },
+      "Tapşırıq frontend layihəsi idi, amma mən səhifələrin hard-code edilmiş HTML əvəzinə real məlumatlar yükləməsini istəyirdim. Express API və loading state-lərin əlavə edilməsi saytı real məhsul kimi hiss etdirdi, HTML və CSS üçün test yazmaq isə mənim üçün yeni bir şey idi.",
+      "Layihə hələ də dəstəklənir: Dependabot onun asılılıqlarını yeniləyir, sonuncu dəfə 2026-cı ilin sentyabrında."
+    ]
+  },
+  {
+    "slug": "opengl-day-night-scene",
+    "title": "OpenGL və Python ilə kompüter qrafikasını öyrənmək",
+    "date": "2023-12-10",
+    "readTime": 3,
+    "summary": "Dairələr çəkmək və hərəkət edən kublardan hərəkətli kamera, işıqlandırma və gecə-gündüz dövrü olan kiçik 3D səhnəyə qədər.",
+    "tags": [
+      "Python",
+      "OpenGL",
+      "Computer Graphics"
+    ],
+    "source": "https://github.com/Elnur21/simple_game_OpenGL",
+    "cover": {
+      "label": "glutMainLoop()",
+      "color": "#7fbf3f"
+    },
+    "body": [
+      "2023-cü ilin sonunda Python-da OpenGL ilə kompüter qrafikasını öyrəndim. İllərlə UI-ları HTML elementlərindən qurduqdan sonra hər fiquru özüm çəkmək tamamilə fərqli təcrübə idi.",
+      {
+        "h": "Laboratoriya tapşırıqları"
+      },
+      "2023-cü ilin noyabrında laboratoriya işlərimi dərc etdim: dairələr çəkmək, dairənin üzərinə konus yerləşdirmək və hərəkət edən kubları animasiya etmək. Bu tapşırıqların hamısı transformasiyalar haqqındadır. Fiquru yerdəyişdirir, fırladır və miqyaslayırsan, bu əməliyyatların ardıcıllığı isə nəticəni tamamilə dəyişir.",
+      {
+        "h": "Gecə-gündüz dövrü olan səhnə"
+      },
+      "2023-cü ilin dekabrında bunların hamısını PyOpenGL və GLUT ilə kiçik 3D səhnədə birləşdirdim:",
+      {
+        "list": [
+          "Ətrafa baxmaq üçün yaw və pitch ilə idarə olunan, hərəkət etdirilə bilən kamera.",
+          "Ambient və diffuse işıqlandırmalı işıq mənbəyi.",
+          "Səmanın rəngini və bütün səhnənin parlaqlığını dəyişən, taymerlə işləyən gecə-gündüz keçidi."
+        ]
+      },
+      {
+        "h": "Nə öyrəndim"
+      },
+      "Qrafika proqramlaşdırması matrisləri və vektorları konkret etdi. Kamera sadəcə bir transformasiyadır, işıqlandırma isə səth normalları üzərində riyaziyyatdır. Bu həm də bütün bunları sizin yerinizə edən oyun mühərriklərinə böyük hörmət yaratdı."
+    ]
+  },
+  {
+    "slug": "logistic-regression-from-scratch",
+    "title": "Sıfırdan logistic regression və deep learning",
+    "date": "2024-02-12",
+    "readTime": 4,
+    "summary": "NumPy-da çoxsinifli logistic regression yazdım və onu UCR arxivi üzrə dərc olunmuş deep learning nəticələri ilə müqayisə etdim. Uduzdu və məqsəd də elə bu idi.",
+    "tags": [
+      "Python",
+      "NumPy",
+      "Machine Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/LogisticRegression",
+    "cover": {
+      "src": "/blogs/logreg-vs-fcn-mlp.png",
+      "alt": "Mənim logistic regression modelimin FCN və MLP ilə müqayisəsi",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "IRIMAS-dakı təcrübəmin əvvəlində deep learning-ə toxunmazdan əvvəl tam başa düşdüyüm bir baseline istəyirdim. Buna görə də NumPy-da sıfırdan logistic regression yazdım və onu UCR arxivindəki zaman sırası dataset-lərində sınadım.",
+      {
+        "h": "Model"
+      },
+      {
+        "list": [
+          "One-vs-rest: hər sinif üçün bir binar klassifikator, ən yüksək balı alan sinif qalib gəlir.",
+          "Sigmoid aktivasiyası və çəkilər və bias üzərində gradient descent.",
+          "16-lıq mini-batch-lər, 0.01 learning rate və 5,000 iterasiya."
+        ]
+      },
+      {
+        "code": "for class_label in range(num_classes):\n    binary_labels = np.where(Y == class_label, 1, 0)\n    # train one sigmoid classifier per class ..."
+      },
+      {
+        "h": "Müqayisə"
+      },
+      "Test accuracy-mi eyni dataset-lər üzrə deep learning modellərinin dərc olunmuş nəticələri ilə müqayisə etdim: MLP, FCN, ResNet, Encoder, MCNN, MCDCNN, Time-CNN, t-LeNet və TWIESN.",
+      {
+        "img": "/blogs/logreg-vs-fcn-mlp.png",
+        "width": 1300,
+        "height": 480,
+        "alt": "Logistic regression-u FCN və MLP ilə müqayisə edən scatter plot-lar",
+        "caption": "Hər dataset üçün bir nöqtə. FCN mənim logistic regression modelimi 15 dataset-dən 14-ündə, MLP isə 13-ündə keçdi.",
+        "light": true
+      },
+      {
+        "h": "Uduzmaq niyə faydalı oldu"
+      },
+      "Qrafiklər deep modellərin zaman sıralarına məhz nə əlavə etdiyini göstərir. Xətti model hər zaman addımına bir-biri ilə əlaqəsiz feature kimi baxır, konvolyusiyalar isə formaları sıranın harasında olursa olsun tapır. Bundan sonra MLP, FCN və ResNet-ə keçdim və nəhayət onların niyə məhz belə qurulduğunu anladım."
+    ]
+  },
+  {
+    "slug": "reimplementing-tsc-models",
+    "title": "FCN, ResNet, ROCKET, InceptionTime və LITE-ı yenidən implement etmək",
+    "date": "2024-02-28",
+    "readTime": 5,
+    "summary": "Klassik zaman sırası klassifikatorlarını özüm yenidən qurduğum iki həftə: 268 dəqiqəlik FCN run-ından xüsusi LITE modelinə qədər.",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/ROCKET",
+    "cover": {
+      "src": "/blogs/inceptiontime-car-training.png",
+      "alt": "Car dataset-i üzərində InceptionTime-ın öyrənmə əyriləri",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "2024-cü ilin fevralında özümə bir qayda qoydum: hər vacib zaman sırası klassifikatoru üçün öz versiyamı yazmaq və UCR dataset-lərində nəticə almaq. Hər modelin öz repository-si oldu.",
+      {
+        "h": "MLP, FCN və ResNet"
+      },
+      "MLP ilə başladım, əvvəlcə dropout-suz, sonra dropout ilə, daha sonra FCN və ResNet-i implement etdim. İlk problemim GPU-lar oldu. 19 fevral tarixli bir commit mesajı hər şeyi deyir: \"GET RESULTS OF FCN AFTER 268 MINUTES\".",
+      {
+        "h": "ROCKET"
+      },
+      "ROCKET tamamilə fərqli yanaşma tətbiq edir. O, minlərlə təsadüfi konvolyusiya kernel-i yaradır, hər birindən iki sadə feature çıxarır və onların üzərində xətti RidgeClassifierCV öyrədir. Kernel-lərin özləri heç vaxt öyrədilmir.",
+      {
+        "img": "/blogs/rocket-car-runs.png",
+        "width": 640,
+        "height": 480,
+        "alt": "Car dataset-i üzərində on run ərzində ROCKET-in train və test accuracy-si",
+        "caption": "Car dataset-i üzərində 10 run-da mənim ROCKET versiyam: mükəmməl training accuracy (mavi) və təxminən 88–90% test accuracy (narıncı).",
+        "light": true
+      },
+      {
+        "h": "InceptionTime"
+      },
+      "InceptionTime üçün dərinliyin öyrənməyə necə təsir etdiyini görmək məqsədilə bir, iki və üç Inception modulu olan versiyaları öyrətdim və hər run üçün loss və accuracy əyrilərini saxladım.",
+      {
+        "img": "/blogs/inceptiontime-car-training.png",
+        "width": 2000,
+        "height": 800,
+        "alt": "Car dataset-i üzərində epoch-lar üzrə InceptionTime-ın loss və accuracy göstəriciləri",
+        "caption": "InceptionTime run-larımdan biri üçün Car dataset-i üzərində epoch-lar üzrə loss və accuracy.",
+        "light": true
+      },
+      {
+        "h": "LITE"
+      },
+      "Sonuncu LITE oldu, yüngül Inception üslublu model. Xüsusi LITE modeli qurdum və onun testini 28 fevral 2024-cü ildə başa çatdırdım.",
+      {
+        "h": "Nə öyrəndim"
+      },
+      {
+        "list": [
+          "Məqalənin kodunu oxumaq onu başa düşmək demək deyil. Onu yazmaq isə elə başa düşmək deməkdir.",
+          "Nəticələr run-dan run-a dəyişir, ona görə də müqayisə etməzdən əvvəl həmişə bir neçə dəfə işə salın.",
+          "Təsadüfi feature-ləri olan sadə model (ROCKET) deep şəbəkə ilə rəqabət apara və xeyli sürətli öyrənə bilər."
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "what-do-cnn-filters-learn",
+    "title": "İki CNN eyni filtrləri öyrənirmi?",
+    "date": "2024-02-27",
+    "readTime": 3,
+    "summary": "20 dataset-in hər birində bir FCN-i train hissəsində, digərini test hissəsində öyrətdim, sonra onların birinci qat filtrlərini DTW və t-SNE ilə müqayisə etdim.",
+    "tags": [
+      "Python",
+      "TensorFlow",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/FCN_filter_test",
+    "cover": {
+      "src": "/blogs/fcn-filters-beef.png",
+      "alt": "Beef dataset-i üzərində FCN-in birinci qat filtrlərinin t-SNE xəritəsi",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "Deep learning modellərini çox vaxt \"qara qutu\" adlandırırlar. Təcrübəm zamanı birinin içinə baxmaq istədim və sadə bir sual verdim: əgər iki FCN eyni problemdən götürülmüş fərqli məlumatlardan öyrənirsə, onlar eyni filtrləri öyrənirmi?",
+      {
+        "h": "Eksperiment"
+      },
+      {
+        "list": [
+          "20 UCR dataset-inin hər biri üçün bir FCN-i training hissəsində, digərini isə test hissəsində öyrətmək.",
+          "Hər modeldən birinci konvolyusiya qatının 128 filtrini götürmək.",
+          "Filtrləri zamanda sürüşə bilən formalar üçün uyğun olan dynamic time warping (DTW) məsafələri ilə müqayisə etmək.",
+          "Onları t-SNE ilə 3, 5, 10 və 15 perplexity dəyərlərindən istifadə edərək 2D-yə proyeksiya etmək."
+        ]
+      },
+      {
+        "img": "/blogs/fcn-filters-beef.png",
+        "width": 640,
+        "height": 480,
+        "alt": "Beef dataset-i üzərində iki FCN-in birinci qat filtrlərinin scatter plot-u",
+        "caption": "Beef dataset-i üzərində birinci qat filtrləri. Mavi: train hissəsində öyrədilmiş model. Narıncı: test hissəsində öyrədilmiş model.",
+        "light": true
+      },
+      {
+        "h": "Nə gördüm"
+      },
+      "Bir çox dataset-də iki rəng bir-birinə qarışıb: hər iki model eyni nümunələri heç vaxt görməsə də, oxşar formalı filtrlərlə nəticələnir. Bu onu göstərir ki, birinci qat konkret nümunələrin detallarını deyil, siqnalın ümumi tikinti bloklarını öyrənir.",
+      "Bir neçə perplexity sınamaq vacib idi. t-SNE təsvirləri bu parametrdən asılı olaraq çox dəyişə bilər, ona görə də pattern yalnız hamısında göründükdə nəzərə alınır."
+    ]
+  },
+  {
+    "slug": "classic-ml-credit-cards-and-chemistry",
+    "title": "Klassik machine learning: kredit kartları və kimya",
+    "date": "2024-02-23",
+    "readTime": 4,
+    "summary": "scikit-learn ilə iki komanda layihəsi: yaxşı və pis kredit kartı müştərilərini proqnozlaşdırmaq və molekulları təsnif etməzdən əvvəl kimyəvi dataset-dəki boşluqları doldurmaq.",
+    "tags": [
+      "Python",
+      "scikit-learn",
+      "Machine Learning",
+      "Data Analysis"
+    ],
+    "source": "https://github.com/Elnur21/Data_mining_on_chemical_data",
+    "cover": {
+      "src": "/blogs/chemical-head-families.png",
+      "alt": "Səthi aktiv maddələrin baş qrup ailələrinin dairəvi diaqramı",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "23 fevral 2024-cü ildə komanda layihələrindən bir neçə machine learning notebook-unu, həmçinin ridge və lasso regression üzrə bir araşdırmanı dərc etdim. Onlardan ikisi mənə ən çox şey öyrətdi.",
+      {
+        "h": "Kredit kartının təsdiqi"
+      },
+      "Tapşırıq müraciət edənin \"yaxşı\" və ya \"pis\" müştəri olduğuna qərar vermək idi. Tələ bu idi ki, dataset \"pis\"in nə demək olduğunu göstərmir, buna görə də label ödəniş tarixçəsindən, məsələn, vintage analizi ilə qurulmalıdır.",
+      "İkinci tələ balanssızlıq idi. Demək olar ki, bütün müştərilər \"yaxşı\" idi, ona görə də həmişə \"yaxşı\" deyən model dəqiq görünür, amma heç bir işə yaramır.",
+      {
+        "img": "/blogs/credit-card-balancing.png",
+        "width": 840,
+        "height": 430,
+        "alt": "Oversampling-dən əvvəl və sonra siniflərin balansı",
+        "caption": "Balanslaşdırmadan əvvəl (99.6%-ə 0.4%) və oversampling-dən sonra (50/50) hədəf siniflər.",
+        "light": true
+      },
+      "Təmizləmə və feature engineering-dən sonra balanssızlığı aradan qaldırmazdan əvvəl və sonra K-means, SVC və logistic regression-u müqayisə etdik; hiperparametrlər üçün pipeline-lar və GridSearchCV istifadə etdik.",
+      {
+        "h": "Kimyəvi data mining"
+      },
+      "İkinci layihədə elmi məqalələrdən toplanmış, 18 atributlu 199 səthi aktiv molekuldan ibarət dataset istifadə olundu. Bir çox dəyər çatışmırdı və biz sadəcə ortalamadan istifadə etmək əvəzinə onların bir neçəsini kimya düsturları ilə doldurduq: molyar kütlə, Amin və kritik misella qatılığı (CMC).",
+      {
+        "img": "/blogs/chemical-head-families.png",
+        "width": 507,
+        "height": 389,
+        "alt": "Dataset-dəki baş qrup ailələrinin dairəvi diaqramı",
+        "caption": "CMC, səthi gərilmə və Amin əsasında proqnozlaşdırmağa çalışdığımız baş qrup ailələri.",
+        "light": true
+      },
+      "Encoding, robust scaling və oversampling-dən sonra dörd klassifikatoru müqayisə etdik. GridSearchCV ilə decision tree 91.8%, random forest 91.6%, KNN 90.7% və SVC 85.1% nəticəyə çatdı.",
+      {
+        "h": "Nəticə"
+      },
+      "Hər iki layihədə model ən asan hissə idi. Label-i düzgün müəyyən etmək, balanssızlığı həll etmək və çatışmayan dəyərləri düzgün doldurmaq əsl fərqi yaratdı."
+    ]
+  },
+  {
+    "slug": "uno-react-native-online-multiplayer",
+    "title": "React Native-də onlayn UNO oyunu qurmaq",
+    "date": "2025-12-28",
+    "readTime": 5,
+    "summary": "Firebase ilə giriş, çat və turnirləri olan kart oyunu tətbiqi; onu real-time multiplayer və +4 blef çağırışları ilə onlayna çıxardım.",
+    "tags": [
+      "React Native",
+      "TypeScript",
+      "Firebase",
+      "Mobile",
+      "Games"
+    ],
+    "source": "https://github.com/Elnur21/uno_game_app",
+    "cover": {
+      "label": "+4  bluff?",
+      "color": "#ed1c24"
+    },
+    "body": [
+      "UNO ən uzun müddət üzərində işlədiyim mobil layihəmdir. Ona 2024-cü ilin avqustunda başladım, 28 dekabr 2025-ci ildə isə ən böyük dəyişikliyi etdim: real onlayn multiplayer.",
+      {
+        "h": "Expo-dan React Native CLI-a"
+      },
+      "İlk React Native kodum 2023-cü ilin mayında yüklədiyim iki kiçik Expo tətbiqi idi: avtomobil kataloqu və ətraflı məlumat ekranı olan kitab siyahısı. UNO üçün native Firebase modullarına və Google ilə girişə ehtiyacım var idi, ona görə də elə ilk gün Expo-dan React Native CLI-a keçdim.",
+      {
+        "h": "İlk versiya (avqust 2024)"
+      },
+      {
+        "list": [
+          "Google ilə giriş dəstəkli Firebase Auth.",
+          "İstifadəçilər ekranı, çat otaqları və turnirlər.",
+          "Bütün oyun qaydaları React context-də olan oflayn oyun."
+        ]
+      },
+      {
+        "h": "Onlayna keçid (dekabr 2025)"
+      },
+      "Onlayn oyun o demək idi ki, oyunun state-i artıq bir telefonda yaşaya bilməz. Kart dəstəsini, oyunçuların əlindəki kartları və növbələri Firebase vasitəsilə sinxronlaşdıran onlayn kartlar context-i əlavə etdim, eyni UI komponentləri isə həm oflayn, həm də onlayn oyunlarda işləyir.",
+      {
+        "list": [
+          "Bir neçə oyunçu hərəkət edəndə də düzgün işləyən növbə idarəetməsi.",
+          "Cəzanı düzgün oyunçuya verən və növbəni düzgün ötürən +2 və +4 kartları.",
+          "Blef çağırışı: kimsə +4 oynayanda növbəti oyunçu bunu blef kimi etiraz edə bilər.",
+          "Wild kartdan sonra rəngin seçilməsi və hamıya sinxronlaşdırılması.",
+          "Əvvəlki dəyərləri ref-lərdə saxlamaqla oyun və çat ekranlarında daha az re-render."
+        ]
+      },
+      "2026-cı ilin martında daha çox oyunçu üçün rejim əlavə etdim.",
+      {
+        "h": "Nə öyrəndim"
+      },
+      "Kart oyunu bir neçə telefonun eyni state üzərində razılaşmalı olduğu ana qədər sadə görünür. İşin böyük hissəsi, kimin birinci hərəkət etməsindən asılı olmayaraq, hər hərəkətin dəqiq bir düzgün state dəyişikliyi yaratmasını təmin etmək idi."
+    ]
+  }
+]

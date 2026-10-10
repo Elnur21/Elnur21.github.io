@@ -2,15 +2,18 @@ import Image from "next/image";
 import GitHubCalendar from "react-github-calendar";
 import styles from "@/styles/GithubPage.module.css";
 import RepoCard from "@/components/RepoCard";
+import { useT } from "@/i18n";
+
 
 const GithubPage = ({ repos, user }) => {
+  const t = useT();
   const theme = {
     dark: ["#161B22", "#0e4429", "#006d32", "#26a641", "#39d353"],
     light: ["#161B22", "#0e4429", "#006d32", "#26a641", "#39d353"],
   };
 
   if (!user) {
-    return <p>GitHub data is currently unavailable. Please try again later.</p>;
+    return <p>{t("common.githubUnavailable")}</p>;
   }
 
   return (
@@ -33,17 +36,17 @@ const GithubPage = ({ repos, user }) => {
             <h3 className={styles.username}>{user.login}</h3>
           </div>
           <div>
-            <h3>{user.public_repos} repos</h3>
+            <h3>{t("github.repos", { count: user.public_repos })}</h3>
           </div>
           <div>
-            <h3>{user.followers} followers</h3>
+            <h3>{t("github.followers", { count: user.followers })}</h3>
           </div>
         </div>
       </a>
       <div>
         {" "}
         <center>
-          <h3>My Most Popular Repositories on Github</h3>
+          <h3>{t("github.popular")}</h3>
         </center>
       </div>
       <div className={styles.container}>
@@ -53,7 +56,7 @@ const GithubPage = ({ repos, user }) => {
       </div>
       <div>
         <center>
-          <h3>My Github Calendar</h3>
+          <h3>{t("github.calendar")}</h3>
         </center>
       </div>
       <br />

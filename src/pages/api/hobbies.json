@@ -4,31 +4,119 @@
     "icon": "film",
     "title": "Watching Films",
     "description": "I enjoy exploring different worlds through cinema, from clever comedies to mind-bending science fiction. I appreciate stories that entertain, surprise, and offer a fresh perspective.",
-    "tags": ["Comedy", "Science", "Science Fiction"],
-    "color": "#569cd6"
+    "tags": [
+      "Comedy",
+      "Science",
+      "Science Fiction"
+    ],
+    "color": "#569cd6",
+    "az": {
+      "title": "Film izləmək",
+      "description": "Kinoda müxtəlif dünyaları kəşf etməyi sevirəm: ağıllı komediyalardan beyin yoran elmi fantastikaya qədər. Əyləndirən, təəccübləndirən və yeni baxış bucağı verən hekayələri dəyərləndirirəm.",
+      "tags": [
+        "Komediya",
+        "Elm",
+        "Elmi fantastika"
+      ]
+    },
+    "ru": {
+      "title": "Кино",
+      "description": "Люблю открывать новые миры через кино: от остроумных комедий до головоломной научной фантастики. Ценю истории, которые развлекают, удивляют и дают свежий взгляд на вещи.",
+      "tags": [
+        "Комедии",
+        "Наука",
+        "Научная фантастика"
+      ]
+    }
   },
   {
     "id": 2,
     "icon": "walk",
     "title": "Walking",
     "description": "Walking is my way to disconnect from the noise, recharge my mind, and enjoy the world around me. Sometimes, the best ideas come when I simply keep moving.",
-    "tags": ["Outdoors", "Fitness", "Mindfulness"],
-    "color": "#4ec9b0"
+    "tags": [
+      "Outdoors",
+      "Fitness",
+      "Mindfulness"
+    ],
+    "color": "#4ec9b0",
+    "az": {
+      "title": "Gəzinti",
+      "description": "Gəzinti mənim üçün səs-küydən uzaqlaşmaq, fikrimi təzələmək və ətrafdakı dünyadan zövq almaq üsuludur. Bəzən ən yaxşı ideyalar sadəcə hərəkətdə olanda gəlir.",
+      "tags": [
+        "Açıq hava",
+        "Fitnes",
+        "Fikri rahatlıq"
+      ]
+    },
+    "ru": {
+      "title": "Прогулки",
+      "description": "Прогулки помогают мне отключиться от шума, перезагрузить голову и просто радоваться миру вокруг. Иногда лучшие идеи приходят, когда просто продолжаешь идти.",
+      "tags": [
+        "На природе",
+        "Фитнес",
+        "Осознанность"
+      ]
+    }
   },
   {
     "id": 3,
     "icon": "game",
     "title": "Mobile Games",
     "description": "I enjoy mobile games that offer the perfect mix of relaxation and challenge. Whether solving puzzles or planning my next move, I like games that keep me thinking.",
-    "tags": ["Casual Games", "Strategy", "Puzzles"],
-    "color": "#dcdcaa"
+    "tags": [
+      "Casual Games",
+      "Strategy",
+      "Puzzles"
+    ],
+    "color": "#dcdcaa",
+    "az": {
+      "title": "Mobil oyunlar",
+      "description": "Rahatlama ilə çətinliyi ideal şəkildə birləşdirən mobil oyunları sevirəm. Tapmaca həll etmək və ya növbəti gedişi planlamaq olsun, düşündürən oyunlar xoşuma gəlir.",
+      "tags": [
+        "Sadə oyunlar",
+        "Strategiya",
+        "Tapmacalar"
+      ]
+    },
+    "ru": {
+      "title": "Мобильные игры",
+      "description": "Люблю мобильные игры, в которых идеально сочетаются отдых и вызов. Головоломки или планирование следующего хода — мне нравятся игры, которые заставляют думать.",
+      "tags": [
+        "Казуальные игры",
+        "Стратегии",
+        "Головоломки"
+      ]
+    }
   },
   {
     "id": 4,
     "icon": "chess",
     "title": "Chess",
     "description": "Chess challenges me to think ahead, recognize patterns, and consider every move carefully. I enjoy the balance of logic, patience, and strategic creativity that makes every game unique.",
-    "tags": ["Strategy", "Logic", "Competition"],
-    "color": "#ce9178"
+    "tags": [
+      "Strategy",
+      "Logic",
+      "Competition"
+    ],
+    "color": "#ce9178",
+    "az": {
+      "title": "Şahmat",
+      "description": "Şahmat məni irəlini düşünməyə, nümunələri tanımağa və hər gedişi diqqətlə ölçməyə vadar edir. Məntiq, səbr və strateji yaradıcılığın balansını sevirəm: hər oyun bənzərsizdir.",
+      "tags": [
+        "Strategiya",
+        "Məntiq",
+        "Yarış"
+      ]
+    },
+    "ru": {
+      "title": "Шахматы",
+      "description": "Шахматы учат думать наперёд, видеть закономерности и взвешивать каждый ход. Мне нравится баланс логики, терпения и стратегического творчества, который делает каждую партию уникальной.",
+      "tags": [
+        "Стратегия",
+        "Логика",
+        "Соревнование"
+      ]
+    }
   }
 ]

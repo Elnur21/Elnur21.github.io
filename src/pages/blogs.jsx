@@ -4,18 +4,9 @@ import { useState } from "react";
 
 import styles from "@/styles/BlogsPage.module.css";
 import { getBlogs } from "./api/blogs";
+import { useT, formatDate } from "@/i18n";
 
-const MONTHS = [
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-];
 
-// "2024-05-16" -> "16 May 2024", "2024-05" -> "May 2024"
-const formatDate = (date) => {
-  const [year, month, day] = date.split("-");
-  const label = `${MONTHS[Number(month) - 1]} ${year}`;
-  return day ? `${Number(day)} ${label}` : label;
-};
 
 // Either a real image, or a generated "code" cover for posts without one
 const Cover = ({ blog, large = false }) => {
@@ -77,30 +68,36 @@ const Block = ({ block }) => {
   return null;
 };
 
-const Tags = ({ tags }) => (
-  <div className={styles.tags}>
-    {tags.map((tag) => (
-      <span key={tag} className={styles.tag}>
-        {tag}
-      </span>
-    ))}
-  </div>
-);
+const Tags = ({ tags }) => {
+  const t = useT();
+  return (
+    <div className={styles.tags}>
+      {tags.map((tag) => (
+        <span key={tag} className={styles.tag}>
+          {t.tag(tag)}
+        </span>
+      ))}
+    </div>
+  );
+};
 
-const Meta = ({ blog }) => (
-  <span className={styles.meta}>
-    {formatDate(blog.date)} · {blog.readTime} min read
-  </span>
-);
+const Meta = ({ blog }) => {
+  const t = useT();
+  return (
+    <span className={styles.meta}>
+      {formatDate(blog.date, t.locale)} · {t("blogs.minRead", { n: blog.readTime })}
+    </span>
+  );
+};
 
-const Card = ({ blog, featured = false, onOpen }) => (
+const Card = ({ blog, featured = false, onOpen, t }) => (
   <button
     className={`${styles.card} ${featured ? styles.featured : ""}`}
     onClick={() => onOpen(blog.slug)}
   >
     <Cover blog={blog} large={featured} />
     <div className={styles.cardBody}>
-      {featured && <span className={styles.latest}>Latest post</span>}
+      {featured && <span className={styles.latest}>{t("blogs.latest")}</span>}
       <Meta blog={blog} />
       <h3 className={styles.title}>{blog.title}</h3>
       <p className={styles.summary}>{blog.summary}</p>
@@ -109,10 +106,10 @@ const Card = ({ blog, featured = false, onOpen }) => (
   </button>
 );
 
-const Article = ({ post, prev, next, onOpen }) => (
+const Article = ({ post, prev, next, onOpen, t }) => (
   <article className={styles.article}>
     <button className={styles.back} onClick={() => onOpen(null)}>
-      {"← cd .."}
+      {t("blogs.back")}
     </button>
     <h1 className={styles.articleTitle}>{post.title}</h1>
     <Meta blog={post} />
@@ -135,14 +132,14 @@ const Article = ({ post, prev, next, onOpen }) => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        {"// source: "}
+        {t("blogs.source")}
         {post.source.replace(/^https?:\/\//, "")}
       </a>
     )}
     <nav className={styles.pager}>
       {prev ? (
         <button className={styles.pagerLink} onClick={() => onOpen(prev.slug)}>
-          <span>← Newer</span>
+          <span>{t("blogs.newer")}</span>
           {prev.title}
         </button>
       ) : (
@@ -153,7 +150,7 @@ const Article = ({ post, prev, next, onOpen }) => (
           className={`${styles.pagerLink} ${styles.pagerNext}`}
           onClick={() => onOpen(next.slug)}
         >
-          <span>Older →</span>
+          <span>{t("blogs.older")}</span>
           {next.title}
         </button>
       )}
@@ -162,6 +159,7 @@ const Article = ({ post, prev, next, onOpen }) => (
 );
 
 const BlogsPage = ({ blogs, tags }) => {
+  const t = useT();
   const router = useRouter();
   const [activeTag, setActiveTag] = useState(null);
 
@@ -180,6 +178,7 @@ const BlogsPage = ({ blogs, tags }) => {
         prev={blogs[index - 1]}
         next={blogs[index + 1]}
         onOpen={openPost}
+        t={t}
       />
     );
   }
@@ -194,7 +193,7 @@ const BlogsPage = ({ blogs, tags }) => {
       <div className={styles.header}>
         <span className={styles.comment}>{"// blogs.md"}</span>
         <span className={styles.comment}>
-          {"// Notes on what I've built, learned and researched"}
+          {t("blogs.comment")}
         </span>
       </div>
 
@@ -205,23 +204,23 @@ const BlogsPage = ({ blogs, tags }) => {
             className={`${styles.filter} ${activeTag === tag ? styles.filterActive : ""}`}
             onClick={() => setActiveTag(tag)}
           >
-            {tag || `All (${blogs.length})`}
+            {tag ? t.tag(tag) : t("blogs.all", { n: blogs.length })}
           </button>
         ))}
       </div>
 
-      {featured && <Card blog={featured} featured onOpen={openPost} />}
+      {featured && <Card blog={featured} featured onOpen={openPost} t={t} />}
       <div className={styles.posts}>
         {rest.map((blog) => (
-          <Card key={blog.slug} blog={blog} onOpen={openPost} />
+          <Card key={blog.slug} blog={blog} onOpen={openPost} t={t} />
         ))}
       </div>
     </>
   );
 };
 
-export async function getStaticProps() {
-  const blogs = getBlogs();
+export async function getStaticProps({ locale }) {
+  const blogs = getBlogs(locale);
 
   // The 10 most common tags shared by more than one post
   const counts = {};

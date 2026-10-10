@@ -1,12 +1,15 @@
 import styles from "@/styles/ExperiencePage.module.css";
 import { getExperience } from "./api/experience";
+import { useT } from "@/i18n";
+
 
 const ExperiencePage = ({ experiences }) => {
+  const t = useT();
   return (
     <>
       <div className={styles.header}>
         <span className={styles.comment}>{"// experience.json"}</span>
-        <span className={styles.comment}>{"// Work history & positions"}</span>
+        <span className={styles.comment}>{t("experience.comment")}</span>
       </div>
       <br />
       <div className={styles.timeline}>
@@ -25,13 +28,15 @@ const ExperiencePage = ({ experiences }) => {
                   </span>
                 </div>
                 <div className={styles.meta}>
-                  <span className={styles.period}>{exp.period}</span>
+                  <span className={styles.period}>
+                    {exp.period.replace("present", t("experience.present"))}
+                  </span>
                   <span
                     className={`${styles.badge} ${
                       exp.current ? styles.badgeCurrent : ""
                     }`}
                   >
-                    {exp.current ? "Current" : exp.type}
+                    {exp.current ? t("experience.current") : t(`experience.types.${exp.type}`)}
                   </span>
                 </div>
               </div>
@@ -39,7 +44,7 @@ const ExperiencePage = ({ experiences }) => {
               <div className={styles.tags}>
                 {exp.tags.map((tag) => (
                   <span key={tag} className={styles.tag}>
-                    {tag}
+                    {t.tag(tag)}
                   </span>
                 ))}
               </div>
@@ -51,8 +56,8 @@ const ExperiencePage = ({ experiences }) => {
   );
 };
 
-export async function getStaticProps() {
-  const experiences = getExperience();
+export async function getStaticProps({ locale }) {
+  const experiences = getExperience(locale);
 
   return {
     props: { title: "Experience", experiences },
