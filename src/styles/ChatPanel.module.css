@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 340px;
   flex-shrink: 0;
-  height: calc(100vh - 30px - 25px);
+  min-height: 0;
   background: var(--explorer-bg);
   border-left: 1px solid var(--explorer-border);
   color: var(--text-color);

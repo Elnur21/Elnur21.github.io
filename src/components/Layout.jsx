@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
   }, [toggleChat]);
 
   return (
-    <>
+    <div className={styles.shell}>
       <Titlebar />
       <div className={styles.main}>
         <Sidebar />
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
         {mounted && chatOpen && <ChatPanel />}
       </div>
       <Bottombar />
-    </>
+    </div>
   );
 };
 

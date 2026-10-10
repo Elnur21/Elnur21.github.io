@@ -1,7 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&display=swap");
 
+/* The app fills the screen exactly; only the panes inside it scroll, so the
+   titlebar, tabs, sidebar, chat and bottom bar always stay in view.
+   dvh follows the visible area on mobile, where 100vh includes the browser's toolbars */
+.shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.shell > * {
+  flex-shrink: 0;
+}
+
 .main {
   display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
   background: var(--main-bg);
 }
 
@@ -12,6 +29,7 @@
   flex-direction: column;
   flex: 1;
   min-width: 0;
+  min-height: 0;
 }
 
 .content {
@@ -19,9 +37,8 @@
   color: var(--text-color);
   font-family: "JetBrains Mono", monospace;
   flex: 1;
-  height: min-content;
+  min-height: 0;
   overflow-y: auto;
-  height: 85vh;
 }
 
 .content {

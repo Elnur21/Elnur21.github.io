@@ -6,7 +6,8 @@
   width: 4.5vw;
   min-width: 40px;
   flex-shrink: 0;
-  height: calc(100vh - 30px - 25px);
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .iconContainer {

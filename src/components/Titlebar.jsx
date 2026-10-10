@@ -381,7 +381,8 @@ export default function Titlebar() {
   };
 
   const handleMinimize = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // The page scrolls inside <main>, not the window
+    document.querySelector("main")?.scrollTo({ top: 0, behavior: "smooth" });
     toast.info(t("titlebar.toasts.scrolledTop"));
   };
 

@@ -5,6 +5,8 @@
   color: rgb(225, 228, 232);
   font-family: "Source Sans Pro", sans-serif;
   border-right: 1px solid var(--explorer-border);
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .title {
