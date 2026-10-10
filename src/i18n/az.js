@@ -27,8 +27,26 @@ const az = {
 
   meta: {
     name: "Elnur Məhərrəmov",
-    description: "Elnur Məhərrəmovun portfoliosu: Bakıdan full stack developer.",
+    description:
+      "Elnur Məhərrəmov Bakıdan full stack developerdir: React, Next.js, Node.js, NestJS və Python ilə veb tətbiqlər hazırlayır. Layihələr, bloq, rezume və əlaqə.",
     title: "Elnur Məhərrəmovun portfoliosu",
+    keywords:
+      "Elnur Məhərrəmov, Elnur Maharramov, Эльнур Магеррамов, Elnur21, full stack developer, proqramçı, veb developer Bakı, Azərbaycan proqramçı, React developer, Next.js, Node.js, NestJS, Vue.js, TypeScript, Python, maşın öyrənməsi, portfolio",
+    pages: {
+      Home: "Elnur Məhərrəmov, Bakıdan full stack developer: React, Next.js, Node.js, NestJS, Vue.js, Python, SQL və NoSQL verilənlər bazaları, Docker.",
+      Resume: "Full stack developer Elnur Məhərrəmovun rezumesi: təcrübə, təhsil və bacarıqlar. Onlayn baxın və ya PDF kimi yükləyin.",
+      Contact: "Elnur Məhərrəmovla əlaqə: mesaj göndərin və ya onu GitHub, LinkedIn və e-poçtda tapın.",
+      Projects: "Elnur Məhərrəmovun layihələri: full stack JavaScript tətbiqləri, maşın öyrənməsi tədqiqatları və Python botları, mənbə kodu və demolarla.",
+      Languages: "Elnur Məhərrəmovun istifadə etdiyi proqramlaşdırma dilləri, açıq GitHub repozitoriyalarına görə qruplaşdırılıb.",
+      GitHub: "Elnur Məhərrəmov GitHub-da: ən populyar repozitoriyalar, izləyicilər və töhfə təqvimi.",
+      Repositories: "Elnur Məhərrəmovun bütün açıq GitHub repozitoriyaları, dilə görə axtarış və filtr ilə.",
+      Insights: "Elnur Məhərrəmovun açıq GitHub repozitoriyaları onun proqram yazma tərzi haqqında nə deyir: dillər, aktivlik və zaman xətti.",
+      Experience: "Elnur Məhərrəmovun full stack developer kimi iş təcrübəsi: şirkətlər, vəzifələr və texnologiyalar.",
+      Blogs: "Elnur Məhərrəmovun full stack veb inkişafı, maşın öyrənməsi və real layihələrdən dərslər haqqında bloqu.",
+      "Blog Insights": "Elnur Məhərrəmovun bloqu haqqında statistika: mövzular, oxuma vaxtı və nəşr tarixçəsi.",
+      Hobbies: "Elnur Məhərrəmovun proqramlaşdırmadan kənar hobbiləri və maraqları.",
+      Settings: "Elnur Məhərrəmovun portfoliosu üçün VS Code rəng mövzusunu seçin.",
+    },
   },
 
   titlebar: {
@@ -115,7 +133,7 @@ const az = {
     mainSkills: "Əsas bacarıqlar",
     resume: "Rezume",
     contact: "Əlaqə",
-    photo: "Elnur Məhərrəmovun şəkli",
+    photo: "Full stack developer Elnur Məhərrəmovun şəkli",
   },
 
   resume: { title: "Rezume", download: "Yüklə", open: "Yeni tabda aç" },
@@ -135,6 +153,8 @@ const az = {
   settings: {
     title: "Mövzuları idarə et",
     setTheme: "Rəng mövzusunu seç",
+    preview: "{name} mövzusunun ikonu",
+    setThemeLabel: "{name} rəng mövzusunu seç",
     descriptions: {
       dracula: "Rəsmi Dracula mövzusu. Bir çox redaktor və terminal üçün tünd mövzu.",
       "github-dark": "VS Code üçün GitHub mövzusu",
@@ -155,6 +175,8 @@ const az = {
     demo: "Demo",
     paper: "Məqalə",
     pypi: "PyPi",
+    screenshot: "{name} layihəsinin ekran görüntüsü",
+    linkLabel: "{label}: {name}",
   },
 
   github: {
@@ -162,6 +184,9 @@ const az = {
     followers: { one: "{count} izləyici", other: "{count} izləyici" },
     popular: "GitHub-da ən populyar repozitoriyalarım",
     calendar: "GitHub təqvimim",
+    avatar: "{login} istifadəçisinin GitHub avatarı",
+    source: "{name} layihəsinin GitHub-da mənbə kodu",
+    demo: "{name} layihəsinin canlı demosu",
   },
 
   languages: {

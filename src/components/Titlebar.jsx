@@ -422,7 +422,8 @@ export default function Titlebar() {
       </button>
       <Image
         src="/vscode_icon.svg"
-        alt="VSCode Icon"
+        alt=""
+        aria-hidden="true"
         height={15}
         width={15}
         className={styles.icon}
@@ -478,9 +479,9 @@ export default function Titlebar() {
           <CommentIcon width={15} height={15} />
           <span className={styles.chatLabel}>{t("titlebar.chat")}</span>
         </button>
-        <span onClick={handleMinimize} className={styles.minimize} title={t("titlebar.scrollTop")} />
-        <span onClick={handleMaximize} className={styles.maximize} title={t("titlebar.fullscreen")} />
-        <span onClick={handleClose} className={styles.close} title={t("titlebar.close")} />
+        <span onClick={handleMinimize} className={styles.minimize} title={t("titlebar.scrollTop")} role="button" aria-label={t("titlebar.scrollTop")} />
+        <span onClick={handleMaximize} className={styles.maximize} title={t("titlebar.fullscreen")} role="button" aria-label={t("titlebar.fullscreen")} />
+        <span onClick={handleClose} className={styles.close} title={t("titlebar.close")} role="button" aria-label={t("titlebar.close")} />
       </div>
     </section>
   );

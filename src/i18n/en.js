@@ -29,8 +29,27 @@ const en = {
 
   meta: {
     name: "Elnur Maharramov",
-    description: "Elnur Maharramov's portfolio: full stack developer from Baku.",
+    description:
+      "Elnur Maharramov is a full stack developer from Baku, Azerbaijan, building web apps with React, Next.js, Node.js, NestJS and Python. Projects, blog, resume and contacts.",
     title: "Elnur Maharramov's Portfolio",
+    keywords:
+      "Elnur Maharramov, Elnur Məhərrəmov, Эльнур Магеррамов, Elnur21, full stack developer, software engineer, web developer Baku, Azerbaijan developer, React developer, Next.js, Node.js, NestJS, Vue.js, TypeScript, Python, machine learning, portfolio",
+    // Search result descriptions, keyed like `titles`
+    pages: {
+      Home: "Elnur Maharramov, full stack developer from Baku, Azerbaijan: React, Next.js, Node.js, NestJS, Vue.js, Python, SQL and NoSQL databases, Docker.",
+      Resume: "Resume of Elnur Maharramov, full stack developer: experience, education and skills. View online or download as PDF.",
+      Contact: "Contact Elnur Maharramov: send a message or find him on GitHub, LinkedIn and email.",
+      Projects: "Projects by Elnur Maharramov: full stack JavaScript apps, machine learning research and Python bots, with source code and demos.",
+      Languages: "Programming languages Elnur Maharramov uses, grouped by his public GitHub repositories.",
+      GitHub: "Elnur Maharramov on GitHub: most popular repositories, followers and contribution calendar.",
+      Repositories: "All public GitHub repositories of Elnur Maharramov, searchable and filterable by language.",
+      Insights: "What Elnur Maharramov's public GitHub repositories say about how he builds software: languages, activity and timelines.",
+      Experience: "Work experience of Elnur Maharramov as a full stack developer: companies, roles and technologies.",
+      Blogs: "Blog by Elnur Maharramov about full stack web development, machine learning and lessons from real projects.",
+      "Blog Insights": "Statistics about Elnur Maharramov's blog: topics, reading time and publishing timeline.",
+      Hobbies: "Hobbies and interests of Elnur Maharramov outside of software development.",
+      Settings: "Choose a VS Code color theme for Elnur Maharramov's portfolio.",
+    },
   },
 
   titlebar: {
@@ -117,7 +136,7 @@ const en = {
     mainSkills: "Main Skills",
     resume: "Resume",
     contact: "Contact",
-    photo: "Photo of Elnur Maharramov",
+    photo: "Photo of Elnur Maharramov, full stack developer",
   },
 
   resume: { title: "Resume", download: "Download", open: "Open in new tab" },
@@ -137,6 +156,8 @@ const en = {
   settings: {
     title: "Manage Themes",
     setTheme: "Set Color Theme",
+    preview: "{name} theme icon",
+    setThemeLabel: "Set the {name} color theme",
     descriptions: {
       dracula: "Official Dracula Theme. A dark theme for many editors, shells, and more.",
       "github-dark": "GitHub theme for VS Code",
@@ -157,6 +178,8 @@ const en = {
     demo: "Demo",
     paper: "Paper",
     pypi: "PyPi",
+    screenshot: "Screenshot of the {name} project",
+    linkLabel: "{label}: {name}",
   },
 
   github: {
@@ -164,6 +187,9 @@ const en = {
     followers: { one: "{count} follower", other: "{count} followers" },
     popular: "My Most Popular Repositories on GitHub",
     calendar: "My GitHub Calendar",
+    avatar: "GitHub avatar of {login}",
+    source: "Source code of {name} on GitHub",
+    demo: "Live demo of {name}",
   },
 
   languages: {

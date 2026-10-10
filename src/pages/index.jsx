@@ -12,7 +12,7 @@ export default function HomePage() {
         <div className={styles.foreground}>
           <div className={styles.content}>
             <h1 className={styles.name}>{t("meta.name")}</h1>
-            <h6 className={styles.bio}>{t("home.role")}</h6>
+            <h2 className={styles.bio}>{t("home.role")}</h2>
             <div className={styles.cardContainer}>
               <div className={styles.card}>
                 <div className={styles.content}>
@@ -59,11 +59,11 @@ export default function HomePage() {
               </div>
             </div>
             <div className={styles.actions}>
-              <Link href="/resume">
-                <button className={styles.button + " rounded"}>{t("home.resume")}</button>
+              <Link href="/resume" className={styles.button + " rounded"}>
+                {t("home.resume")}
               </Link>
-              <Link href="/contact">
-                <button className={styles.outlined + " rounded"}>{t("home.contact")}</button>
+              <Link href="/contact" className={styles.outlined + " rounded"}>
+                {t("home.contact")}
               </Link>
             </div>
           </div>
@@ -75,6 +75,8 @@ export default function HomePage() {
                 width={300}
                 height={300}
                 alt={t("home.photo")}
+                title={t("meta.name")}
+                priority
               />
             </div>
           </div>

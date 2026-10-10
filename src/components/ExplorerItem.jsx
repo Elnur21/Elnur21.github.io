@@ -62,7 +62,8 @@ const ExplorerItem = ({
             >
               <Image
                 src={`/${item.icon}`}
-                alt={item.name}
+                alt={item?.name || "file icon"}
+                aria-hidden="true"
                 height={18}
                 width={18}
               />{" "}

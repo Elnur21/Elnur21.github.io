@@ -91,6 +91,13 @@
   }
 }
 
+.button,
+.outlined {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
 .button {
   background: var(--accent-color);
   font-size: 1.25rem;

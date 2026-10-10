@@ -380,6 +380,17 @@
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Cards and pager entries are links; keep them from turning link-colored */
+.card,
+.card:visited {
+  color: inherit;
+}
+
+.pagerLink,
+.pagerLink:visited {
+  color: #4ec9b0;
+}
+
 .pagerLink {
   display: flex;
   flex-direction: column;

@@ -82,11 +82,11 @@ const RepoRow = ({ repo, t }) => (
       </div>
     </div>
     <div className={styles.links}>
-      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" title={t("repositories.source")}>
+      <a href={repo.html_url} target="_blank" rel="noopener noreferrer" title={t("repositories.source")} aria-label={t("github.source", { name: repo.name })}>
         <GithubIcon height={18} width={18} className={styles.icon} />
       </a>
       {repo.homepage && (
-        <a href={repo.homepage} target="_blank" rel="noopener noreferrer" title={t("repositories.liveDemo")}>
+        <a href={repo.homepage} target="_blank" rel="noopener noreferrer" title={t("repositories.liveDemo")} aria-label={t("github.demo", { name: repo.name })}>
           <LinkIcon height={18} width={18} className={styles.icon} />
         </a>
       )}

@@ -4,8 +4,10 @@ import StarIcon from "../components/icons/StarIcon";
 import GithubIcon from "../components/icons/GithubIcon";
 import LinkIcon from "../components/icons/LinkIcon";
 import styles from "../styles/RepoCard.module.css";
+import { useT } from "@/i18n";
 
 const RepoCard = ({ repo }) => {
+  const t = useT();
   return (
     <div className={styles.card}>
       <div>
@@ -29,12 +31,24 @@ const RepoCard = ({ repo }) => {
           </div>
         </div>
         <div>
-          <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
-            <GithubIcon height={20} width={20} className={styles.icon} />
+          <a
+            href={repo.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={t("github.source", { name: repo.name })}
+            title={t("github.source", { name: repo.name })}
+          >
+            <GithubIcon height={20} width={20} className={styles.icon} aria-hidden="true" />
           </a>
           {repo.homepage && (
-            <a href={repo.homepage} target="_blank" rel="noopener noreferrer">
-              <LinkIcon height={20} width={20} className={styles.icon} />
+            <a
+              href={repo.homepage}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("github.demo", { name: repo.name })}
+              title={t("github.demo", { name: repo.name })}
+            >
+              <LinkIcon height={20} width={20} className={styles.icon} aria-hidden="true" />
             </a>
           )}
         </div>

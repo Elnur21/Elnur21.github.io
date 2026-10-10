@@ -39,9 +39,9 @@ const Tab = ({ icon, filename, path }) => {
       title={filename}
       data-path={path}
     >
-      <Image src={icon} alt={filename} height={18} width={18} />
+      <Image src={icon} alt="" aria-hidden="true" height={18} width={18} />
       <p>{filename}</p>
-      <span className={styles.close} onClick={closeTab} aria-label={t("tab.close")}>
+      <span className={styles.close} onClick={closeTab} role="button" aria-label={t("tab.close")}>
         x
       </span>
     </div>

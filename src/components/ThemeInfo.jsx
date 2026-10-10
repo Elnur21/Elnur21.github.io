@@ -12,13 +12,13 @@ const ThemeInfo = ({ icon, name, publisher, theme }) => {
 
   return (
     <div className={styles.container}>
-      <Image src={icon} alt={name} height={100} width={100} />
+      <Image src={icon} alt={t("settings.preview", { name })} height={100} width={100} />
       <div className={styles.info}>
         <div>
           <h3>{name}</h3>
           <h5>{publisher}</h5>
         </div>
-        <button onClick={() => setTheme(theme)}>{t('settings.setTheme')}</button>
+        <button onClick={() => setTheme(theme)} aria-label={t("settings.setThemeLabel", { name })}>{t('settings.setTheme')}</button>
       </div>
     </div>
   );

@@ -13,54 +13,63 @@ import HeartIcon from "./icons/HeartIcon";
 import WatchIcon from "./icons/WatchIcon";
 // import HtmlIcon from "../../public/HTML5_logo_and_wordmark.svg.png";
 import { useAppStore } from "@/libs/store";
+import { useT } from "@/i18n";
 // import Image from "next/image";
 
 const sidebarTopItems = [
   {
     Icon: FilesIcon,
     path: "/",
+    label: "Home",
     iconPath: "/react_icon.svg",
     fileName: "home.jsx",
   },
   {
     Icon: GithubIcon,
     path: "/github",
+    label: "GitHub",
     iconPath: "/markdown_icon.svg",
     fileName: "github.md",
   },
   {
     Icon: CodeIcon,
     path: "/projects-py",
+    label: "Projects",
     iconPath: "/py_icon.svg",
     fileName: "projects.py",
   },
   {
     Icon: ComputerIcon,
     path: "/projects-js",
+    label: "Projects",
     iconPath: "/js_icon.svg",
     fileName: "projects.js",
   },
   {
     Icon: PencilIcon,
     path: "/languages",
+    label: "Languages",
     iconPath: "/json_icon.svg",
     fileName: "languages.json",
   },
   {
     Icon: MailIcon,
     path: "/contact",
+    label: "Contact",
     iconPath: "/yml_icon.svg",
     fileName: "contact.yml",
   },
   {
     Icon: HeartIcon,
     path: "/hobbies",
+    label: "Hobbies",
     iconPath: "/react_icon.svg",
     fileName: "hobbies.jsx",
   },
   {
     Icon: WatchIcon,
     path: "/experience",
+    label: "Experience",
     iconPath: "/json_icon.svg",
     fileName: "experience.json",
   },
@@ -70,12 +79,14 @@ const sidebarBottomItems = [
   {
     Icon: AccountIcon,
     path: "/resume",
+    label: "Resume",
     iconPath: "/html_icon.svg",
     fileName: "resume.html",
   },
   {
     Icon: SettingsIcon,
     path: "/settings",
+    label: "Settings",
     iconPath: "/vscode_icon.svg",
     fileName: "settings",
   },
@@ -84,11 +95,13 @@ const sidebarBottomItems = [
 const Sidebar = () => {
   const router = useRouter();
   const addTab = useAppStore((state) => state.addTab);
+  const t = useT();
+  const linkLabel = (label, fileName) => `${t(`titles.${label}`)} (${fileName})`;
 
   return (
-    <aside className={styles.sidebar}>
+    <nav className={styles.sidebar} aria-label={t("explorer.title")}>
       <div className={styles.sidebarTop}>
-        {sidebarTopItems.map(({ Icon, path, iconPath, fileName }) => (
+        {sidebarTopItems.map(({ Icon, path, label, iconPath, fileName }) => (
           <Link
             onClick={() =>
               addTab({
@@ -99,6 +112,9 @@ const Sidebar = () => {
             }
             href={path}
             key={path}
+            aria-label={linkLabel(label, fileName)}
+            title={linkLabel(label, fileName)}
+            aria-current={router?.pathname === path ? "page" : undefined}
           >
             <div
               className={`${styles.iconContainer} ${
@@ -118,7 +134,7 @@ const Sidebar = () => {
         ))}
       </div>
       <div className={styles.sidebarBottom}>
-        {sidebarBottomItems.map(({ Icon, path, iconPath, fileName }) => (
+        {sidebarBottomItems.map(({ Icon, path, label, iconPath, fileName }) => (
           <div
             key={path}
             className={`${styles.iconContainer} ${
@@ -134,6 +150,9 @@ const Sidebar = () => {
                 })
               }
               href={path}
+              aria-label={linkLabel(label, fileName)}
+              title={linkLabel(label, fileName)}
+              aria-current={router?.pathname === path ? "page" : undefined}
             >
               <Icon
                 fill={
@@ -147,7 +166,7 @@ const Sidebar = () => {
           </div>
         ))}
       </div>
-    </aside>
+    </nav>
   );
 };
 

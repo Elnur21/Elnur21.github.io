@@ -1,10 +1,29 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
 import styles from "@/styles/BlogsPage.module.css";
 import { getBlogs } from "./api/blogs";
 import { useT, formatDate } from "@/i18n";
+import { SITE_URL, localeUrl, absoluteUrl, personJsonLd } from "@/libs/seo";
+
+const postPath = (slug) => `/blogs?post=${encodeURIComponent(slug)}`;
+
+// A real link, so crawlers can reach every post; a plain click still opens it in place
+const PostLink = ({ slug, onOpen, className, children }) => (
+  <Link
+    href={postPath(slug)}
+    className={className}
+    onClick={(e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      onOpen(slug);
+    }}
+  >
+    {children}
+  </Link>
+);
 
 
 
@@ -91,9 +110,10 @@ const Meta = ({ blog }) => {
 };
 
 const Card = ({ blog, featured = false, onOpen, t }) => (
-  <button
+  <PostLink
+    slug={blog.slug}
+    onOpen={onOpen}
     className={`${styles.card} ${featured ? styles.featured : ""}`}
-    onClick={() => onOpen(blog.slug)}
   >
     <Cover blog={blog} large={featured} />
     <div className={styles.cardBody}>
@@ -103,7 +123,7 @@ const Card = ({ blog, featured = false, onOpen, t }) => (
       <p className={styles.summary}>{blog.summary}</p>
       <Tags tags={blog.tags} />
     </div>
-  </button>
+  </PostLink>
 );
 
 const Article = ({ post, prev, next, onOpen, t }) => (
@@ -138,21 +158,22 @@ const Article = ({ post, prev, next, onOpen, t }) => (
     )}
     <nav className={styles.pager}>
       {prev ? (
-        <button className={styles.pagerLink} onClick={() => onOpen(prev.slug)}>
+        <PostLink slug={prev.slug} onOpen={onOpen} className={styles.pagerLink}>
           <span>{t("blogs.newer")}</span>
           {prev.title}
-        </button>
+        </PostLink>
       ) : (
         <span />
       )}
       {next && (
-        <button
+        <PostLink
+          slug={next.slug}
+          onOpen={onOpen}
           className={`${styles.pagerLink} ${styles.pagerNext}`}
-          onClick={() => onOpen(next.slug)}
         >
           <span>{t("blogs.older")}</span>
           {next.title}
-        </button>
+        </PostLink>
       )}
     </nav>
   </article>
@@ -164,7 +185,7 @@ const BlogsPage = ({ blogs, tags }) => {
   const [activeTag, setActiveTag] = useState(null);
 
   const openPost = (slug) => {
-    router.push(slug ? `/blogs?post=${slug}` : "/blogs", undefined, {
+    router.push(slug ? postPath(slug) : "/blogs", undefined, {
       shallow: true,
     });
     document.querySelector("main")?.scrollTo({ top: 0 });
@@ -236,5 +257,39 @@ export async function getStaticProps({ locale }) {
     props: { title: "Blogs", blogs, tags },
   };
 }
+
+// Title, description, cover and BlogPosting data for /blogs?post=slug (used by _app)
+BlogsPage.getSeo = ({ blogs }, router, t) => {
+  const post = blogs?.find((blog) => blog.slug === router.query.post);
+  if (!post) return {};
+
+  const url = localeUrl(postPath(post.slug), t.locale);
+  return {
+    title: `${post.title} | ${t("meta.name")}`,
+    description: post.summary,
+    image: post.cover?.src,
+    imageAlt: post.cover?.alt || post.title,
+    type: "article",
+    publishedTime: post.date,
+    tags: post.tags,
+    jsonLd: [
+      personJsonLd(t),
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.summary,
+        datePublished: post.date,
+        inLanguage: t.locale,
+        url,
+        mainEntityOfPage: url,
+        keywords: post.tags.join(", "),
+        ...(post.cover?.src && { image: absoluteUrl(post.cover.src) }),
+        author: { "@id": `${SITE_URL}/#person` },
+        publisher: { "@id": `${SITE_URL}/#person` },
+      },
+    ],
+  };
+};
 
 export default BlogsPage;

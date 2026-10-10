@@ -39,24 +39,31 @@ const Bottombar = () => {
         <Link
           href="https://www.linkedin.com/in/elnur-meherremov/"
           target="_blank"
-          rel="noopener"
+          rel="noopener noreferrer"
         >
           <div className={styles.section}>
             <LinkedinIcon className={styles.icon} />
             <p>Linkedin</p>
           </div>
         </Link>
-        <Link href="https://github.com/Elnur21" target="_blank" rel="noopener">
+        <Link href="https://github.com/Elnur21" target="_blank" rel="noopener noreferrer">
           <div className={styles.section}>
             <GithubIcon className={styles.icon} />
             <p>Github</p>
           </div>
         </Link>
-        <div className={styles.section} onClick={toggleChat} title={t("titlebar.toggleChat")}>
+        <div
+          className={styles.section}
+          onClick={toggleChat}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggleChat()}
+          title={t("titlebar.toggleChat")}
+          role="button"
+          tabIndex={0}
+        >
           <CommentIcon width={12} height={12} className={styles.icon} />
           <p>{t("bottombar.chat")}</p>
         </div>
-        <div className={styles.section}>
+        <div className={styles.section} aria-hidden="true">
           <BellIcon />
         </div>
       </div>

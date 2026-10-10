@@ -30,7 +30,7 @@ const ProjectCard = ({ project }) => {
           sizes="(max-width: 600px) 100vw, (max-width: 1100px) 50vw, 33vw"
           placeholder="blur"
           blurDataURL={lowResImageUrl}
-          alt={project.name}
+          alt={t("projects.screenshot", { name: project.name })}
           className={styles.image}
         />
       </div>
@@ -53,8 +53,9 @@ const ProjectCard = ({ project }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.link}
+                aria-label={t("projects.linkLabel", { label, name: project.name })}
               >
-                <Icon width={15} height={15} className={styles.linkIcon} />
+                <Icon width={15} height={15} className={styles.linkIcon} aria-hidden="true" />
                 {label}
               </a>
             ))}

@@ -21,7 +21,7 @@ const GithubPage = ({ repos, user }) => {
       <a
         href="https://github.com/Elnur21"
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
         className={styles.no_color}
       >
         <div className={styles.user}>
@@ -29,7 +29,7 @@ const GithubPage = ({ repos, user }) => {
             <Image
               src={user.avatar_url}
               className={styles.avatar}
-              alt={user.login}
+              alt={t("github.avatar", { login: user.login })}
               width={50}
               height={50}
             />

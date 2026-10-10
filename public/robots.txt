@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://elnur21-github-io.vercel.app/sitemap.xml

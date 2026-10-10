@@ -55,7 +55,7 @@ const Profile = ({ user, yearsOnGithub, t }) => (
   >
     <Image
       src={user.avatar_url}
-      alt={user.login}
+      alt={t("github.avatar", { login: user.login })}
       width={72}
       height={72}
       className={styles.avatar}
