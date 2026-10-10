@@ -56,7 +56,13 @@ export const explorerItems = [
   },
   {
     title: "Blogs",
-    items: [],
+    items: [
+      {
+        name: "blogs.md",
+        path: "/blogs",
+        icon: "markdown_icon.svg",
+      },
+    ],
   },
   {
     title: "Hobbies",

@@ -1,0 +1,617 @@
+[
+  {
+    "slug": "learning-python-by-building-games",
+    "title": "Learning Python by Building Small Games",
+    "date": "2023-05-24",
+    "readTime": 3,
+    "summary": "Ping pong, Connect Four and tic-tac-toe in Tkinter: why tiny games were the fastest way for me to understand loops, state and events.",
+    "tags": [
+      "Python",
+      "Tkinter",
+      "Games"
+    ],
+    "source": "https://github.com/Elnur21/connect4",
+    "body": [
+      "When I was still finding my feet as a developer, I noticed that tutorials taught me syntax but not how a program actually lives over time. So on a single day in May 2023 I pushed three small games to GitHub: Ping Pong, Connect Four and tic-tac-toe, all written with Python and Tkinter.",
+      {
+        "h": "Why games?"
+      },
+      "A game forces you to deal with the things that matter in every real application:",
+      {
+        "list": [
+          "State: whose turn is it, what is on the board, what is the score.",
+          "Events: key presses and mouse clicks arrive whenever the user wants, not when your code is ready.",
+          "A loop: the screen has to be redrawn again and again without freezing the window.",
+          "Rules: checking four in a row in Connect Four is a nice exercise in working with 2D arrays."
+        ]
+      },
+      {
+        "h": "Same game, two languages"
+      },
+      "For tic-tac-toe I built the same game twice, once in Tkinter and once in React. Writing identical logic in two worlds made it obvious which parts are the game (the board and the win check) and which parts are just the UI layer. That split between logic and presentation is something I still use every day.",
+      {
+        "h": "Takeaway"
+      },
+      "If you are learning a new language, skip the tenth todo app and build a small game. You will run into real problems fast, and you will actually want to fix them."
+    ],
+    "cover": {
+      "label": "connect_four.py",
+      "color": "#ffd43b"
+    }
+  },
+  {
+    "slug": "building-a-vscode-style-portfolio",
+    "title": "Why My Portfolio Looks Like VS Code",
+    "date": "2023-06-18",
+    "readTime": 4,
+    "summary": "The idea behind this site: a Next.js portfolio with an explorer, tabs, themes and a title bar, built to feel like the editor I spend my days in.",
+    "tags": [
+      "Next.js",
+      "React",
+      "Zustand",
+      "CSS"
+    ],
+    "source": "https://github.com/Elnur21/Elnur21.github.io",
+    "body": [
+      "I started this repository on 18 June 2023. I wanted a portfolio that says \"developer\" without a single word of text, and the most familiar screen in my life is VS Code. So the site is an editor: every page is a file, and you browse them with an explorer, a sidebar and tabs.",
+      {
+        "h": "How it is built"
+      },
+      {
+        "list": [
+          "Next.js pages, each with getStaticProps, so every \"file\" is pre-rendered and fast.",
+          "A Zustand store, persisted to localStorage, that remembers which tabs you have open.",
+          "CSS variables for themes (Dracula, GitHub Dark, Ayu, Nord, Night Owl), switched by a data-theme attribute.",
+          "Small JSON files under /api for projects, experience and hobbies, so content lives apart from layout."
+        ]
+      },
+      {
+        "img": "/blogs/portfolio-themes.png",
+        "width": 1440,
+        "height": 860,
+        "alt": "Settings page with theme choices",
+        "caption": "The theme switcher: Dracula, GitHub Dark, Ayu, Nord and Night Owl."
+      },
+      {
+        "h": "The tabs were the hard part"
+      },
+      "Tabs look trivial until you implement them. Which tab should open when you close the active one? What happens when the saved tabs in localStorage do not match what the server rendered? I recently reworked this part so closing a tab behaves like VS Code: it focuses the tab to the right, or the left if there isn't one.",
+      {
+        "h": "Still growing"
+      },
+      "The project has been with me since 2023 and gets a new feature whenever I learn something worth showing. This blog is the newest file in the explorer."
+    ],
+    "cover": {
+      "src": "/blogs/portfolio-home.png",
+      "alt": "Home page of this VS Code style portfolio"
+    }
+  },
+  {
+    "slug": "coza-store-mern",
+    "title": "Coza Store: My First Full MERN Application",
+    "date": "2023-05-22",
+    "readTime": 3,
+    "summary": "Building an e-commerce store with MongoDB, Express, React and Node, and what splitting a project into client and server taught me.",
+    "tags": [
+      "MongoDB",
+      "Express",
+      "React",
+      "Node.js"
+    ],
+    "source": "https://github.com/Elnur21/coza-store",
+    "body": [
+      "Coza Store is an online shop I built with the MERN stack: MongoDB, Express, React and Node.js. It was the first project where I owned both sides: a React client and an Express server, living side by side in one repository.",
+      {
+        "h": "Two folders, one product"
+      },
+      "The repo has exactly two top-level folders, client and server. That structure forced me to think about the API as a contract. The client should not care how products are stored, and the server should not care how they are displayed.",
+      {
+        "h": "What I learned"
+      },
+      {
+        "list": [
+          "Designing REST endpoints for products, carts and users.",
+          "Modelling documents in MongoDB instead of tables.",
+          "Managing environment variables and CORS between two dev servers.",
+          "Deploying the frontend to Vercel."
+        ]
+      },
+      "I still come back to this project to try out new ideas, and it is one of the projects listed on this site."
+    ],
+    "cover": {
+      "src": "/coza-store.png",
+      "alt": "Coza Store home page"
+    }
+  },
+  {
+    "slug": "frontend-and-backend-summer-2023",
+    "title": "A Summer Between Frontend and Backend",
+    "date": "2023-09",
+    "readTime": 4,
+    "summary": "Responsive pages with React and Mantine at Taskilled, and a Node.js CDN deployed on AWS with Docker and pm2 at Insightify.",
+    "tags": [
+      "React",
+      "Mantine",
+      "Node.js",
+      "Docker",
+      "AWS"
+    ],
+    "body": [
+      "The summer of 2023 was the busiest stretch of my career so far. In parallel with my full-stack role at TaskRider, I worked as a frontend developer at Taskilled and as a backend developer at Insightify. Switching between them every day taught me more than any course could.",
+      {
+        "h": "Frontend at Taskilled"
+      },
+      "My main job was responsive design. I built new pages with ReactJS and Mantine.dev and made sure existing ones worked on every screen size. Mantine's hooks and layout components saved a lot of time, but the real lesson was to design mobile-first and treat desktop as an enhancement.",
+      {
+        "h": "Backend at Insightify"
+      },
+      "On the backend side I built a CDN service with Node.js and Express, while the main backend ran on Next.js. I then deployed everything to AWS using Docker and kept the processes alive with pm2.",
+      {
+        "list": [
+          "Docker made local and production environments identical.",
+          "pm2 gave me restarts, logs and zero-downtime reloads for free.",
+          "Serving static files well is mostly about caching headers."
+        ]
+      },
+      {
+        "h": "Takeaway"
+      },
+      "Doing both sides at once made me a better developer on each. As a frontend developer I now think about payload size and caching. As a backend developer I think about what the UI actually needs."
+    ],
+    "cover": {
+      "label": "docker + pm2 → aws",
+      "color": "#569cd6"
+    }
+  },
+  {
+    "slug": "rpa-bots-at-upsystems",
+    "title": "What I Learned Building RPA Bots",
+    "date": "2024-01",
+    "readTime": 3,
+    "summary": "Automation Anywhere, IQ Bot document AI and co-pilot bots: notes from my time as an RPA developer at UpSystems.",
+    "tags": [
+      "RPA",
+      "Automation Anywhere",
+      "IQ Bot",
+      "Generative AI"
+    ],
+    "body": [
+      "From July 2023 to January 2024 I worked as an RPA developer at UpSystems LLC. Robotic Process Automation was a new world for me: instead of building apps for users, you build bots that use apps the way users do.",
+      {
+        "h": "What I worked on"
+      },
+      {
+        "list": [
+          "Automation bots in the Automation Anywhere Control Room.",
+          "Forms and processes that let people start and feed bots without technical knowledge.",
+          "Co-pilot bots that work alongside a human instead of replacing them.",
+          "Document AI with IQ Bot, extracting structured data from documents."
+        ]
+      },
+      {
+        "h": "Lessons"
+      },
+      "The biggest surprise was how much RPA is about the process, not the code. A bot is only as good as your understanding of the task it replaces, so most of the work is asking \"what exactly happens when...?\" before building anything.",
+      "It also gave me my first real experience with generative AI in production, which led straight into my next step: research on deep learning."
+    ],
+    "cover": {
+      "label": "bot.run()",
+      "color": "#f5a623"
+    }
+  },
+  {
+    "slug": "time-series-classification-reading-list",
+    "title": "Deep Learning for Time Series Classification: My Reading List",
+    "date": "2024-02-09",
+    "readTime": 4,
+    "summary": "The papers I summarised during my research internship, from the UCR archive and FCN baselines to ROCKET, InceptionTime, LITE and attention.",
+    "tags": [
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://elnur21.github.io/TSC_summaries/",
+    "body": [
+      "In January 2024 I started a data science internship at the IRIMAS laboratory in France. My task was to read papers on time series classification (TSC), implement the models and compare results. To keep track of everything, I wrote a summary of each paper and published them as a small site: TSC_summaries.",
+      {
+        "h": "The list"
+      },
+      {
+        "list": [
+          "The UCR Time Series Archive: the benchmark almost every paper reports on.",
+          "Time Series Classification from Scratch with Deep Neural Networks: A Strong Baseline (FCN, ResNet).",
+          "Deep learning for time series classification: a review.",
+          "ROCKET: exceptionally fast and accurate classification with random convolutional kernels.",
+          "InceptionTime: an ensemble of Inception-based networks.",
+          "LITE: a light Inception model with boosting tricks.",
+          "Disjoint-CNN for multivariate time series classification.",
+          "Enhancing TSC with self-supervised learning (TRILITE).",
+          "Attention Is All You Need, plus transformers for time series forecasting."
+        ]
+      },
+      {
+        "h": "How I read papers"
+      },
+      "For every paper I wrote down four things: the problem, the core idea in one sentence, the architecture, and how it was evaluated. Then I implemented the model myself. In February 2024 I pushed my own versions of an MLP, logistic regression, ROCKET and InceptionTime. A paper only really made sense once the code ran.",
+      {
+        "img": "/blogs/trilite-positive-samples.png",
+        "width": 1557,
+        "height": 915,
+        "alt": "Positive sample generation with MixUp and masking",
+        "caption": "From the TRILITE paper: a positive sample is made by mixing the reference with two other series, then masking part of it. Working through figures like this one was how I made sure I understood a method before implementing it.",
+        "light": true
+      },
+      "If you are getting into TSC, start with the UCR archive paper and the FCN baseline, then read ROCKET. It will change what you think \"deep\" needs to mean."
+    ],
+    "cover": {
+      "src": "/ArrowHead_filters.png",
+      "alt": "Scatter plot of first-layer filters on the ArrowHead dataset",
+      "light": true,
+      "fit": "contain"
+    }
+  },
+  {
+    "slug": "research-internship-irimas",
+    "title": "Five Months of Research at IRIMAS",
+    "date": "2024-05",
+    "readTime": 5,
+    "summary": "Reproducing LITE and TRILITE, building a custom Disjoint-CNN for multivariate time series, and learning how research actually works.",
+    "tags": [
+      "Python",
+      "Deep Learning",
+      "Time Series",
+      "Research"
+    ],
+    "source": "https://github.com/Elnur21/Custom-Disjoint-CNN",
+    "body": [
+      "My internship at the IRIMAS laboratory in France ran from January to May 2024. It was my first time working full-time in a research lab instead of on products, and it changed how I approach problems.",
+      {
+        "h": "Reproducing before improving"
+      },
+      "The first rule I learned: before you try to beat a model, reproduce it. I re-implemented LITE, a lightweight Inception-style network for time series, and then worked with the code of TRILITE. TRILITE is a self-supervised approach that uses a triplet loss to learn representations from univariate UCR datasets, and it can also be trained semi-supervised.",
+      {
+        "img": "/blogs/trilite-triplet-loss.png",
+        "width": 881,
+        "height": 650,
+        "alt": "Reference, positive and negative series feeding one encoder trained with a triplet loss",
+        "caption": "TRILITE's setup: reference, positive and negative series pass through one encoder trained with a triplet loss. Figure from the TRILITE code repository.",
+        "light": true
+      },
+      {
+        "h": "A custom Disjoint-CNN"
+      },
+      "My main experiment was multivariate time series classification (MTSC). Disjoint-CNN handles multivariate data by separating temporal and spatial (channel-wise) convolutions. I built a custom variant and ran it next to the original, then plotted the training accuracy and results of both to see where the changes helped and where they didn't.",
+      "The scatter plot below puts each dataset at (custom accuracy, original accuracy). Points under the diagonal are datasets where my version did better: 15 for the custom model, 5 for the original and 1 tie.",
+      {
+        "img": "/blogs/disjoint-cnn-compare.png",
+        "width": 640,
+        "height": 480,
+        "alt": "One-to-one accuracy comparison between custom and original Disjoint-CNN",
+        "caption": "Custom vs. original Disjoint-CNN, one point per dataset.",
+        "light": true
+      },
+      {
+        "h": "What research taught me"
+      },
+      {
+        "list": [
+          "Write scripts, not notebooks, for anything you will run more than twice.",
+          "Save every result with its configuration, or you will not know what produced it.",
+          "A negative result is still a result. Plot it and move on.",
+          "Read the evaluation section first: it tells you what the authors were really optimising."
+        ]
+      },
+      "I kept working on the Disjoint-CNN code after the internship, with the last updates in August 2024."
+    ],
+    "cover": {
+      "src": "/DisJoint-CNN.png",
+      "alt": "Disjoint-CNN architecture with 1+1D blocks",
+      "light": true,
+      "fit": "contain"
+    }
+  },
+  {
+    "slug": "crm-and-dialers-at-agilesolutions",
+    "title": "Starting at AgileSolutions: CRMs, Dialers and RabbitMQ",
+    "date": "2024-08",
+    "readTime": 3,
+    "summary": "Back to full-stack work: Node.js and React across many CRM and dialer projects, with social media messages flowing through RabbitMQ.",
+    "tags": [
+      "Node.js",
+      "React",
+      "RabbitMQ",
+      "CRM"
+    ],
+    "body": [
+      "In August 2024 I joined AgileSolutions LLC as a full-stack developer, going back to product work after my research internship. Since then I have worked on around twenty CRM and dialer projects, with Node.js on the backend and React on the frontend.",
+      {
+        "h": "Why a message queue"
+      },
+      "One of the most interesting parts of the job is handling social media messages. Messages arrive from many channels at unpredictable rates, and losing one is not acceptable. RabbitMQ sits in the middle: producers publish incoming messages and consumers process them at their own pace.",
+      {
+        "list": [
+          "Traffic spikes are absorbed by the queue instead of crashing a service.",
+          "A consumer can be restarted or deployed without losing messages.",
+          "New channels can be added without touching the processing logic."
+        ]
+      },
+      {
+        "h": "Working on many projects at once"
+      },
+      "Twenty projects means you can't afford to solve the same problem twice. That is where a lot of my side projects come from: whenever I notice a pattern repeating, I try to turn it into something reusable."
+    ],
+    "cover": {
+      "label": "queue.publish(msg)",
+      "color": "#ff8a3d"
+    }
+  },
+  {
+    "slug": "chess-with-tkinter-and-minimax",
+    "title": "Chess with Tkinter, MSSQL and a Minimax Bot",
+    "date": "2025-01-17",
+    "readTime": 3,
+    "summary": "A desktop chess game in Python with a minimax AI opponent and game data stored in Microsoft SQL Server.",
+    "tags": [
+      "Python",
+      "Tkinter",
+      "MSSQL",
+      "AI"
+    ],
+    "source": "https://github.com/Elnur21/chess",
+    "body": [
+      "Almost two years after my first Tkinter games, I came back to the same toolkit for something much bigger: chess. Comparing the two projects is a good way to see how much I have grown.",
+      {
+        "h": "Stack"
+      },
+      {
+        "list": [
+          "Tkinter for the desktop UI.",
+          "The python-chess library for move generation and rule validation.",
+          "Microsoft SQL Server to store game data.",
+          "A minimax algorithm for the bot player."
+        ]
+      },
+      {
+        "h": "Don't reinvent the rules"
+      },
+      "Chess rules are full of edge cases: castling, en passant, promotion, stalemate. Using a library for move validation let me focus on what was actually interesting, the AI.",
+      {
+        "h": "Minimax in a nutshell"
+      },
+      "The bot looks a few moves ahead. It assumes it will pick the best move for itself and that I will pick the move that is worst for it, then scores the resulting positions. Even a shallow search with simple material scoring plays a surprisingly annoying game.",
+      "I have kept improving the project since then, most recently in June 2026."
+    ],
+    "cover": {
+      "label": "♞ minimax(depth=3)",
+      "color": "#4ec9b0"
+    }
+  },
+  {
+    "slug": "one-filter-format-four-orms",
+    "title": "One Filter Format, Four ORMs",
+    "date": "2025-02-16",
+    "readTime": 4,
+    "summary": "dynamic-query-builder turns flat filters like price_gte=10 into Prisma, Mongoose, TypeORM or Sequelize queries.",
+    "tags": [
+      "JavaScript",
+      "Node.js",
+      "Prisma",
+      "Mongoose",
+      "TypeORM",
+      "Sequelize"
+    ],
+    "source": "https://github.com/Elnur21/dynamic-query-builder",
+    "body": [
+      "Across many CRM projects I kept writing the same code: read filters from the query string and turn them into a database query. The only thing that changed was the ORM. So I wrote dynamic-query-builder.",
+      {
+        "h": "The idea"
+      },
+      "Filters come in as a flat object where each key is field_condition and each value is the value to compare against:",
+      {
+        "code": "{\n  price_gte: 10,\n  price_lt: 100,\n  name_c: \"phone\",\n  status_ne: \"archived\"\n}"
+      },
+      "The library has one builder per ORM: buildPrismaQuery, buildMongooseQuery, buildTypeORMQuery and buildSequelizeQuery. For Sequelize you pass in its Op object as well.",
+      {
+        "h": "Supported conditions"
+      },
+      {
+        "list": [
+          "lt, lte, gt, gte: comparisons.",
+          "between: a range, given as an array of two values.",
+          "contains (alias c): case-insensitive match; caseSensitiveContains (alias csc).",
+          "eq, ne, and the default (no suffix) for equality.",
+          "neContains: does not contain."
+        ]
+      },
+      {
+        "h": "Why flat?"
+      },
+      "Flat keys survive URLs, forms and logs without any extra encoding, and the frontend doesn't need to know which database is behind the API. The backend can switch from Mongoose to Prisma without changing a single request."
+    ],
+    "cover": {
+      "label": "{ price_gte: 10 }",
+      "color": "#dcdcaa"
+    }
+  },
+  {
+    "slug": "local-voice-ai-assistant-azerbaijani",
+    "title": "A Fully Local Voice AI Assistant in Azerbaijani",
+    "date": "2026-04-24",
+    "readTime": 5,
+    "summary": "Speak into the mic, get a spoken answer: Whisper for speech-to-text, Ollama for the LLM, Edge TTS for the voice, plus a knowledge base.",
+    "tags": [
+      "Python",
+      "Whisper",
+      "Ollama",
+      "LLM",
+      "AI"
+    ],
+    "source": "https://github.com/Elnur21/local-ai-audio-conference",
+    "body": [
+      "Most voice assistants are built for English. I wanted one that understands Azerbaijani, answers from my own knowledge base, and runs entirely on my own machine. The result is AI Səs Konfransı, a voice-based assistant you can talk to in the browser.",
+      {
+        "h": "The pipeline"
+      },
+      {
+        "list": [
+          "Speech-to-text: Whisper large-v3 transcribes the microphone input.",
+          "Retrieval: a sentence-transformer model finds relevant entries in the knowledge base.",
+          "LLM: a model served by Ollama (for example llama3) writes the answer.",
+          "Text-to-speech: Edge TTS reads the answer back."
+        ]
+      },
+      "A FastAPI app served with uvicorn ties it all together, and the UI is a simple page with a microphone button.",
+      {
+        "h": "Running on a laptop GPU"
+      },
+      "The target was modest hardware: an NVIDIA RTX 3050 with 4 GB of VRAM. Whisper large-v3 is about 1.5 GB and the embedding model about 120 MB, both downloaded on first launch. The trick is to keep the models loaded between requests and let Ollama run as a separate service.",
+      {
+        "h": "Why local?"
+      },
+      "No API keys, no per-request costs, and no audio leaving the machine. For a knowledge base that may contain internal documents, that last point matters most.",
+      "A day later I started whisper-bot, a Telegram bot built on the same speech-to-text idea."
+    ],
+    "cover": {
+      "label": "whisper → ollama → tts",
+      "color": "#c586c0"
+    }
+  },
+  {
+    "slug": "crm-micro-frontends-with-vite",
+    "title": "Splitting a CRM into Micro-Frontends with Vite",
+    "date": "2026-07-14",
+    "readTime": 4,
+    "summary": "A shell app and three remotes (Customers, Deals, Dashboard) wired together at runtime with Module Federation for Vite.",
+    "tags": [
+      "React",
+      "Vite",
+      "Micro-Frontends",
+      "Module Federation"
+    ],
+    "source": "https://github.com/Elnur21/crm-microfrontend",
+    "body": [
+      "After working on many CRMs, I wanted to try a different architecture: what if each business domain were its own app, built and deployed independently? crm-microfrontend is a small experiment that does exactly that, using Vite, React and @originjs/vite-plugin-federation.",
+      {
+        "h": "Structure"
+      },
+      {
+        "code": "shell/      host app (5000): layout, routing, auth, profile, settings\ncustomers/  remote (5001): exposes CustomersApp\ndeals/      remote (5002): exposes DealsApp\ndashboard/  remote (5003): exposes DashboardApp"
+      },
+      "The shell loads the remotes at runtime. Business pages (Customers, Deals, Dashboard) are remotes. Cross-cutting concerns (auth, layout, profile, settings, notifications) stay in the shell, because they apply to every page instead of belonging to one domain.",
+      {
+        "h": "Deliberate duplication"
+      },
+      "Each app keeps its own mock data and its own small stylesheet with shared design tokens. Copying those tokens feels wrong at first, but it is the point: a team can change and ship the Deals app without coordinating a release of a shared package.",
+      {
+        "h": "When it's worth it"
+      },
+      "Micro-frontends add real complexity. They pay off when several teams own different parts of a large product. For a single team, a well-structured monolith is usually simpler. The experiment helped me understand where that line is."
+    ],
+    "cover": {
+      "label": "shell ⟶ remotes",
+      "color": "#61dafb"
+    }
+  },
+  {
+    "slug": "world-statistics-awk-gnuplot",
+    "title": "World Energy and Temperature Statistics with awk and gnuplot",
+    "date": "2022-09-27",
+    "readTime": 5,
+    "summary": "A team research project: cleaning per-country energy and temperature data with awk, joining it, and turning it into charts with gnuplot.",
+    "tags": [
+      "Research",
+      "Data Analysis",
+      "awk",
+      "gnuplot",
+      "Linux"
+    ],
+    "source": "https://github.com/Elnur21/World_Statistics_Analyze",
+    "cover": {
+      "src": "/blogs/world-stats-production-1990-2013.png",
+      "alt": "Top 5 coal, oil and gas producers in 1990 and 2013",
+      "light": true,
+      "fit": "contain"
+    },
+    "body": [
+      "In September 2022 I worked with two teammates, Azad Kichibekov and Emil Aliyev, on a data analysis project. The question was simple: how have energy production, energy consumption and temperature changed across countries since 1990? We answered it with command-line tools: awk to process the data and gnuplot to draw it.",
+      {
+        "h": "The data"
+      },
+      {
+        "list": [
+          "Energy: 241 CSV files, one per country or region, with production and consumption figures for coal, oil, gas, hydro, solar, wind and more.",
+          "Temperature: the GlobalLandTemperaturesByCountry dataset, with monthly average temperatures and their uncertainty for every country."
+        ]
+      },
+      {
+        "h": "Cleaning with awk"
+      },
+      "Most of the work was getting two very different datasets into one shape. We wrote a small awk script for each step and kept them in a com/ folder so they could be chained:",
+      {
+        "list": [
+          "Merge the 241 energy files into one CSV, keeping only the first header.",
+          "Keep only the years from 1990 onwards.",
+          "Turn monthly dates (yyyy-mm-dd) into years.",
+          "Drop rows with missing temperature or uncertainty values.",
+          "Group by year and country and average the monthly temperatures.",
+          "Join the temperature and energy data on year and country."
+        ]
+      },
+      "This is the step that turns monthly dates into years:",
+      {
+        "code": "# input $1 yyyy-mm-dd\n# output $1 yyyy\n{\n    gsub(/-[0-9]{2}-[0-9]{2}/, \"\", $1);\n    print $0;\n}"
+      },
+      {
+        "h": "My part: the charts"
+      },
+      "I worked on the visualization side. Every chart is a gnuplot script fed by a one-line awk filter, run from a Jupyter notebook, so any chart can be rebuilt from the raw data with a single command.",
+      {
+        "img": "/blogs/world-stats-production-1990-2013.png",
+        "width": 1300,
+        "height": 1000,
+        "alt": "Top 5 coal, oil and gas producers in 1990 compared to 2013",
+        "caption": "Top 5 producers of coal, oil and gas in 1990 (top row) and 2013 (bottom row).",
+        "light": true
+      },
+      "Comparing 1990 with 2013 showed the biggest shifts. In 1990 China, the United States and Europe were close in coal production. By 2013 China's coal production was several times higher than anyone else's. In gas, Russia led in 1990, while the United States had moved to first place by 2013.",
+      {
+        "img": "/blogs/world-stats-renewables-2013.png",
+        "width": 1300,
+        "height": 1000,
+        "alt": "Top 5 hydro, solar and wind consumers in 2013",
+        "caption": "Top 5 consumers of hydro, solar and wind energy in 2013.",
+        "light": true
+      },
+      "For renewables in 2013, China led in hydro, while Europe led in both solar and wind, with Germany as the top single country for solar.",
+      {
+        "img": "/blogs/world-stats-greenhouse.png",
+        "width": 1300,
+        "height": 1000,
+        "alt": "Greenhouse gas emissions in Azerbaijan from 2000 to 2013, and the top 5 emitters in 2013",
+        "caption": "Left: greenhouse gas emissions in Azerbaijan, 2000 to 2013. Right: the top 5 emitters in 2013.",
+        "light": true
+      },
+      "I also plotted average temperatures for France, Germany, Europe, Turkey and Azerbaijan in 1990, 1995, 2000 and 2010. Turkey and Azerbaijan were both about two degrees warmer in 2010 than in 1990.",
+      {
+        "img": "/barplot.png",
+        "width": 800,
+        "height": 600,
+        "alt": "Average temperatures of five countries in 1990, 1995, 2000 and 2010",
+        "caption": "Average temperature in five countries across four years.",
+        "light": true
+      },
+      {
+        "h": "What I learned"
+      },
+      {
+        "list": [
+          "awk is still one of the fastest ways to filter, group and join CSV files, and a pipeline of small scripts is easy to debug.",
+          "Datasets mix countries with regions like \"Europe\" and \"Africa\". You have to decide on purpose whether to compare them, or the top 5 charts will mislead you.",
+          "Missing values are everywhere. Deciding how to handle them, before averaging anything, mattered more than any chart setting.",
+          "Keeping every chart as a script made it painless to fix a mistake and rebuild every chart in minutes."
+        ]
+      },
+      "It was my first research-style project, long before my internship at IRIMAS, and it taught me to spend most of my time understanding and cleaning the data."
+    ]
+  }
+]

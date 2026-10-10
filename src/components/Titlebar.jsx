@@ -15,6 +15,7 @@ const PAGE_TABS = {
   "/github": { icon: "/markdown_icon.svg", fileName: "github.md" },
   "/experience": { icon: "/json_icon.svg", fileName: "experience.json" },
   "/hobbies": { icon: "/react_icon.svg", fileName: "hobbies.jsx" },
+  "/blogs": { icon: "/markdown_icon.svg", fileName: "blogs.md" },
 };
 
 const SHORTCUTS = [
@@ -69,6 +70,7 @@ const MENUS = [
       { label: "~/projects.js", shortcut: "", action: "navigate", path: "/projects-js" },
       { label: "~/projects.py", shortcut: "", action: "navigate", path: "/projects-py" },
       { label: "~/hobbies.jsx", shortcut: "", action: "navigate", path: "/hobbies" },
+      { label: "~/blogs.md", shortcut: "", action: "navigate", path: "/blogs" },
       { label: "~/languages.json", shortcut: "", action: "navigate", path: "/languages" },
       { label: "~/contact.yml", shortcut: "", action: "navigate", path: "/contact" },
     ],
