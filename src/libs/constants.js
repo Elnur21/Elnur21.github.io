@@ -47,6 +47,11 @@ export const explorerItems = [
         path: "/repositories",
         icon: "json_icon.svg",
       },
+      {
+        name: "insights.py",
+        path: "/insights",
+        icon: "py_icon.svg",
+      },
     ],
   },
   {
