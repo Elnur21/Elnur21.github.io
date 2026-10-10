@@ -2,22 +2,40 @@
   display: flex;
   background: var(--tabs-bg);
   overflow-x: auto;
-  scrollbar-width: none;
+  overflow-y: hidden;
   min-height: 36px;
+  /* Swiping the tab bar on touch screens shouldn't scroll the page */
+  overscroll-behavior-x: contain;
 }
 
+/* Firefox only: Chrome ignores the ::-webkit-scrollbar styles below
+   whenever these standard properties are set */
+@supports (-moz-appearance: none) {
+  .tabs {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-bg) transparent;
+  }
+}
+
+/* Chrome, Edge, Safari: a thin VS Code style scrollbar under the tabs.
+   Its height is always reserved so the bar doesn't jump on hover */
 .tabs::-webkit-scrollbar {
+  height: 5px;
+}
+
+.tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabs::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-bg);
+  border-radius: 3px;
+}
+
+.tabs::-webkit-scrollbar-button {
   display: none;
 }
 
-@media screen and (max-width: 900px) {
-  .tabs {
-    width: 78vw;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .tabs {
-    width: 89.5vw;
-  }
+.tabs:hover::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
 }

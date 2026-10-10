@@ -9,9 +9,9 @@
   font-size: 0.9rem;
   cursor: pointer;
   transition: 0.3s;
-  flex-shrink: 1;
-  min-width: 80px;
-  max-width: 160px;
+  /* Like VS Code: tabs keep a readable width and the bar scrolls */
+  flex-shrink: 0;
+  max-width: 180px;
   overflow: hidden;
   user-select: none;
 }
@@ -48,6 +48,10 @@
   color: #fff;
 }
 
+.tab img {
+  flex-shrink: 0;
+}
+
 .tab p {
   margin-left: 5px;
   overflow: hidden;
@@ -73,6 +77,8 @@
 
 @media screen and (max-width: 600px) {
   .tab {
-    font-size: 1.1rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    max-width: 150px;
   }
 }

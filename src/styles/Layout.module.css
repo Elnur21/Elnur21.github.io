@@ -5,6 +5,15 @@
   background: var(--main-bg);
 }
 
+/* Tabs + page. min-width: 0 lets it shrink, so a long row of tabs scrolls
+   inside the tab bar instead of stretching the whole page sideways */
+.editor {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
 .content {
   padding: 2rem;
   color: var(--text-color);

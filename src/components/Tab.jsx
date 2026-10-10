@@ -35,6 +35,7 @@ const Tab = ({ icon, filename, path }) => {
         closeTab(e);
       }}
       title={filename}
+      data-path={path}
     >
       <Image src={icon} alt={filename} height={18} width={18} />
       <p>{filename}</p>
