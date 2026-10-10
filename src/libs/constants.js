@@ -72,6 +72,11 @@ export const explorerItems = [
         path: "/blogs",
         icon: "markdown_icon.svg",
       },
+      {
+        name: "blog-insights.py",
+        path: "/blog-insights",
+        icon: "py_icon.svg",
+      },
     ],
   },
   {
