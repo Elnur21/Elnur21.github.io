@@ -58,12 +58,14 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <Link href="/resume">
-              <button className={styles.button + " rounded"}>{t("home.resume")}</button>
-            </Link>
-            <Link href="/contact">
-              <button className={styles.outlined + " rounded"}>{t("home.contact")}</button>
-            </Link>
+            <div className={styles.actions}>
+              <Link href="/resume">
+                <button className={styles.button + " rounded"}>{t("home.resume")}</button>
+              </Link>
+              <Link href="/contact">
+                <button className={styles.outlined + " rounded"}>{t("home.contact")}</button>
+              </Link>
+            </div>
           </div>
           <div className={styles.right}>
             <div className={styles.picture_boader}>

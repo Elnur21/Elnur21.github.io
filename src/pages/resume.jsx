@@ -19,11 +19,17 @@ const ResumePage = () => {
         </a>
         )
       </h3>
-      <br />
-      <div
-        className={styles.pdfContainer}
-        style={{ height: "750px", width: "100%" }}
+      {/* Most phone browsers can't show a PDF inside a page */}
+      <a
+        href={myResume}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${styles.underline} ${styles.openLink}`}
       >
+        {t("resume.open")}
+      </a>
+      <br />
+      <div className={styles.pdfContainer}>
         <iframe
           src={myResume}
           style={{ width: "100%", height: "100%", border: "none" }}

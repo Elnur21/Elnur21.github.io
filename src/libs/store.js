@@ -21,6 +21,11 @@ export const useAppStore = create()(
             : [...get().tabs, newTab],
         }),
 
+      // Explorer drawer on phones (always visible on larger screens)
+      explorerOpen: false,
+      toggleExplorer: () => set({ explorerOpen: !get().explorerOpen }),
+      setExplorerOpen: (explorerOpen) => set({ explorerOpen }),
+
       // Chat panel
       chatOpen: false,
       toggleChat: () => set({ chatOpen: !get().chatOpen }),

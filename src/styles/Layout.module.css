@@ -39,6 +39,8 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
+  /* Wide content scrolls inside its own box (code blocks, tables), never the page */
+  overflow-x: hidden;
 }
 
 .content {
@@ -60,8 +62,45 @@
   border-left: 1px solid #1e1f29;
 }
 
-@media screen and (max-width: 600px) {
+/* Dims the page behind the explorer drawer (phones only) */
+.backdrop {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
   .content {
-    padding: 2rem 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Phones: the activity bar moves under the page, like a bottom navigation bar */
+@media screen and (max-width: 600px) {
+  .main {
+    flex-direction: column;
+  }
+
+  .editor {
+    flex: 1 1 auto;
+  }
+
+  .content {
+    padding: 1.25rem 1rem;
+  }
+
+  .content {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb-bg) transparent;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background: rgba(0, 0, 0, 0.5);
   }
 }

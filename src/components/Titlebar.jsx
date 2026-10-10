@@ -137,6 +137,8 @@ export default function Titlebar() {
   const { addTab, removeTab, tabs } = useAppStore();
   const chatOpen = useAppStore((state) => state.chatOpen);
   const toggleChat = useAppStore((state) => state.toggleChat);
+  const explorerOpen = useAppStore((state) => state.explorerOpen);
+  const toggleExplorer = useAppStore((state) => state.toggleExplorer);
   // chatOpen is restored from localStorage; only reflect it after mount
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -407,6 +409,17 @@ export default function Titlebar() {
 
   return (
     <section className={styles.titlebar} ref={ref}>
+      <button
+        onClick={toggleExplorer}
+        className={styles.explorerToggle}
+        title={t("explorer.toggle")}
+        aria-label={t("explorer.toggle")}
+        aria-expanded={explorerOpen}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
       <Image
         src="/vscode_icon.svg"
         alt="VSCode Icon"

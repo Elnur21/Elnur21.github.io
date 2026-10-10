@@ -4,12 +4,12 @@ import ExplorerItem from "./ExplorerItem";
 import { explorerItems } from "@/libs/constants";
 import { useT } from "@/i18n";
 
-const Explorer = () => {
+const Explorer = ({ open }) => {
   const t = useT();
   const [activeMenus, setActiveMenu] = useState("General");
 
   return (
-    <div className={styles.explorer}>
+    <div className={`${styles.explorer} ${open ? styles.open : ""}`}>
       <p className={styles.title}>{t("explorer.title")}</p>
       {explorerItems.map((item, index) => (
         <ExplorerItem

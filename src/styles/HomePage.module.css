@@ -226,40 +226,6 @@
   }
 }
 
-/* Phone */
-@media screen and (max-width: 600px) {
-  .foreground {
-    margin: 0;
-  }
-
-  .name {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .bio {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .button {
-    font-size: 0.5rem;
-  }
-
-  .outlined {
-    font-size: 0.5rem;
-  }
-
-  .illustration {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 75vw;
-    height: 50vh;
-    z-index: 1;
-  }
-}
-
 .cardContainer {
   margin: 1.5rem 0;
   display: grid;
@@ -268,13 +234,85 @@
   bottom: 0;
 }
 
+/* Tablets and phones: one centered column - photo, name, role, buttons, skills */
 @media only screen and (max-width: 1100px) {
-  .cardContainer {
-    display: none;
+  /* Let the column grow and scroll; centering it in a fixed-height box
+     pushed the photo above the top edge in landscape */
+  .container {
+    display: block;
+    height: auto;
   }
 
-  .right {
-    display: none;
+  .name {
+    font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+  }
+
+  .foreground {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  .foreground > .content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+
+  /* Buttons before the skills, so they stay near the top */
+  .actions {
+    order: 1;
+  }
+
+  .cardContainer {
+    order: 2;
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    margin: 2.5rem auto 0;
+  }
+
+  .card {
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    background: var(--article-bg);
+    cursor: default;
+  }
+
+  .card h4 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .card h4::before {
+    content: "// ";
+    color: #6a9955;
+  }
+
+  .tags {
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+  }
+
+  .tags span {
+    margin: 0;
+  }
+
+  .picture_boader {
+    width: 180px;
+    height: 180px;
+    border: 5px solid color-mix(in srgb, var(--accent-color) 45%, transparent);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .bio {
+    max-width: 100%;
   }
 }
 
@@ -314,4 +352,84 @@
   border-radius: 20px;
   font-size: 0.75rem;
   transition: all 0.2s;
+}
+
+/* Phone */
+@media screen and (max-width: 600px) {
+  .foreground {
+    margin: 0.5rem 0 0;
+    gap: 1.25rem;
+  }
+
+  .picture_boader {
+    width: 132px;
+    height: 132px;
+    border-width: 4px;
+  }
+
+  .name {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .bio {
+    font-size: 1rem;
+    margin: 0.5rem auto 1.5rem;
+  }
+
+  /* Two equal buttons, big enough to tap */
+  .actions {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  .actions > a {
+    flex: 1;
+  }
+
+  .button,
+  .outlined {
+    width: 100%;
+    min-height: 46px;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .cardContainer {
+    margin-top: 2rem;
+  }
+
+  .card .content {
+    padding: 1rem;
+  }
+
+  .tags span {
+    margin: 0;
+    font-size: 0.7rem;
+  }
+
+  .illustration {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 75vw;
+    height: 50vh;
+    z-index: 1;
+  }
+}
+
+/* Short screens (phones in landscape): a smaller photo keeps the name in view */
+@media screen and (max-width: 1100px) and (max-height: 500px) {
+  .foreground {
+    gap: 1rem;
+  }
+
+  .picture_boader {
+    width: 104px;
+    height: 104px;
+    border-width: 4px;
+  }
 }

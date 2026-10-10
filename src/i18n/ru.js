@@ -104,6 +104,7 @@ const ru = {
 
   explorer: {
     title: "Explorer",
+    toggle: "Показать/скрыть Explorer",
     groups: { General: "Общее", Github: "Github", Experience: "Опыт", Blogs: "Блог", Hobbies: "Хобби" },
   },
 
@@ -118,7 +119,7 @@ const ru = {
     photo: "Фото Эльнура Магеррамова",
   },
 
-  resume: { title: "Резюме", download: "Скачать" },
+  resume: { title: "Резюме", download: "Скачать", open: "Открыть в новой вкладке" },
 
   contact: {
     findMe: "Где меня найти",

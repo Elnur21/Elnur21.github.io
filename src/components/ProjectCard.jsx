@@ -15,7 +15,7 @@ const ProjectCard = ({ project }) => {
         placeholder="blur"
         blurDataURL={lowResImageUrl}
         alt={project.name}
-        style={{ width: "100%", objectFit: "contain" }}
+        style={{ width: "100%", height: "auto" }}
       />
       <div className={styles.content}>
         <h3>{project.name}</h3>

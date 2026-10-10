@@ -119,7 +119,12 @@ const Sidebar = () => {
       </div>
       <div className={styles.sidebarBottom}>
         {sidebarBottomItems.map(({ Icon, path, iconPath, fileName }) => (
-          <div key={path} className={styles.iconContainer}>
+          <div
+            key={path}
+            className={`${styles.iconContainer} ${
+              router?.pathname === path && styles.active
+            }`}
+          >
             <Link
               onClick={() =>
                 addTab({

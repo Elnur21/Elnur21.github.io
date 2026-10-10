@@ -75,9 +75,53 @@
   color: var(--accent-color);
 }
 
+/* Hamburger that opens the explorer drawer; phones only */
+.explorerToggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  width: 30px;
+  height: 30px;
+  margin-right: 4px;
+  padding: 0 7px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.explorerToggle span {
+  height: 2px;
+  border-radius: 1px;
+  background: rgb(204, 204, 204);
+}
+
+.explorerToggle:hover span,
+.explorerToggle[aria-expanded="true"] span {
+  background: #fff;
+}
+
 @media screen and (max-width: 600px) {
   .chatLabel {
     display: none;
+  }
+
+  .explorerToggle {
+    display: flex;
+  }
+
+  /* No room for the title or the decorative window buttons */
+  .title,
+  .windowButtons > span {
+    display: none;
+  }
+
+  .windowButtons {
+    flex: none;
+  }
+
+  .chatToggle {
+    margin-right: 0;
   }
 }
 

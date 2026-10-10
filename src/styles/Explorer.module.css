@@ -75,8 +75,40 @@
   }
 }
 
+/* Phones: a drawer that slides in from the left (opened from the titlebar) */
 @media screen and (max-width: 600px) {
   .explorer {
-    display: none;
+    position: fixed;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    width: min(280px, 82vw);
+    padding-bottom: 1rem;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.4);
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition: transform 0.25s ease, visibility 0.25s;
+  }
+
+  .open {
+    transform: none;
+    visibility: visible;
+  }
+
+  /* Bigger touch targets */
+  .file {
+    padding: 0.55rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .heading {
+    padding: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .explorer {
+    transition: none;
   }
 }

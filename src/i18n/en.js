@@ -105,6 +105,7 @@ const en = {
 
   explorer: {
     title: "Explorer",
+    toggle: "Toggle Explorer",
     groups: { General: "General", Github: "Github", Experience: "Experience", Blogs: "Blogs", Hobbies: "Hobbies" },
   },
 
@@ -119,7 +120,7 @@ const en = {
     photo: "Photo of Elnur Maharramov",
   },
 
-  resume: { title: "Resume", download: "Download" },
+  resume: { title: "Resume", download: "Download", open: "Open in new tab" },
 
   contact: {
     findMe: "Find Me On",

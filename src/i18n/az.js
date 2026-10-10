@@ -103,6 +103,7 @@ const az = {
 
   explorer: {
     title: "Explorer",
+    toggle: "Explorer-i aç/bağla",
     groups: { General: "Ümumi", Github: "Github", Experience: "Təcrübə", Blogs: "Bloq", Hobbies: "Hobbilər" },
   },
 
@@ -117,7 +118,7 @@ const az = {
     photo: "Elnur Məhərrəmovun şəkli",
   },
 
-  resume: { title: "Rezume", download: "Yüklə" },
+  resume: { title: "Rezume", download: "Yüklə", open: "Yeni tabda aç" },
 
   contact: {
     findMe: "Məni burada tapa bilərsiniz",
