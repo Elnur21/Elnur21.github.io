@@ -15,9 +15,10 @@ const ContactPage = () => {
     e.preventDefault();
     const res = await fetch("/api/contact", {
       method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, subject, message }),
-    });
-    if (res.ok) {
+    }).catch(() => null);
+    if (res?.ok) {
       alert(t("contact.success"));
       setName("");
       setEmail("");
@@ -47,6 +48,8 @@ const ContactPage = () => {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                maxLength={100}
+                autoComplete="name"
                 required
               />
             </div>
@@ -59,6 +62,8 @@ const ContactPage = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                maxLength={254}
+                autoComplete="email"
                 required
               />
             </div>
@@ -72,6 +77,7 @@ const ContactPage = () => {
               id="subject"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
+              maxLength={200}
               required
             />
           </div>
@@ -84,6 +90,7 @@ const ContactPage = () => {
               rows="5"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              maxLength={5000}
               required
             ></textarea>
           </div>

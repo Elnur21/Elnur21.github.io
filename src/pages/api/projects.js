@@ -33,5 +33,7 @@ export default (req, res) => {
       py_bots: getPyBotsProjects(locale),
     };
     res.json(projects);
+  } else {
+    res.status(400).json({ msg: "Unknown project type" });
   }
 };
