@@ -42,6 +42,11 @@ export const explorerItems = [
         path: "/github",
         icon: "markdown_icon.svg",
       },
+      {
+        name: "repositories.json",
+        path: "/repositories",
+        icon: "json_icon.svg",
+      },
     ],
   },
   {

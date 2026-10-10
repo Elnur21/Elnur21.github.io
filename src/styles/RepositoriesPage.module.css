@@ -1,0 +1,258 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comment {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: #6a9955;
+  opacity: 0.85;
+}
+
+/* Summary numbers */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  background: var(--article-bg);
+}
+
+.statValue {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Search, sort and filters */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.search,
+.select {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: var(--article-bg);
+  color: var(--text-color);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+}
+
+.search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.toggle input {
+  accent-color: var(--accent-color);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.filterActive,
+.filterActive:hover {
+  color: var(--main-bg, #1e1e1e);
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.count {
+  margin: 0 0 12px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Repository list */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.repo {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  background: var(--article-bg);
+  transition: border-color 0.2s ease;
+}
+
+.repo:hover {
+  border-color: var(--accent-color);
+}
+
+.repoMain {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.repoHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.repoName {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.repoName:hover {
+  text-decoration: underline;
+}
+
+.badge {
+  padding: 1px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.description {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.topic {
+  font-size: 0.7rem;
+  font-family: "JetBrains Mono", monospace;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background-color: rgba(86, 156, 214, 0.12);
+  color: #569cd6;
+  border: 1px solid rgba(86, 156, 214, 0.2);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.meta span {
+  display: inline-flex;
+  align-items: center;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.icon {
+  color: var(--accent-color);
+  margin-right: 0.3rem;
+}
+
+.links {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.empty {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: #6a9955;
+}
+
+@media screen and (max-width: 600px) {
+  .repo {
+    padding: 14px 16px;
+  }
+
+  .search {
+    min-width: 100%;
+  }
+}
