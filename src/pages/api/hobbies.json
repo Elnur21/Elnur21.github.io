@@ -1,34 +1,34 @@
 [
   {
     "id": 1,
-    "icon": "🎬",
+    "icon": "film",
     "title": "Watching Films",
-    "description": "Enjoy a variety of film genres in my free time.",
-    "tags": ["Comedy", "Scientific", "Science Fiction"],
+    "description": "I enjoy exploring different worlds through cinema, from clever comedies to mind-bending science fiction. I appreciate stories that entertain, surprise, and offer a fresh perspective.",
+    "tags": ["Comedy", "Science", "Science Fiction"],
     "color": "#569cd6"
   },
   {
     "id": 2,
-    "icon": "🚶",
+    "icon": "walk",
     "title": "Walking",
-    "description": "Love taking long walks to clear my mind and stay active.",
-    "tags": ["Outdoor", "Fitness", "Mindfulness"],
+    "description": "Walking is my way to disconnect from the noise, recharge my mind, and enjoy the world around me. Sometimes, the best ideas come when I simply keep moving.",
+    "tags": ["Outdoors", "Fitness", "Mindfulness"],
     "color": "#4ec9b0"
   },
   {
     "id": 3,
-    "icon": "📱",
+    "icon": "game",
     "title": "Mobile Games",
-    "description": "Play mobile games to relax and challenge myself.",
-    "tags": ["Casual", "Strategy", "Puzzle"],
+    "description": "I enjoy mobile games that offer the perfect mix of relaxation and challenge. Whether solving puzzles or planning my next move, I like games that keep me thinking.",
+    "tags": ["Casual Games", "Strategy", "Puzzles"],
     "color": "#dcdcaa"
   },
   {
     "id": 4,
-    "icon": "♟️",
+    "icon": "chess",
     "title": "Chess",
-    "description": "Study and play chess to sharpen strategic thinking.",
-    "tags": ["Strategy", "Logic", "Competitive"],
+    "description": "Chess challenges me to think ahead, recognize patterns, and consider every move carefully. I enjoy the balance of logic, patience, and strategic creativity that makes every game unique.",
+    "tags": ["Strategy", "Logic", "Competition"],
     "color": "#ce9178"
   }
 ]
