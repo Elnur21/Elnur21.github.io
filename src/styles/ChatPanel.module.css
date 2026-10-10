@@ -50,6 +50,65 @@
   color: #fff;
 }
 
+/* Smart answers toggle */
+
+.headerActions button.smartToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: auto;
+  min-width: 24px;
+  padding: 0 4px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.headerActions button.smart_ready {
+  color: var(--accent-color);
+}
+
+.headerActions button.smart_loading {
+  color: var(--accent-color);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.headerActions button.smart_error {
+  color: #f48771;
+}
+
+.smartProgress {
+  font-size: 0.65rem;
+  font-family: "JetBrains Mono", monospace;
+}
+
+@keyframes pulse {
+  50% { opacity: 0.45; }
+}
+
+.progressBar {
+  height: 2px;
+  margin: 0 16px;
+  background: rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.progressBar div {
+  height: 100%;
+  background: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.smartBadge {
+  margin-left: 4px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 45%, transparent);
+  color: var(--accent-color);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
 /* Messages */
 
 .messages {

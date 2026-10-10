@@ -303,6 +303,14 @@ const en = {
     placeholder: "Ask about Elnur, e.g. “React projects” or “current job”",
     hint: "Enter to send · Shift+Enter for a new line",
     send: "Send",
+    smart: {
+      off: "Smart answers are off. Click to turn on (downloads a {size} MB AI model once)",
+      loading: "Loading the AI model… {progress}%",
+      ready: "Smart answers are on: questions are matched by meaning (AI model running in your browser). Click to turn off",
+      error: "The AI model could not be loaded, so basic answers are used. Click to try again",
+      badge: "✨ smart",
+      badgeTitle: "Found by meaning with an AI model running in your browser",
+    },
   },
 
   // Labels for topic tags (technology names are never translated)

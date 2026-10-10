@@ -664,6 +664,13 @@ export function createBot(data, { now = new Date() } = {}) {
     { id: "thanks", keys: ["thanks"], small: true, answer: (lang) => ({ text: STRINGS[lang].thanks, buttons: [MAIN(lang), topic(B(lang).contactElnur, "contact")] }) },
     { id: "bye", keys: ["bye"], small: true, answer: (lang) => ({ text: STRINGS[lang].bye, buttons: [topic(B(lang).contactElnur, "contact")] }) },
     { id: "bot", keys: ["you", "who", "bot", "assistant", "chatbot", "gpt", "real", "human"], need: 2, answer: (lang) => topics.bot(lang) },
+    // "How was this website built?" Mostly reached through the smart answers' example questions
+    { id: "website", keys: ["vscode", "this-site"], need: 2,
+      answer: (lang) => ({
+        text: STRINGS[lang].website,
+        items: posts(en.posts.filter((p) => p.slug === "building-a-vscode-style-portfolio"), lang),
+        buttons: [link(B(lang).openGithub, "https://github.com/Elnur21/Elnur21.github.io"), MAIN(lang)],
+      }) },
     { id: "current", keys: ["now", "experience", "company"], need: 2, answer: (lang) => dynamicTopic("job:current", lang) },
     { id: "years", keys: ["year", "long", "experience", "many", "senior", "total"], need: 2,
       answer: (lang) => {
@@ -792,21 +799,22 @@ export function createBot(data, { now = new Date() } = {}) {
     const top = scored[0];
 
     // 1. Greetings and thanks, when that's all the message says
-    if (top?.intent.small && ws.length <= 3) return top.intent.answer(lang);
+    if (top?.intent.small && ws.length <= 3) return { ...top.intent.answer(lang), kind: "small" };
 
     // 2. A company name: answer about that job
-    if (company) return dynamicTopic(`job:${company.id}`, lang);
+    if (company) return { ...dynamicTopic(`job:${company.id}`, lang), kind: "company" };
 
     // 3. Specific questions (current job, years, email...) beat tech names
     const specific = ["current", "years", "first", "location", "email", "linkedin", "bot", "education", "resume", "level"];
-    if (top && specific.includes(top.intent.id) && top.score >= 1) return top.intent.answer(lang);
+    if (top && specific.includes(top.intent.id) && top.score >= 1)
+      return { ...top.intent.answer(lang), kind: "specific", intent: top.intent.id };
 
     // 4. A technology: everything Elnur did with it
     if (techs.length) {
       const answer = techAnswer(techs[0], lang);
       if (techs.length > 1)
         answer.buttons = [...techs.slice(1, 4).map((k) => topic(tech[k].name, `tech:${k}`)), ...answer.buttons];
-      return answer;
+      return { ...answer, kind: "tech" };
     }
 
     // 5. A clear topic
@@ -821,7 +829,7 @@ export function createBot(data, { now = new Date() } = {}) {
         .map((s) => intentButton(s.intent, lang))
         .filter((b) => !labels.has(b.label));
       answer.buttons = [...others, ...(answer.buttons || [])];
-      return answer;
+      return { ...answer, kind: "topic", intent: top.intent.id };
     }
 
     // 6. Search blog posts and hobbies by their words
@@ -854,6 +862,7 @@ export function createBot(data, { now = new Date() } = {}) {
           hobbyHits.length ? topic(B(lang).allHobbies, "hobbies") : topic(B(lang).browseBlog, "blog"),
           MAIN(lang),
         ],
+        kind: hobbyHits.length ? "hobby" : "search",
       };
     }
 
@@ -862,13 +871,43 @@ export function createBot(data, { now = new Date() } = {}) {
     return {
       text: maybe.length ? STRINGS[lang].unsure : STRINGS[lang].unknown,
       buttons: maybe.length ? [...maybe.map((s) => intentButton(s.intent, lang)), MAIN(lang)] : topics.menu(lang).buttons,
+      kind: maybe.length ? "unsure" : "unknown",
     };
+  };
+
+  // An answer built from a passage the semantic search found
+  // (chunk: { k: "post" | "job" | "project" | "hobby", r: reference, t: text })
+  const passageAnswer = (chunk, lang) => {
+    const S = STRINGS[lang];
+    if (chunk.k === "post") {
+      const post = view[lang].postBySlug[chunk.r] || en.postBySlug[chunk.r];
+      if (!post) return null;
+      return {
+        text: `${S.fromPost(post.title)}\n${chunk.t}`,
+        items: [postItem(post.slug, lang)],
+        buttons: [{ label: S.buttons.readPost, action: { type: "post", slug: post.slug } }, topic(B(lang).browseBlog, "blog"), MAIN(lang)],
+      };
+    }
+    if (chunk.k === "job") return dynamicTopic(`job:${chunk.r}`, lang);
+    if (chunk.k === "project") {
+      return {
+        text: `${S.fromProject}\n${chunk.t}`,
+        buttons: [link(B(lang).openGithub, chunk.r), topic(B(lang).otherProjects, "projects"), MAIN(lang)],
+      };
+    }
+    if (chunk.k === "hobby") return topics.hobbies(lang);
+    return null;
   };
 
   return {
     start: (lang = "en") => ({ text: STRINGS[lang].start, buttons: topics.menu(lang).buttons, lang }),
     show: (id, lang = "en") => ({ ...show(id, lang), lang }),
     intent: (id, lang = "en") => ({ ...(intentById[id]?.answer(lang) || topics.menu(lang)), lang }),
+    passage: (chunk, lang = "en") => {
+      const answer = passageAnswer(chunk, lang);
+      return answer && { ...answer, lang };
+    },
+    detectLanguage,
     // Answers in the language of the message; `fallback` is used when the
     // message has no clear language (e.g. just "React")
     reply: (text, fallback = "en") => {

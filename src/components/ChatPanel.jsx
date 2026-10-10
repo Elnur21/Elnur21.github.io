@@ -55,6 +55,9 @@ const ChatPanel = () => {
   const addTab = useAppStore((state) => state.addTab);
 
   const [bot, setBot] = useState(null);
+  // Smart answers (multilingual embedding model in a Web Worker)
+  const [smart, setSmart] = useState(null);
+  const [smartStatus, setSmartStatus] = useState({ state: "off", progress: 0 });
   const [pages, setPages] = useState([]);
   const [typing, setTyping] = useState(false);
   // Language of the conversation: starts as the site language, then follows
@@ -66,11 +69,21 @@ const ChatPanel = () => {
 
   // Load the bot and the site's data only when the panel is opened
   useEffect(() => {
-    import("@/libs/chatbot").then((module) => {
-      setBot(module.bot);
-      setPages(module.pages);
+    let unsubscribe = () => {};
+    Promise.all([
+      import("@/libs/chatbot"),
+      import("@/libs/chatbot/smart"),
+      import("@/libs/chatbot/smartClient"),
+    ]).then(([chatbot, { smartAnswer }, client]) => {
+      setBot(chatbot.bot);
+      setPages(chatbot.pages);
+      setSmart({ ...client, smartAnswer });
+      setSmartStatus(client.getStatus());
+      unsubscribe = client.subscribe(setSmartStatus);
+      if (client.shouldAutoEnable()) client.enable();
     });
     inputRef.current?.focus();
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
@@ -93,12 +106,28 @@ const ChatPanel = () => {
     if (!bot || typing) return;
     addMessage({ from: "user", text: userText });
     setTyping(true);
-    setTimeout(() => {
-      const answer = getAnswer();
+    const delay = new Promise((resolve) => setTimeout(resolve, TYPING_DELAY));
+    Promise.all([getAnswer(), delay]).then(([answer]) => {
       if (answer.lang) setChatLang(answer.lang);
       addMessage({ from: "bot", ...answer });
       setTyping(false);
-    }, TYPING_DELAY);
+    });
+  };
+
+  // The rules answer first; when the model is ready it may find a better
+  // answer by meaning (paraphrases, specific questions about a post)
+  const answerText = async (text) => {
+    const rule = bot.reply(text, chatLang);
+    if (smartStatus.state !== "ready") return rule;
+    const vector = await smart.embed(text);
+    if (!vector) return rule;
+    return smart.smartAnswer({ bot, index: smart.getIndex(), vector, text, rule }) || rule;
+  };
+
+  const toggleSmart = () => {
+    if (!smart) return;
+    if (smartStatus.state === "off" || smartStatus.state === "error") smart.enable();
+    else smart.disable();
   };
 
   const openPage = (path, query = "") => {
@@ -135,7 +164,7 @@ const ChatPanel = () => {
     const text = input.trim();
     if (!text) return;
     setInput("");
-    ask(text, () => bot.reply(text, chatLang));
+    ask(text, () => answerText(text));
   };
 
   const lastBot = messages.map((m) => m.from).lastIndexOf("bot");
@@ -145,6 +174,16 @@ const ChatPanel = () => {
       <header className={styles.header}>
         <span className={styles.title}>{t("chat.title")}</span>
         <div className={styles.headerActions}>
+          <button
+            onClick={toggleSmart}
+            className={`${styles.smartToggle} ${styles[`smart_${smartStatus.state}`] || ""}`}
+            title={t(`chat.smart.${smartStatus.state}`, { size: 118, progress: smartStatus.progress })}
+            aria-label={t(`chat.smart.${smartStatus.state}`, { size: 118, progress: smartStatus.progress })}
+            aria-pressed={smartStatus.state === "ready" || smartStatus.state === "loading"}
+          >
+            <SparkleIcon />
+            {smartStatus.state === "loading" && <span className={styles.smartProgress}>{smartStatus.progress}%</span>}
+          </button>
           <button onClick={clearChat} title={t("chat.newChat")} aria-label={t("chat.newChat")}>
             +
           </button>
@@ -153,6 +192,11 @@ const ChatPanel = () => {
           </button>
         </div>
       </header>
+      {smartStatus.state === "loading" && (
+        <div className={styles.progressBar} role="progressbar" aria-valuenow={smartStatus.progress}>
+          <div style={{ width: `${smartStatus.progress}%` }} />
+        </div>
+      )}
 
       <div className={styles.messages} ref={listRef}>
         {!bot && <p className={styles.loading}>{t("chat.loading")}</p>}
@@ -166,6 +210,11 @@ const ChatPanel = () => {
               {m.from === "bot" ? (
                 <>
                   <span className={styles.avatar}><SparkleIcon /></span>{t("chat.assistant")}
+                  {m.smart && (
+                    <span className={styles.smartBadge} title={t("chat.smart.badgeTitle")}>
+                      {t("chat.smart.badge")}
+                    </span>
+                  )}
                 </>
               ) : (
                 <>

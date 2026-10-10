@@ -301,6 +301,14 @@ const az = {
     placeholder: "Elnur haqqında soruşun, məs. “React layihələri” və ya “hazırkı işi”",
     hint: "Göndərmək üçün Enter · Yeni sətir üçün Shift+Enter",
     send: "Göndər",
+    smart: {
+      off: "Ağıllı cavablar söndürülüb. Yandırmaq üçün klikləyin ({size} MB AI modeli bir dəfə yüklənir)",
+      loading: "AI modeli yüklənir… {progress}%",
+      ready: "Ağıllı cavablar aktivdir: suallar mənasına görə tapılır (AI modeli brauzerinizdə işləyir). Söndürmək üçün klikləyin",
+      error: "AI modeli yüklənmədi, sadə cavablar istifadə olunur. Yenidən cəhd etmək üçün klikləyin",
+      badge: "✨ ağıllı",
+      badgeTitle: "Brauzerinizdə işləyən AI modeli ilə mənasına görə tapılıb",
+    },
   },
 
   tags: {
