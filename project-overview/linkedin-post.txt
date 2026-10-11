@@ -1,0 +1,47 @@
+I turned my portfolio into a code editor 💻
+
+Most portfolio sites look the same, so I built mine to feel like the place I spend most of my day: Visual Studio Code.
+
+Every section opens like a file. home.jsx is the intro, projects.py holds my machine learning work, contact.yml has my links, and resume.html is my CV. There's a file explorer, editor tabs, a status bar and keyboard shortcuts, all working in the browser.
+
+A few things I'm proud of:
+
+🤖 A built-in chat assistant. Ask it about my experience or projects and it answers in English, Azerbaijani or Russian. A multilingual AI model runs right in your browser, and it only answers with content from the site, so it can't make things up.
+🌍 The whole site is available in three languages.
+📱 It works on phones too, with a slide-out file explorer.
+📊 Live GitHub stats and my contribution calendar.
+
+Built with Next.js, React, Tailwind CSS and Transformers.js, and hosted on Vercel.
+
+Have a look and try asking the assistant something 👉 https://elnur21-github-io.vercel.app
+Source code: https://github.com/Elnur21/Elnur21.github.io
+
+Which theme would you pick? 👇
+
+#WebDevelopment #NextJS #React #JavaScript #Portfolio #FullStackDeveloper #AI #VSCode
+
+
+
+Portfoliomu kod redaktoruna çevirdim 💻
+
+Əksər portfolio saytları bir-birinə bənzəyir. Mən isə öz portfolio saytımı günümün böyük hissəsini keçirdiyim mühitə — Visual Studio Code-a bənzər şəkildə hazırladım.
+
+Saytdakı hər bölmə ayrıca fayl kimi açılır: `home.jsx` giriş hissəsini, `projects.py` maşın öyrənməsi layihələrimi, `contact.yml` əlaqə məlumatlarımı, `resume.html` isə CV-mi əks etdirir. Fayl meneceri, redaktor tabları, status paneli və klaviatura qısayolları — hamısı brauzerdə işləyir.
+
+**Xüsusilə qürur duyduğum bir neçə xüsusiyyət:**
+
+🤖 **Daxili çat köməkçisi.** Təcrübəm və layihələrim haqqında suallar verə bilərsiniz. Köməkçi ingilis, Azərbaycan və rus dillərində cavab verir. Çoxdilli süni intellekt modeli birbaşa brauzerinizdə işləyir və yalnız saytdakı məlumatlara əsaslanaraq cavab verir. Beləliklə, mövcud olmayan məlumatları uydurmasının qarşısı alınır.
+
+🌍 **Üç dildə dəstək.** Saytın bütün bölmələri üç dildə əlçatandır.
+
+📱 **Mobil uyğunluq.** Sayt telefonlarda da rahat işləyir və fayl meneceri yan panel şəklində açılır.
+
+📊 **Canlı GitHub statistikası və töhfə təqvimi.** GitHub fəaliyyətimi birbaşa saytda izləmək mümkündür.
+
+Layihəni Next.js, React, Tailwind CSS və Transformers.js ilə hazırlamışam, Vercel üzərində yayımlamışam.
+
+Sayta nəzər salın və çat köməkçisinə sual verməyi sınayın 👉 https://elnur21-github-io.vercel.app
+
+**Mənbə kodu:** https://github.com/Elnur21/Elnur21.github.io
+
+#WebDevelopment #NextJS #React #JavaScript #Portfolio #FullStackDeveloper #AI #VSCode

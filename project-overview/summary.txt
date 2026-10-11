@@ -1,0 +1,13 @@
+Elnur Maharramov - Developer Portfolio (Project Summary)
+
+This project is the personal portfolio website of Elnur Maharramov, a full stack developer, built with Next.js 16, React 19 and Tailwind CSS and deployed on Vercel. Its whole interface is designed to look like the Visual Studio Code editor, with a title bar, activity sidebar, file explorer, editor tabs and a status bar, so each section of the site opens like a file (home.jsx, resume.html, contact.yml, projects.js, projects.py). Visitors can browse JavaScript and Python/machine learning projects, work experience, blog articles with insights, GitHub repositories and contribution activity, hobbies and an embedded resume. The site offers six selectable editor color themes (Dracula, GitHub Dark, Ayu Dark, Ayu Mirage, Nord and Night Owl) and is fully translated into English, Azerbaijani and Russian. A built-in chat assistant answers questions about Elnur using a rule-based engine, backed by a multilingual embedding model (Transformers.js running in a Web Worker) that only returns the site's own content, so it cannot invent answers. A contact page provides both social links and a form that sends email through a Nodemailer API route with input validation and rate limiting. The project also pays attention to accessibility and SEO, with a generated sitemap, metadata helpers, a responsive mobile layout with an explorer drawer, and Vercel Analytics.
+
+Screenshots (in the "screenshots" folder):
+- index.png        Home page with name, role, main skills, Resume and Contact buttons
+- projects-js.png  JavaScript projects
+- projects-py.png  Python / machine learning projects
+- experience.png   Work experience
+- blogs.png        Blog articles
+- hobbies.png      Hobbies
+- contact.png      Contact links and email form
+- settings.png     Theme manager with the six color themes
